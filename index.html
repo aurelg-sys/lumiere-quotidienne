@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Un verset, une réflexion, une prière — chaque jour. Centré sur Jésus-Christ." />
+  <title>Lumière Quotidienne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:        #F5F0E8;
+      --bg-alt:    #EDE8DF;
+      --bg-card:   #FDFAF5;
+      --bg-dark:   #2C2A25;
+      --gold:      #C49A3C;
+      --gold-pale: #F0E6C8;
+      --gold-mid:  #D4AC5A;
+      --text:      #2C2A25;
+      --text-mid:  #5C5847;
+      --text-soft: #9A9285;
+      --border:    #DDD8CC;
+      --sage:      #5C7A4E;
+      --radius:    12px;
+      --radius-lg: 20px;
+      --shadow:    0 2px 20px rgba(44,42,37,0.08);
+      --font-d:    'Playfair Display', Georgia, serif;
+      --font-b:    'Lato', system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: var(--font-b);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── NAVBAR ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--gold-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--gold);
+    }
+    .nav-name {
+      font-family: var(--font-d);
+      font-size: 1rem; color: var(--text);
+      letter-spacing: 0.3px;
+    }
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+    .nav-links a {
+      color: var(--text-mid); text-decoration: none;
+      font-size: 13px; padding: 6px 14px; border-radius: 20px;
+      transition: all .15s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--gold); background: var(--gold-pale);
+    }
+    .nav-cta {
+      background: var(--gold); color: #fff;
+      border: none; border-radius: 20px;
+      padding: 7px 18px; font-size: 13px; font-weight: 700;
+      cursor: pointer; font-family: var(--font-b);
+      transition: background .15s;
+    }
+    .nav-cta:hover { background: var(--gold-mid); }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px; transition: .2s;
+    }
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 56px; left: 0; right: 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem; z-index: 99;
+      flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-mid); text-decoration: none;
+      font-size: 15px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); transition: color .15s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2.5rem 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2; color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .hero-desc {
+      font-size: 15px; color: var(--text-mid);
+      line-height: 1.7; max-width: 420px;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: #fff;
+      border: none; border-radius: 24px;
+      padding: 10px 22px; font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: var(--font-b);
+      transition: background .15s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-gold:hover { background: var(--gold-mid); }
+    .btn-outline {
+      background: transparent; color: var(--text-mid);
+      border: 1.5px solid var(--border); border-radius: 24px;
+      padding: 10px 22px; font-size: 14px;
+      cursor: pointer; font-family: var(--font-b);
+      transition: all .15s; text-decoration: none;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Hero right: verset card flottant */
+    .hero-right { position: relative; }
+    .hero-img {
+      width: 100%; height: 340px; object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .hero-verset-card {
+      position: absolute; bottom: -1.5rem; left: -1.5rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      max-width: 280px;
+      border: 1px solid var(--border);
+    }
+    .hvc-label {
+      font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .hvc-text {
+      font-family: var(--font-d); font-style: italic;
+      font-size: 1.05rem; line-height: 1.55;
+      color: var(--text);
+    }
+    .hvc-ref {
+      font-size: 12px; color: var(--text-soft);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── SECTION COMMUNE ─── */
+    .section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-bg-alt { background: var(--bg-alt); }
+    .section-bg-dark { background: var(--bg-dark); }
+
+    .section-label {
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem; text-align: center;
+    }
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      text-align: center; line-height: 1.3;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .section-title-light { color: #F5F0E8; }
+    .section-subtitle {
+      text-align: center; color: var(--text-mid);
+      font-size: 15px; line-height: 1.65;
+      max-width: 600px; margin: 0 auto 3rem;
+    }
+    .section-subtitle-light { color: rgba(245,240,232,0.65); }
+
+    /* ─── RYTHME / 3 COLONNES ─── */
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .col-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+    }
+    .col-card-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; margin-bottom: 1rem;
+    }
+    .ic-gold { background: var(--gold-pale); }
+    .ic-sage { background: #E4EDE0; }
+    .ic-blue { background: #E3EDF8; }
+    .col-card-title {
+      font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .col-card-text {
+      font-family: var(--font-d); font-style: italic;
+      font-size: 1rem; line-height: 1.65;
+      color: var(--text);
+    }
+    .col-card-meta {
+      font-size: 12px; color: var(--text-soft);
+      margin-top: 0.75rem;
+    }
+
+    /* ─── TÉMOIGNAGES (dark) ─── */
+    .temo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem; align-items: start;
+    }
+    .temo-left h2 {
+      font-family: var(--font-d);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      color: #F5F0E8; line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .temo-left p {
+      color: rgba(245,240,232,0.6); font-size: 14px;
+      line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .temo-right { display: flex; flex-direction: column; gap: 1rem; }
+    .temo-bubble {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .temo-quote {
+      font-family: var(--font-d); font-style: italic;
+      font-size: 1rem; color: #F5F0E8; line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+    .temo-author { font-size: 12px; color: rgba(245,240,232,0.45); }
+
+    /* Formulaire témoignage */
+    .temo-form { margin-top: 1rem; }
+    .temo-form textarea {
+      width: 100%; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius); padding: 10px 14px;
+      font-size: 14px; font-family: var(--font-b);
+      color: #F5F0E8; background: rgba(255,255,255,0.07);
+      resize: none; height: 80px; transition: border-color .15s;
+    }
+    .temo-form textarea:focus { outline: none; border-color: var(--gold); }
+    .temo-form textarea::placeholder { color: rgba(245,240,232,0.35); }
+    .temo-form-row {
+      display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;
+    }
+    .temo-form input {
+      flex: 1; min-width: 120px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius); padding: 8px 12px;
+      font-size: 13px; font-family: var(--font-b);
+      background: rgba(255,255,255,0.07); color: #F5F0E8;
+      transition: border-color .15s;
+    }
+    .temo-form input:focus { outline: none; border-color: var(--gold); }
+    .temo-form input::placeholder { color: rgba(245,240,232,0.35); }
+    .btn-gold-sm {
+      background: var(--gold); color: #fff; border: none;
+      border-radius: var(--radius); padding: 8px 18px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: var(--font-b); white-space: nowrap;
+      transition: background .15s;
+    }
+    .btn-gold-sm:hover { background: var(--gold-mid); }
+
+    /* ─── BIBLIOTHÈQUE ─── */
+    .biblio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+    .biblio-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1.25rem;
+      text-align: center; cursor: pointer; text-decoration: none;
+      transition: all .15s; display: block;
+    }
+    .biblio-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(196,154,60,0.12);
+    }
+    .biblio-icon { font-size: 26px; margin-bottom: 0.75rem; display: block; }
+    .biblio-title {
+      font-weight: 700; font-size: 14px;
+      color: var(--text); margin-bottom: 0.4rem;
+    }
+    .biblio-desc { font-size: 12px; color: var(--text-soft); line-height: 1.5; }
+
+    /* Thèmes grid */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    .theme-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 8px 14px;
+      text-align: center; cursor: pointer;
+      transition: all .15s; text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .theme-chip:hover { border-color: var(--gold); background: var(--gold-pale); }
+    .theme-chip-emoji { font-size: 16px; }
+    .theme-chip-label { font-size: 13px; color: var(--text-mid); font-weight: 700; }
+
+    /* ─── IMAGES PAYSAGES ─── */
+    .paysage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .paysage-card {
+      border-radius: var(--radius-lg); overflow: hidden;
+      position: relative; height: 260px; cursor: pointer;
+    }
+    .paysage-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .paysage-card:hover .paysage-img { transform: scale(1.04); }
+    .paysage-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(44,42,37,0.85) 0%, transparent 100%);
+      padding: 1.25rem;
+    }
+    .paysage-theme {
+      font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold-mid);
+      display: block; margin-bottom: 5px;
+    }
+    .paysage-verset {
+      font-family: var(--font-d); font-style: italic;
+      color: #F5F0E8; font-size: 0.95rem; line-height: 1.45;
+    }
+
+    /* ─── PRIÈRE SALUT ─── */
+    .salut-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 3rem; align-items: start;
+    }
+    .salut-left h2 {
+      font-family: var(--font-d);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.3; margin-bottom: 1rem; color: var(--text);
+    }
+    .salut-left p {
+      font-size: 14px; color: var(--text-mid);
+      line-height: 1.7; margin-bottom: 0.75rem;
+    }
+    .salut-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gold-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 1.25rem;
+    }
+    .salut-prayer-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .salut-prayer-text {
+      font-size: 14.5px; color: var(--text);
+      line-height: 1.85;
+    }
+    .salut-prayer-text p { margin-bottom: 0.85rem; }
+    .salut-prayer-text p:last-child { margin-bottom: 0; }
+    .salut-amen {
+      font-family: var(--font-d); font-style: italic;
+      font-size: 1rem; color: var(--gold);
+    }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter-box {
+      text-align: center; padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .nl-icon { font-size: 28px; margin-bottom: 1rem; display: block; }
+    .nl-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text); margin-bottom: 0.5rem;
+    }
+    .nl-sub {
+      font-size: 14px; color: var(--text-mid); margin-bottom: 1.5rem;
+    }
+    .nl-form {
+      display: flex; gap: 8px; max-width: 420px; margin: 0 auto;
+    }
+    .nl-form input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 24px; padding: 10px 16px;
+      font-size: 14px; font-family: var(--font-b);
+      background: var(--bg-card); color: var(--text);
+      transition: border-color .15s;
+    }
+    .nl-form input:focus { outline: none; border-color: var(--gold); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg-dark);
+      padding: 3rem 2.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2.5rem;
+    }
+    .footer-brand-name {
+      font-family: var(--font-d); font-size: 1.15rem;
+      color: #F5F0E8; margin-bottom: 0.5rem;
+    }
+    .footer-brand-desc {
+      font-size: 13px; color: rgba(245,240,232,0.45);
+      line-height: 1.6; max-width: 260px;
+    }
+    .footer-col-title {
+      font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a {
+      font-size: 13px; color: rgba(245,240,232,0.5);
+      text-decoration: none; transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-bottom p {
+      font-size: 12px; color: rgba(245,240,232,0.25); letter-spacing: 1px;
+    }
+    .footer-cross { color: var(--gold); font-size: 16px; }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed; bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--bg-dark); color: #F5F0E8;
+      font-size: 13px; padding: 10px 22px;
+      border-radius: 24px; border: 1px solid rgba(196,154,60,.35);
+      z-index: 999; transition: transform .3s ease; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── DAY NAV ─── */
+    .day-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.85rem 1.25rem;
+      margin-bottom: 1.5rem; max-width: 600px; margin: 0 auto 2rem;
+    }
+    .day-btn {
+      background: none; border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 13px; color: var(--text-mid); cursor: pointer;
+      font-family: var(--font-b); transition: all .15s;
+    }
+    .day-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .day-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .day-center { text-align: center; }
+    .day-date { font-size: 14px; font-weight: 700; color: var(--text); }
+    .day-sub { font-size: 11px; color: var(--text-soft); margin-top: 2px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem 2rem; }
+      .hero-right { display: none; }
+      .cols-3 { grid-template-columns: 1fr; }
+      .temo-grid { grid-template-columns: 1fr; }
+      .biblio-grid { grid-template-columns: repeat(2, 1fr); }
+      .paysage-grid { grid-template-columns: 1fr; }
+      .salut-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .nl-form { flex-direction: column; }
+      .section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="nav">
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">✝</div>
+    <span class="nav-name">Lumière Quotidienne</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#aujourdhui" class="active">Aujourd'hui</a></li>
+    <li><a href="#ressources">Ressources</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#salut">Donner sa vie</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('salut').scrollIntoView({behavior:'smooth'})">
+    🙏 Prière du salut
+  </button>
+  <button class="nav-hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#aujourdhui">Aujourd'hui</a>
+  <a href="#ressources">Ressources</a>
+  <a href="#temoignages">Témoignages</a>
+  <a href="#salut">Donner sa vie</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section style="background:var(--bg)">
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Un verset · Une réflexion · Une prière</p>
+      <h1 class="hero-title">Commence chaque journée avec une parole d'espérance en Christ.</h1>
+      <p class="hero-desc">
+        Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.
+      </p>
+      <div class="hero-btns">
+        <a href="#aujourdhui" class="btn-gold">📖 Lire le verset du jour</a>
+        <a href="#ressources" class="btn-outline">Explorer</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Paysage pastoral — prairie au coucher de soleil -->
+      <img class="hero-img"
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+        alt="Paysage paisible de prairie au coucher du soleil"
+        onerror="this.style.background='linear-gradient(135deg,#C49A3C22,#5C7A4E22)';this.src=''" />
+      <div class="hero-verset-card">
+        <p class="hvc-label">Verset du jour</p>
+        <p class="hvc-text" id="hvcText">
+          « Je connais les projets que j'ai formés sur vous, projets de paix et non de malheur. »
+        </p>
+        <p class="hvc-ref" id="hvcRef">— Jérémie 29 : 11</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RYTHME SIMPLE ═══ -->
+<section class="section section-bg-alt" id="aujourdhui">
+  <div class="section-inner">
+    <p class="section-label">Chaque matin</p>
+    <h2 class="section-title">Un rythme simple pour nourrir la foi au quotidien.</h2>
+    <p class="section-subtitle">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
+
+    <!-- nav jours -->
+    <div class="day-nav">
+      <button class="day-btn" onclick="showToast('Navigation à venir…')">← Hier</button>
+      <div class="day-center">
+        <div class="day-date" id="navDate">—</div>
+        <div class="day-sub">Parole du jour</div>
+      </div>
+      <button class="day-btn" disabled>Demain →</button>
+    </div>
+
+    <div class="cols-3 reveal">
+
+      <!-- Verset -->
+      <div class="col-card">
+        <div class="col-card-icon ic-gold">📖</div>
+        <p class="col-card-title">Verset du jour</p>
+        <p class="col-card-text">
+          « Je connais les projets que j'ai formés sur vous, projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »
+        </p>
+        <p class="col-card-meta">— Jérémie 29 : 11</p>
+      </div>
+
+      <!-- Exhortation -->
+      <div class="col-card">
+        <div class="col-card-icon ic-sage">🌿</div>
+        <p class="col-card-title">Exhortation</p>
+        <p class="col-card-text">
+          Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain.
+        </p>
+        <p class="col-card-meta" style="margin-top:1rem; cursor:pointer; color:var(--gold);" onclick="document.getElementById('reflexion-full').style.display='block';this.style.display='none'">
+          → Lire la réflexion complète
+        </p>
+        <div id="reflexion-full" style="display:none; margin-top:0.75rem;">
+          <p class="col-card-text" style="font-style:normal; font-size:13px; color:var(--text-mid); line-height:1.7;">
+            Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi — des projets de paix. Il ne t'a pas oublié. Il travaille encore, même dans le silence. Repose-toi sur Sa fidélité.
+          </p>
+        </div>
+      </div>
+
+      <!-- Prière -->
+      <div class="col-card">
+        <div class="col-card-icon ic-blue">🙏</div>
+        <p class="col-card-title">Prière quotidienne</p>
+        <p class="col-card-text" id="priereTexte">
+          Seigneur, aide-moi à marcher dans Ta paix aujourd'hui. Donne-moi la force de Te faire confiance même lorsque je ne comprends pas tout. Au nom de Jésus, Amen.
+        </p>
+        <button onclick="copierPriere()" style="margin-top:1rem; background:none; border:1px solid var(--border); border-radius:20px; padding:5px 12px; font-size:11px; color:var(--text-soft); cursor:pointer; font-family:var(--font-b); transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-soft)'">
+          📋 Copier la prière
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TÉMOIGNAGES ═══ -->
+<section class="section section-bg-dark" id="temoignages">
+  <div class="section-inner">
+    <div class="temo-grid">
+      <div class="temo-left reveal">
+        <p class="section-label" style="text-align:left; margin-bottom:0.5rem;">Témoignages</p>
+        <h2>Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.</h2>
+        <p>
+          Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile. Cette section accueille les histoires de guérison, de paix retrouvée, de provision et de foi renouvelée.
+        </p>
+        <div class="temo-form">
+          <textarea id="temoInput" placeholder="Partage ton témoignage ici… Ta parole peut allumer une flamme aujourd'hui."></textarea>
+          <div class="temo-form-row">
+            <input type="text" id="temoNom" placeholder="Ton prénom" />
+            <input type="text" id="temoVille" placeholder="Ta ville" />
+            <button class="btn-gold-sm" onclick="envoyerTemo()">🙏 Partager bientôt</button>
+          </div>
+        </div>
+      </div>
+      <div class="temo-right reveal">
+        <div class="temo-bubble">
+          <p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. »</p>
+          <p class="temo-author">— Témoignage reçu &nbsp;·&nbsp; Cotonou</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Une simple prière quotidienne m'a aidé à reprendre courage après des mois difficiles. »</p>
+          <p class="temo-author">— A. partagé bientôt &nbsp;·&nbsp; Parakou</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Chaque matin je commence ici. Ce site est devenu mon pain quotidien spirituel. »</p>
+          <p class="temo-author">— Grace F. &nbsp;·&nbsp; Abidjan</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Après des mois de découragement, cette parole m'a rappelé que Dieu n'a pas abandonné mon avenir. »</p>
+          <p class="temo-author">— Samuel R. &nbsp;·&nbsp; Lomé</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BIBLIOTHÈQUE ═══ -->
+<section class="section" id="ressources">
+  <div class="section-inner">
+    <p class="section-label">Bibliothèque</p>
+    <h2 class="section-title">Retrouver les encouragements par thème, saison et besoin.</h2>
+    <p class="section-subtitle">La bibliothèque grandira avec les publications quotidiennes : messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.</p>
+
+    <div class="biblio-grid reveal">
+      <a href="#" class="biblio-card" onclick="showToast('Messages — bientôt disponibles'); return false;">
+        <span class="biblio-icon">💌</span>
+        <div class="biblio-title">Messages d'encouragement</div>
+        <div class="biblio-desc">Courtes méditations pour les matins où le cœur a besoin d'être relevé.</div>
+      </a>
+      <a href="#" class="biblio-card" onclick="showToast('Études — bientôt disponibles'); return false;">
+        <span class="biblio-icon">📚</span>
+        <div class="biblio-title">Études bibliques</div>
+        <div class="biblio-desc">Parcours simples pour mieux comprendre la Parole et l'appliquer avec foi.</div>
+      </a>
+      <a href="#" class="biblio-card" onclick="showToast('Prières — bientôt disponibles'); return false;">
+        <span class="biblio-icon">🕊️</span>
+        <div class="biblio-title">Prières thématiques</div>
+        <div class="biblio-desc">Des prières pour la paix, la guérison, la famille, le travail et l'espérance.</div>
+      </a>
+      <a href="#" class="biblio-card" onclick="showToast('Versets — bientôt disponibles'); return false;">
+        <span class="biblio-icon">✨</span>
+        <div class="biblio-title">Versets par thème</div>
+        <div class="biblio-desc">Foi, paix, guérison, persévérance, espérance : retrouve vite une parole biblique.</div>
+      </a>
+    </div>
+
+    <!-- Thèmes chips -->
+    <p class="section-label" style="margin-bottom:1rem;">Parcourir par thème</p>
+    <div class="themes-grid reveal">
+      <a class="theme-chip" href="#" onclick="showToast('Thème Paix'); return false;"><span class="theme-chip-emoji">🕊️</span><span class="theme-chip-label">Paix</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Foi'); return false;"><span class="theme-chip-emoji">⚓</span><span class="theme-chip-label">Foi</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Espérance'); return false;"><span class="theme-chip-emoji">🌅</span><span class="theme-chip-label">Espérance</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Guérison'); return false;"><span class="theme-chip-emoji">💚</span><span class="theme-chip-label">Guérison</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Persévérance'); return false;"><span class="theme-chip-emoji">💪</span><span class="theme-chip-label">Persévérance</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Amour'); return false;"><span class="theme-chip-emoji">❤️</span><span class="theme-chip-label">Amour</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Protection'); return false;"><span class="theme-chip-emoji">🛡️</span><span class="theme-chip-label">Protection</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Louange'); return false;"><span class="theme-chip-emoji">🎶</span><span class="theme-chip-label">Louange</span></a>
+      <a class="theme-chip" href="#" onclick="showToast('Thème Sagesse'); return false;"><span class="theme-chip-emoji">✨</span><span class="theme-chip-label">Sagesse</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAYSAGES + VERSETS ═══ -->
+<section class="section section-bg-alt">
+  <div class="section-inner">
+    <p class="section-label">Images à partager</p>
+    <h2 class="section-title">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
+    <div class="paysage-grid reveal" style="margin-top:2.5rem;">
+      <div class="paysage-card">
+        <img class="paysage-img" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=80" alt="Prairie verte lumineuse" onerror="this.style.background='#C49A3C33';this.src=''" />
+        <div class="paysage-overlay">
+          <span class="paysage-theme">Foi</span>
+          <p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p>
+        </div>
+      </div>
+      <div class="paysage-card">
+        <img class="paysage-img" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80" alt="Lac calme au coucher du soleil" onerror="this.style.background='#5C7A4E33';this.src=''" />
+        <div class="paysage-overlay">
+          <span class="paysage-theme">Paix</span>
+          <p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p>
+        </div>
+      </div>
+      <div class="paysage-card">
+        <img class="paysage-img" src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?w=600&q=80" alt="Ciel au lever du soleil doré" onerror="this.style.background='#C49A3C44';this.src=''" />
+        <div class="paysage-overlay">
+          <span class="paysage-theme">Espérance</span>
+          <p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRIÈRE DU SALUT ═══ -->
+<section class="section" id="salut">
+  <div class="section-inner">
+    <div class="salut-grid">
+      <div class="salut-left reveal">
+        <div class="salut-icon">❤️</div>
+        <p class="section-label" style="text-align:left;">Donner sa vie à Jésus</p>
+        <h2>Faites cette prière de tout votre cœur.</h2>
+        <p>Si vous désirez recevoir Jésus-Christ comme Seigneur et Sauveur, prenez un moment dans le calme. Dieu regarde au cœur : parlez-lui avec sincérité, foi et humilité.</p>
+        <p>Aucune formule parfaite n'est requise. Ce qui compte, c'est la sincérité de votre cœur devant Lui.</p>
+      </div>
+      <div class="salut-right reveal">
+        <div class="salut-prayer-box">
+          <div class="salut-prayer-text" id="salutPrayer">
+            <p><strong>Seigneur Jésus,</strong></p>
+            <p>Je reconnais que je suis pécheur et que j'ai besoin de Ton pardon. Je me repens de mes péchés et je renonce à tout ce qui T'est contraire.</p>
+            <p>Je crois que Tu es mort sur la croix pour mes péchés et que Tu es ressuscité pour me donner la vie éternelle.</p>
+            <p>Aujourd'hui, j'ouvre mon cœur et je Te reçois comme mon Seigneur et mon Sauveur personnel.</p>
+            <p>Prends le contrôle de ma vie, transforme-moi par Ton Esprit Saint et aide-moi à marcher selon Ta volonté.</p>
+            <p>Merci pour Ton amour, Ton pardon et le salut que Tu m'accordes.</p>
+            <p class="salut-amen">Au nom de Jésus-Christ,<br>Amen.</p>
+          </div>
+          <button onclick="copierSalut()" style="margin-top:1.5rem; background:none; border:1px solid var(--border); border-radius:20px; padding:7px 16px; font-size:12px; color:var(--text-soft); cursor:pointer; font-family:var(--font-b); transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-soft)'">
+            📋 Copier cette prière
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="section" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="newsletter-box">
+      <span class="nl-icon">✉️</span>
+      <h3 class="nl-title">Reviens demain pour une nouvelle parole de vie.</h3>
+      <p class="nl-sub">Que la paix de Christ garde ton cœur et tes pensées aujourd'hui.</p>
+      <div class="nl-form" id="newsletter">
+        <input type="email" id="nlEmail" placeholder="ton@email.com" />
+        <button class="btn-gold" onclick="sinscrire()">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand-name">✝ Lumière Quotidienne</p>
+      <p class="footer-brand-desc">Un verset, une réflexion, une prière — chaque jour. Centré sur Jésus-Christ pour les francophones d'Afrique et du monde.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="#aujourdhui">Aujourd'hui</a></li>
+        <li><a href="#temoignages">Témoignages</a></li>
+        <li><a href="#ressources">Ressources</a></li>
+        <li><a href="#salut">Donner sa vie</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <ul class="footer-links">
+        <li><a href="#">Nous écrire</a></li>
+        <li><a href="#">Soumettre un verset</a></li>
+        <li><a href="#">Partager un témoignage</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Lumière Quotidienne · Fait avec foi</p>
+    <span class="footer-cross">✝</span>
+    <p>Centré sur Jésus-Christ</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Date
+  const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const M=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const now = new Date();
+  const ds = `${J[now.getDay()]} ${now.getDate()} ${M[now.getMonth()]} ${now.getFullYear()}`;
+  document.getElementById('navDate').textContent = ds;
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // Copier prière quotidienne
+  function copierPriere() {
+    const txt = document.getElementById('priereTexte').innerText;
+    navigator.clipboard.writeText(txt).then(() => showToast('🙏 Prière copiée !')).catch(() => showToast('Copie non disponible.'));
+  }
+
+  // Copier prière du salut
+  function copierSalut() {
+    const txt = document.getElementById('salutPrayer').innerText;
+    navigator.clipboard.writeText(txt).then(() => showToast('🙏 Prière du salut copiée !')).catch(() => showToast('Copie non disponible.'));
+  }
+
+  // Témoignage
+  function envoyerTemo() {
+    const txt = document.getElementById('temoInput').value.trim();
+    const nom = document.getElementById('temoNom').value.trim();
+    if (!txt) { showToast('Écris ton témoignage avant d\'envoyer.'); return; }
+    showToast(`Merci ${nom||'frère/sœur'} ! Ton témoignage sera publié après modération. 🙏`);
+    document.getElementById('temoInput').value='';
+    document.getElementById('temoNom').value='';
+    document.getElementById('temoVille').value='';
+  }
+
+  // Newsletter
+  function sinscrire() {
+    const e = document.getElementById('nlEmail').value.trim();
+    if (!e || !e.includes('@')) { showToast('Entre une adresse email valide.'); return; }
+    showToast(`✉️ Merci ! Tu recevras la parole chaque matin.`);
+    document.getElementById('nlEmail').value='';
+  }
+
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+  });
+
+  // Navbar active on scroll
+  const secs = ['aujourdhui','temoignages','ressources','salut'];
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 80) cur = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === `#${cur}`) a.classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
