@@ -4,26 +4,15 @@
 // ============================================================
 
 const CONTENU = {
-
-  // 📅 Date affichée (laisse vide pour la date automatique)
-  date: "",
-
-  // 📖 VERSET DU JOUR
+  date: "Lundi",
   verset: "« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »",
   reference: "Jérémie 29 : 11",
-
-  // 🌿 VERSET BONUS (petit encadré sombre au milieu)
   versetBonus: "« L'Éternel est mon berger, je ne manquerai de rien. »",
   referenceBonus: "Psaume 23 : 1",
-
-  // 🔥 RÉFLEXION DU JOUR
   reflexion: [
-    "Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — pas un projecteur qui éclaire tout le chemin, mais suffisamment de lumière pour le prochain pas.",
-    "Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.",
-    "Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon."
+    "Le lundi peut parfois sembler lourd — une nouvelle semaine qui commence, des défis qui attendent, des incertitudes qui pèsent. Mais avant de regarder ton agenda, regarde cette parole : Dieu connaît les projets qu'Il a formés sur toi. Pas des projets vagues — des projets précis, pensés avec soin, remplis de paix.",
+    "Il ne te demande pas de tout comprendre aujourd'hui. Il te demande juste de commencer cette semaine avec Lui. Un pas à la fois, une journée à la fois. Ce que tu portes ce matin, Il le connaît déjà — et Il a déjà préparé le chemin.",
+    "Commence cette semaine non pas dans l'inquiétude, mais dans la confiance. Dieu est déjà dans ton lundi."
   ],
-
-  // 🙏 PRIÈRE DU JOUR
-  priere: "Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.",
-
+  priere: "Seigneur, je Te confie cette nouvelle semaine. Là où je ne vois que des obstacles, aide-moi à voir Tes opportunités. Que chaque journée soit marquée par Ta présence et Ta grâce. Guide mes pas, mes paroles et mes décisions. Au nom de Jésus, Amen.",
 };
