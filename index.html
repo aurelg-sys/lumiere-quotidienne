@@ -380,8 +380,8 @@
       <img class="hero-img" src="images/hero.jpg" alt="Paysage paisible" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#C49A3C22,#5C7A4E22)';this.src=''" />
       <div class="hero-verset-card">
         <p class="hvc-label">Verset du jour</p>
-        <p class="hvc-text" id="heroVersetText">Chargement…</p>
-        <p class="hvc-ref" id="heroVersetRef"></p>
+        <p class="hvc-text" id="heroVersetText">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p>
+        <p class="hvc-ref" id="heroVersetRef">— Jérémie 29 : 11</p>
       </div>
     </div>
   </div>
@@ -408,18 +408,20 @@
       <div class="col-card">
         <div class="col-card-icon ic-gold">📖</div>
         <p class="col-card-title">Verset du jour</p>
-        <p class="col-card-text" id="versetText">Chargement…</p>
-        <p class="col-card-meta" id="versetRef"></p>
+        <p class="col-card-text" id="versetText">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p>
+        <p class="col-card-meta" id="versetRef">— Jérémie 29 : 11</p>
       </div>
 
       <!-- RÉFLEXION -->
       <div class="col-card">
         <div class="col-card-icon ic-sage">🌿</div>
         <p class="col-card-title">Exhortation</p>
-        <p class="col-card-text" id="reflexionApercu">Chargement…</p>
+        <p class="col-card-text" id="reflexionApercu">Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — suffisamment de lumière pour le prochain pas.</p>
         <p style="margin-top:1rem; cursor:pointer; color:var(--gold); font-size:13px;" onclick="document.getElementById('reflexionSuite').style.display='block';this.style.display='none'">→ Lire la suite</p>
         <div id="reflexionSuite" style="display:none; margin-top:0.75rem;">
-          <p class="col-card-body-text" id="reflexionReste"></p>
+          <p class="col-card-body-text" id="reflexionReste">Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.
+
+Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon.</p>
         </div>
       </div>
 
@@ -427,15 +429,15 @@
       <div class="col-card">
         <div class="col-card-icon ic-blue">🙏</div>
         <p class="col-card-title">Prière quotidienne</p>
-        <p class="col-card-text" id="priereTexte">Chargement…</p>
+        <p class="col-card-text" id="priereTexte">Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.</p>
         <button onclick="copierPriere()" style="margin-top:1rem; background:none; border:1px solid var(--border); border-radius:20px; padding:5px 12px; font-size:11px; color:var(--text-soft); cursor:pointer; font-family:var(--font-b); transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-soft)'">📋 Copier la prière</button>
       </div>
     </div>
 
     <!-- Verset bonus -->
     <div class="verset-band reveal">
-      <p class="verset-band-text" id="bonusText">Chargement…</p>
-      <p class="verset-band-ref" id="bonusRef"></p>
+      <p class="verset-band-text" id="bonusText">« L'Éternel est mon berger, je ne manquerai de rien. »</p>
+      <p class="verset-band-ref" id="bonusRef">— Psaume 23 : 1 · Verset bonus du jour</p>
     </div>
 
   </div>
@@ -908,59 +910,27 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- Contenu par défaut intégré (modifié via contenu.js) -->
+<!-- Contenu chargé directement ci-dessous -->
 <script>
-  // CONTENU PAR DÉFAUT — sera écrasé par contenu.js si disponible
-  window.CONTENU = {
-    date: "",
-    verset: "« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »",
-    reference: "Jérémie 29 : 11",
-    versetBonus: "« L'Éternel est mon berger, je ne manquerai de rien. »",
-    referenceBonus: "Psaume 23 : 1",
-    reflexion: [
-      "Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — pas un projecteur qui éclaire tout le chemin, mais suffisamment de lumière pour le prochain pas.",
-      "Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.",
-      "Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon."
-    ],
-    priere: "Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.",
-  };
-</script>
-<!-- contenu.js écrase CONTENU avec le contenu du jour -->
-<script src="contenu.js"></script>
-<script>
-  // ── Injection du contenu dynamique ──
+  // ── Mise à jour depuis contenu.js si disponible ──
   function chargerContenu() {
-    if (typeof CONTENU === 'undefined') {
-      console.warn('contenu.js non trouvé');
-      return;
-    }
-
-    // Verset
-    document.getElementById('heroVersetText').textContent = CONTENU.verset;
-    document.getElementById('heroVersetRef').textContent = '— ' + CONTENU.reference;
-    document.getElementById('versetText').textContent = CONTENU.verset;
-    document.getElementById('versetRef').textContent = '— ' + CONTENU.reference;
-
-    // Réflexion (premier paragraphe + suite)
-    const reflexion = CONTENU.reflexion;
+    if (typeof CONTENU === 'undefined') return;
+    var el = function(id){ return document.getElementById(id); };
+    if (el('heroVersetText')) el('heroVersetText').textContent = CONTENU.verset;
+    if (el('heroVersetRef')) el('heroVersetRef').textContent = '— ' + CONTENU.reference;
+    if (el('versetText')) el('versetText').textContent = CONTENU.verset;
+    if (el('versetRef')) el('versetRef').textContent = '— ' + CONTENU.reference;
+    if (el('bonusText')) el('bonusText').textContent = CONTENU.versetBonus;
+    if (el('bonusRef')) el('bonusRef').textContent = '— ' + CONTENU.referenceBonus + ' · Verset bonus du jour';
+    if (el('priereTexte')) el('priereTexte').textContent = CONTENU.priere;
+    var reflexion = CONTENU.reflexion;
     if (Array.isArray(reflexion) && reflexion.length > 0) {
-      document.getElementById('reflexionApercu').textContent = reflexion[0];
-      if (reflexion.length > 1) {
-        document.getElementById('reflexionReste').textContent = reflexion.slice(1).join('\n\n');
-      }
-    } else {
-      document.getElementById('reflexionApercu').textContent = reflexion;
+      if (el('reflexionApercu')) el('reflexionApercu').textContent = reflexion[0];
+      if (el('reflexionReste')) el('reflexionReste').textContent = reflexion.slice(1).join('\n\n');
     }
-
-    // Prière
-    document.getElementById('priereTexte').textContent = CONTENU.priere;
-
-    // Verset bonus
-    document.getElementById('bonusText').textContent = CONTENU.versetBonus;
-    document.getElementById('bonusRef').textContent = '— ' + CONTENU.referenceBonus + ' · Verset bonus du jour';
   }
-
-  chargerContenu();
+  // Appel après chargement de la page
+  window.addEventListener('load', chargerContenu);
 
   // ── Date ──
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
