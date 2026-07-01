@@ -468,16 +468,35 @@
 </section>
 
 <!-- NEWSLETTER -->
-<section class="section" style="padding-top:0;">
+<section class="section" style="padding-top:0;" id="newsletter">
   <div class="section-inner">
     <div class="newsletter-box">
       <span class="nl-icon">✉️</span>
-      <h3 class="nl-title">Reviens demain pour une nouvelle parole de vie.</h3>
-      <p class="nl-sub">Que la paix de Christ garde ton cœur et tes pensées aujourd'hui.</p>
-      <div class="nl-form">
-        <input type="email" id="nlEmail" placeholder="ton@email.com" />
-        <button class="btn-gold" onclick="sinscrire()">S'inscrire</button>
+      <h3 class="nl-title">Reçois la parole chaque matin dans ta boîte mail.</h3>
+      <p class="nl-sub">Un verset, une réflexion, une prière — gratuit, sans publicité, centré sur Jésus-Christ.</p>
+
+      <form id="nlForm" action="https://formspree.io/f/mqevyqdy" method="POST" onsubmit="return soumettreNewsletter(event)">
+        <input type="hidden" name="_subject" value="✉️ Nouvelle inscription — Lumière Quotidienne" />
+        <div class="nl-form">
+          <input type="text" name="prenom" placeholder="Ton prénom" style="flex:0.6;" />
+          <input type="email" name="email" id="nlEmail" placeholder="ton@email.com" required />
+          <button type="submit" class="btn-gold" id="nlBtn">S'inscrire 🙏</button>
+        </div>
+      </form>
+
+      <!-- Succès -->
+      <div id="nlSucces" style="display:none; margin-top:1rem; background:#EAF3DE; border:1px solid #4A7C59; border-radius:10px; padding:12px 20px; color:#2d5a1e; font-size:14px; max-width:480px; margin-left:auto; margin-right:auto;">
+        ✅ Merci ! Tu es maintenant inscrit(e) à Lumière Quotidienne. Que Dieu bénisse chacun de tes matins ! 🙏
       </div>
+
+      <!-- Erreur -->
+      <div id="nlErreur" style="display:none; margin-top:1rem; background:#fbeaea; border:1px solid #c0392b; border-radius:10px; padding:12px 20px; color:#922b21; font-size:14px; max-width:480px; margin-left:auto; margin-right:auto;">
+        ❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.
+      </div>
+
+      <p style="margin-top:1.25rem; font-size:12px; color:var(--text-soft);">
+        🔒 Tes données sont confidentielles. Tu peux te désinscrire à tout moment.
+      </p>
     </div>
   </div>
 </section>
@@ -592,12 +611,38 @@
     document.getElementById('temoVille').value='';
   }
 
-  // ── Newsletter ──
-  function sinscrire() {
-    const e = document.getElementById('nlEmail').value.trim();
-    if (!e || !e.includes('@')) { showToast('Entre une adresse email valide.'); return; }
-    showToast('✉️ Merci ! Tu recevras la parole chaque matin.');
-    document.getElementById('nlEmail').value='';
+  // ── Newsletter Formspree ──
+  async function soumettreNewsletter(e) {
+    e.preventDefault();
+    const btn = document.getElementById('nlBtn');
+    const succes = document.getElementById('nlSucces');
+    const erreur = document.getElementById('nlErreur');
+    succes.style.display = 'none';
+    erreur.style.display = 'none';
+    btn.textContent = 'Inscription…';
+    btn.disabled = true;
+
+    const form = document.getElementById('nlForm');
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('https://formspree.io/f/mqevyqdy', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        succes.style.display = 'block';
+        form.reset();
+      } else {
+        erreur.style.display = 'block';
+      }
+    } catch(err) {
+      erreur.style.display = 'block';
+    }
+    btn.textContent = "S'inscrire 🙏";
+    btn.disabled = false;
+    return false;
   }
 
   // ── Hamburger ──
