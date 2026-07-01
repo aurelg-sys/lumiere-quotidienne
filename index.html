@@ -57,6 +57,60 @@
     }
     body { background: var(--bg); font-family: var(--font-b); color: var(--text); min-height: 100vh; }
 
+
+    /* LANGUE SELECTOR */
+    .lang-selector {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-btn {
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: var(--font-b);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all .15s;
+    }
+    .lang-btn:hover { background: var(--gold); color: #fff; }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-width: 160px;
+      z-index: 200;
+      overflow: hidden;
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all .15s;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-option:last-child { border-bottom: none; }
+    .lang-option:hover { background: var(--gold-pale); color: var(--gold); }
+    .lang-option.active { background: var(--gold-pale); color: var(--gold); font-weight: 700; }
+    .lang-flag { font-size: 16px; }
+
     /* NAV */
     .nav {
       position: sticky; top: 0; z-index: 100;
@@ -286,6 +340,19 @@
     <li><a href="#salut">Donner sa vie</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('salut').scrollIntoView({behavior:'smooth'})">🙏 Prière du salut</button>
+  <div class="lang-selector">
+    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+      🌍 <span id="langLabel">FR</span> ▾
+    </button>
+    <div class="lang-dropdown" id="langMenu">
+      <div class="lang-option active" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> Français</div>
+      <div class="lang-option" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</div>
+      <div class="lang-option" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span> Español</div>
+      <div class="lang-option" onclick="setLang('pt')"><span class="lang-flag">🇧🇷</span> Português</div>
+      <div class="lang-option" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</div>
+      <div class="lang-option" onclick="setLang('it')"><span class="lang-flag">🇮🇹</span> Italiano</div>
+    </div>
+  </div>
   <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
@@ -978,6 +1045,434 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ══════════════════════════════════════════════
+  //  SYSTÈME DE TRADUCTION — 6 LANGUES
+  // ══════════════════════════════════════════════
+
+  const TRADUCTIONS = {
+    fr: {
+      nav: ['Aujourd'hui', 'Ressources', 'Témoignages', 'Donner sa vie'],
+      navCta: '🙏 Prière du salut',
+      heroEyebrow: 'Un verset · Une réflexion · Une prière',
+      heroTitle: 'Commence chaque journée avec une parole d'espérance en Christ.',
+      heroDesc: 'Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.',
+      heroBtnMain: '📖 Lire le verset du jour',
+      heroBtnSec: 'Explorer',
+      hvcLabel: 'Verset du jour',
+      rythmLabel: 'Chaque matin',
+      rythmTitle: 'Un rythme simple pour nourrir la foi au quotidien.',
+      rythmSub: 'Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.',
+      paroleJour: 'Parole du jour',
+      hier: '← Hier',
+      demain: 'Demain →',
+      versetLabel: 'Verset du jour',
+      exhortLabel: 'Exhortation',
+      lireSuite: '→ Lire la suite',
+      priereLabel: 'Prière quotidienne',
+      copierPriere: '📋 Copier la prière',
+      versetBonus: 'Verset bonus du jour',
+      temoLabel: 'Témoignages',
+      temoTitle: 'Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.',
+      temoDesc: 'Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile.',
+      temoPlaceholder: 'Partage ton témoignage ici…',
+      temoPrenom: 'Ton prénom',
+      temoVille: 'Ta ville',
+      temoEmail: 'Ton email (optionnel)',
+      temoBtn: '🙏 Envoyer mon témoignage',
+      temoOk: '✅ Merci ! Ton témoignage a été reçu. Il sera publié après modération. Que Dieu te bénisse ! 🙏',
+      temoErr: '❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.',
+      biblioLabel: 'Bibliothèque',
+      biblioTitle: 'Retrouver les encouragements par thème, saison et besoin.',
+      biblioSub: 'Messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.',
+      parcourirLabel: 'Parcourir par thème',
+      paysageLabel: 'Images à partager',
+      paysageTitle: 'Des paysages paisibles avec des versets pour accompagner la journée.',
+      salutLabel: 'Donner sa vie à Jésus',
+      salutTitle: 'Faites cette prière de tout votre cœur.',
+      salutDesc: 'Si vous désirez recevoir Jésus-Christ comme Seigneur et Sauveur, prenez un moment dans le calme. Dieu regarde au cœur : parlez-lui avec sincérité, foi et humilité.',
+      nlTitle: 'Reçois la parole chaque matin dans ta boîte mail.',
+      nlSub: 'Un verset, une réflexion, une prière — gratuit, sans publicité, centré sur Jésus-Christ.',
+      nlPrenom: 'Ton prénom',
+      nlEmail: 'ton@email.com',
+      nlBtn: 'S'inscrire 🙏',
+      nlOk: '✅ Merci ! Tu es maintenant inscrit(e) à Lumière Quotidienne. Que Dieu bénisse chacun de tes matins ! 🙏',
+      nlConfidential: '🔒 Tes données sont confidentielles. Tu peux te désinscrire à tout moment.',
+      copier: '📋 Copier',
+      copie: '✅ Copié !',
+    },
+    en: {
+      nav: ['Today', 'Resources', 'Testimonies', 'Give your life'],
+      navCta: '🙏 Salvation prayer',
+      heroEyebrow: 'A verse · A reflection · A prayer',
+      heroTitle: 'Start every day with a word of hope in Christ.',
+      heroDesc: 'Daily Light gathers Bible verses, short reflections and simple prayers to nurture faith, peace and perseverance day by day.',
+      heroBtnMain: '📖 Read today's verse',
+      heroBtnSec: 'Explore',
+      hvcLabel: 'Verse of the day',
+      rythmLabel: 'Every morning',
+      rythmTitle: 'A simple rhythm to nurture faith daily.',
+      rythmSub: 'A Bible verse, a short reflection and a prayer can be enough to re-center the heart in God's peace before starting the day.',
+      paroleJour: 'Word of the day',
+      hier: '← Yesterday',
+      demain: 'Tomorrow →',
+      versetLabel: 'Verse of the day',
+      exhortLabel: 'Reflection',
+      lireSuite: '→ Read more',
+      priereLabel: 'Daily prayer',
+      copierPriere: '📋 Copy prayer',
+      versetBonus: 'Bonus verse of the day',
+      temoLabel: 'Testimonies',
+      temoTitle: 'Share what God has done, to encourage someone else.',
+      temoDesc: 'A word of praise can become a light for someone going through a difficult season.',
+      temoPlaceholder: 'Share your testimony here…',
+      temoPrenom: 'Your first name',
+      temoVille: 'Your city',
+      temoEmail: 'Your email (optional)',
+      temoBtn: '🙏 Send my testimony',
+      temoOk: '✅ Thank you! Your testimony has been received. It will be published after moderation. God bless you! 🙏',
+      temoErr: '❌ An error occurred. Check your connection and try again.',
+      biblioLabel: 'Library',
+      biblioTitle: 'Find encouragement by theme, season and need.',
+      biblioSub: 'Messages, Bible studies, thematic prayers and verses organized to easily return to a strengthening word.',
+      parcourirLabel: 'Browse by theme',
+      paysageLabel: 'Images to share',
+      paysageTitle: 'Peaceful landscapes with verses to accompany the day.',
+      salutLabel: 'Give your life to Jesus',
+      salutTitle: 'Pray this prayer with all your heart.',
+      salutDesc: 'If you desire to receive Jesus Christ as Lord and Savior, take a quiet moment. God looks at the heart: speak to Him with sincerity, faith and humility.',
+      nlTitle: 'Receive the word every morning in your inbox.',
+      nlSub: 'A verse, a reflection, a prayer — free, ad-free, centered on Jesus Christ.',
+      nlPrenom: 'Your first name',
+      nlEmail: 'your@email.com',
+      nlBtn: 'Subscribe 🙏',
+      nlOk: '✅ Thank you! You are now subscribed to Daily Light. God bless each of your mornings! 🙏',
+      nlConfidential: '🔒 Your data is confidential. You can unsubscribe at any time.',
+      copier: '📋 Copy',
+      copie: '✅ Copied!',
+    },
+    es: {
+      nav: ['Hoy', 'Recursos', 'Testimonios', 'Dar tu vida'],
+      navCta: '🙏 Oración de salvación',
+      heroEyebrow: 'Un versículo · Una reflexión · Una oración',
+      heroTitle: 'Comienza cada día con una palabra de esperanza en Cristo.',
+      heroDesc: 'Luz Diaria reúne versículos bíblicos, breves reflexiones y oraciones sencillas para nutrir la fe, la paz y la perseverancia día a día.',
+      heroBtnMain: '📖 Leer el versículo de hoy',
+      heroBtnSec: 'Explorar',
+      hvcLabel: 'Versículo del día',
+      rythmLabel: 'Cada mañana',
+      rythmTitle: 'Un ritmo simple para nutrir la fe cada día.',
+      rythmSub: 'Un versículo bíblico, una breve reflexión y una oración pueden bastar para centrar el corazón en la paz de Dios antes de comenzar el día.',
+      paroleJour: 'Palabra del día',
+      hier: '← Ayer',
+      demain: 'Mañana →',
+      versetLabel: 'Versículo del día',
+      exhortLabel: 'Reflexión',
+      lireSuite: '→ Leer más',
+      priereLabel: 'Oración diaria',
+      copierPriere: '📋 Copiar oración',
+      versetBonus: 'Versículo extra del día',
+      temoLabel: 'Testimonios',
+      temoTitle: 'Comparte lo que Dios ha hecho para animar a alguien más.',
+      temoDesc: 'Una palabra de gratitud puede convertirse en luz para alguien que atraviesa una temporada difícil.',
+      temoPlaceholder: 'Comparte tu testimonio aquí…',
+      temoPrenom: 'Tu nombre',
+      temoVille: 'Tu ciudad',
+      temoEmail: 'Tu correo (opcional)',
+      temoBtn: '🙏 Enviar mi testimonio',
+      temoOk: '✅ ¡Gracias! Tu testimonio ha sido recibido. Será publicado tras moderación. ¡Dios te bendiga! 🙏',
+      temoErr: '❌ Ocurrió un error. Verifica tu conexión e inténtalo de nuevo.',
+      biblioLabel: 'Biblioteca',
+      biblioTitle: 'Encuentra aliento por tema, estación y necesidad.',
+      biblioSub: 'Mensajes, estudios bíblicos, oraciones temáticas y versículos organizados para volver fácilmente a una palabra fortalecedora.',
+      parcourirLabel: 'Explorar por tema',
+      paysageLabel: 'Imágenes para compartir',
+      paysageTitle: 'Paisajes tranquilos con versículos para acompañar el día.',
+      salutLabel: 'Dar tu vida a Jesús',
+      salutTitle: 'Ora esta oración con todo tu corazón.',
+      salutDesc: 'Si deseas recibir a Jesucristo como Señor y Salvador, tómate un momento de quietud. Dios mira el corazón: háblale con sinceridad, fe y humildad.',
+      nlTitle: 'Recibe la palabra cada mañana en tu correo.',
+      nlSub: 'Un versículo, una reflexión, una oración — gratuito, sin publicidad, centrado en Jesucristo.',
+      nlPrenom: 'Tu nombre',
+      nlEmail: 'tu@correo.com',
+      nlBtn: 'Suscribirse 🙏',
+      nlOk: '✅ ¡Gracias! Ya estás suscrito a Luz Diaria. ¡Que Dios bendiga cada una de tus mañanas! 🙏',
+      nlConfidential: '🔒 Tus datos son confidenciales. Puedes darte de baja en cualquier momento.',
+      copier: '📋 Copiar',
+      copie: '✅ ¡Copiado!',
+    },
+    pt: {
+      nav: ['Hoje', 'Recursos', 'Testemunhos', 'Dar sua vida'],
+      navCta: '🙏 Oração de salvação',
+      heroEyebrow: 'Um versículo · Uma reflexão · Uma oração',
+      heroTitle: 'Comece cada dia com uma palavra de esperança em Cristo.',
+      heroDesc: 'Luz Diária reúne versículos bíblicos, breves reflexões e orações simples para nutrir a fé, a paz e a perseverança dia a dia.',
+      heroBtnMain: '📖 Ler o versículo de hoje',
+      heroBtnSec: 'Explorar',
+      hvcLabel: 'Versículo do dia',
+      rythmLabel: 'Cada manhã',
+      rythmTitle: 'Um ritmo simples para nutrir a fé diariamente.',
+      rythmSub: 'Um versículo bíblico, uma breve reflexão e uma oração podem bastar para recentrar o coração na paz de Deus antes de começar o dia.',
+      paroleJour: 'Palavra do dia',
+      hier: '← Ontem',
+      demain: 'Amanhã →',
+      versetLabel: 'Versículo do dia',
+      exhortLabel: 'Reflexão',
+      lireSuite: '→ Ler mais',
+      priereLabel: 'Oração diária',
+      copierPriere: '📋 Copiar oração',
+      versetBonus: 'Versículo bônus do dia',
+      temoLabel: 'Testemunhos',
+      temoTitle: 'Compartilhe o que Deus fez para encorajar alguém.',
+      temoDesc: 'Uma palavra de gratidão pode se tornar luz para alguém passando por uma temporada difícil.',
+      temoPlaceholder: 'Compartilhe seu testemunho aqui…',
+      temoPrenom: 'Seu nome',
+      temoVille: 'Sua cidade',
+      temoEmail: 'Seu email (opcional)',
+      temoBtn: '🙏 Enviar meu testemunho',
+      temoOk: '✅ Obrigado! Seu testemunho foi recebido. Será publicado após moderação. Deus te abençoe! 🙏',
+      temoErr: '❌ Ocorreu um erro. Verifique sua conexão e tente novamente.',
+      biblioLabel: 'Biblioteca',
+      biblioTitle: 'Encontre encorajamento por tema, estação e necessidade.',
+      biblioSub: 'Mensagens, estudos bíblicos, orações temáticas e versículos organizados para retornar facilmente a uma palavra fortalecedora.',
+      parcourirLabel: 'Navegar por tema',
+      paysageLabel: 'Imagens para compartilhar',
+      paysageTitle: 'Paisagens tranquilas com versículos para acompanhar o dia.',
+      salutLabel: 'Dar sua vida a Jesus',
+      salutTitle: 'Faça esta oração com todo o seu coração.',
+      salutDesc: 'Se você deseja receber Jesus Cristo como Senhor e Salvador, reserve um momento de silêncio. Deus olha para o coração: fale com Ele com sinceridade, fé e humildade.',
+      nlTitle: 'Receba a palavra toda manhã na sua caixa de entrada.',
+      nlSub: 'Um versículo, uma reflexão, uma oração — gratuito, sem publicidade, centrado em Jesus Cristo.',
+      nlPrenom: 'Seu nome',
+      nlEmail: 'seu@email.com',
+      nlBtn: 'Inscrever-se 🙏',
+      nlOk: '✅ Obrigado! Você agora está inscrito na Luz Diária. Que Deus abençoe cada uma de suas manhãs! 🙏',
+      nlConfidential: '🔒 Seus dados são confidenciais. Você pode cancelar a inscrição a qualquer momento.',
+      copier: '📋 Copiar',
+      copie: '✅ Copiado!',
+    },
+    de: {
+      nav: ['Heute', 'Ressourcen', 'Zeugnisse', 'Dein Leben geben'],
+      navCta: '🙏 Gebet der Errettung',
+      heroEyebrow: 'Ein Vers · Eine Reflexion · Ein Gebet',
+      heroTitle: 'Beginne jeden Tag mit einem Wort der Hoffnung in Christus.',
+      heroDesc: 'Tägliches Licht versammelt Bibelverse, kurze Betrachtungen und einfache Gebete, um Glauben, Frieden und Ausdauer täglich zu nähren.',
+      heroBtnMain: '📖 Vers des Tages lesen',
+      heroBtnSec: 'Entdecken',
+      hvcLabel: 'Vers des Tages',
+      rythmLabel: 'Jeden Morgen',
+      rythmTitle: 'Ein einfacher Rhythmus, um den Glauben täglich zu nähren.',
+      rythmSub: 'Ein Bibelvers, eine kurze Betrachtung und ein Gebet können genügen, um das Herz vor Tagesbeginn in Gottes Frieden zu verankern.',
+      paroleJour: 'Wort des Tages',
+      hier: '← Gestern',
+      demain: 'Morgen →',
+      versetLabel: 'Vers des Tages',
+      exhortLabel: 'Betrachtung',
+      lireSuite: '→ Mehr lesen',
+      priereLabel: 'Tägliches Gebet',
+      copierPriere: '📋 Gebet kopieren',
+      versetBonus: 'Bonus-Vers des Tages',
+      temoLabel: 'Zeugnisse',
+      temoTitle: 'Teile, was Gott getan hat, um jemand anderen zu ermutigen.',
+      temoDesc: 'Ein Wort der Dankbarkeit kann für jemanden in einer schwierigen Zeit ein Licht werden.',
+      temoPlaceholder: 'Teile dein Zeugnis hier…',
+      temoPrenom: 'Dein Vorname',
+      temoVille: 'Deine Stadt',
+      temoEmail: 'Deine E-Mail (optional)',
+      temoBtn: '🙏 Mein Zeugnis senden',
+      temoOk: '✅ Danke! Dein Zeugnis wurde empfangen. Es wird nach Moderation veröffentlicht. Gott segne dich! 🙏',
+      temoErr: '❌ Ein Fehler ist aufgetreten. Überprüfe deine Verbindung und versuche es erneut.',
+      biblioLabel: 'Bibliothek',
+      biblioTitle: 'Ermutigung nach Thema, Jahreszeit und Bedürfnis finden.',
+      biblioSub: 'Nachrichten, Bibelstudien, thematische Gebete und Verse, um leicht zu einem stärkenden Wort zurückzukehren.',
+      parcourirLabel: 'Nach Thema durchsuchen',
+      paysageLabel: 'Bilder zum Teilen',
+      paysageTitle: 'Friedliche Landschaften mit Versen für den Tag.',
+      salutLabel: 'Dein Leben Jesus geben',
+      salutTitle: 'Bete dieses Gebet von ganzem Herzen.',
+      salutDesc: 'Wenn du Jesus Christus als Herrn und Heiland empfangen möchtest, nimm dir einen ruhigen Moment. Gott sieht das Herz: Sprich mit Ihm in Aufrichtigkeit, Glauben und Demut.',
+      nlTitle: 'Empfange das Wort jeden Morgen in deinem Postfach.',
+      nlSub: 'Ein Vers, eine Betrachtung, ein Gebet — kostenlos, werbefrei, auf Jesus Christus ausgerichtet.',
+      nlPrenom: 'Dein Vorname',
+      nlEmail: 'deine@email.de',
+      nlBtn: 'Abonnieren 🙏',
+      nlOk: '✅ Danke! Du bist jetzt beim Täglichen Licht angemeldet. Gott segne jeden deiner Morgen! 🙏',
+      nlConfidential: '🔒 Deine Daten sind vertraulich. Du kannst dich jederzeit abmelden.',
+      copier: '📋 Kopieren',
+      copie: '✅ Kopiert!',
+    },
+    it: {
+      nav: ['Oggi', 'Risorse', 'Testimonianze', 'Dare la tua vita'],
+      navCta: '🙏 Preghiera di salvezza',
+      heroEyebrow: 'Un versetto · Una riflessione · Una preghiera',
+      heroTitle: 'Inizia ogni giorno con una parola di speranza in Cristo.',
+      heroDesc: 'Luce Quotidiana raccoglie versetti biblici, brevi riflessioni e preghiere semplici per nutrire la fede, la pace e la perseveranza giorno dopo giorno.',
+      heroBtnMain: '📖 Leggi il versetto di oggi',
+      heroBtnSec: 'Esplora',
+      hvcLabel: 'Versetto del giorno',
+      rythmLabel: 'Ogni mattina',
+      rythmTitle: 'Un ritmo semplice per nutrire la fede ogni giorno.',
+      rythmSub: 'Un versetto biblico, una breve riflessione e una preghiera possono bastare per ricentrare il cuore nella pace di Dio prima di iniziare la giornata.',
+      paroleJour: 'Parola del giorno',
+      hier: '← Ieri',
+      demain: 'Domani →',
+      versetLabel: 'Versetto del giorno',
+      exhortLabel: 'Riflessione',
+      lireSuite: '→ Leggi di più',
+      priereLabel: 'Preghiera quotidiana',
+      copierPriere: '📋 Copia preghiera',
+      versetBonus: 'Versetto bonus del giorno',
+      temoLabel: 'Testimonianze',
+      temoTitle: 'Condividi ciò che Dio ha fatto per incoraggiare qualcun altro.',
+      temoDesc: 'Una parola di gratitudine può diventare luce per qualcuno che attraversa una stagione difficile.',
+      temoPlaceholder: 'Condividi la tua testimonianza qui…',
+      temoPrenom: 'Il tuo nome',
+      temoVille: 'La tua città',
+      temoEmail: 'La tua email (opzionale)',
+      temoBtn: '🙏 Invia la mia testimonianza',
+      temoOk: '✅ Grazie! La tua testimonianza è stata ricevuta. Sarà pubblicata dopo moderazione. Dio ti benedica! 🙏',
+      temoErr: '❌ Si è verificato un errore. Controlla la connessione e riprova.',
+      biblioLabel: 'Biblioteca',
+      biblioTitle: 'Trova incoraggiamento per tema, stagione e necessità.',
+      biblioSub: 'Messaggi, studi biblici, preghiere tematiche e versetti organizzati per tornare facilmente a una parola che fortifica.',
+      parcourirLabel: 'Sfoglia per tema',
+      paysageLabel: 'Immagini da condividere',
+      paysageTitle: 'Paesaggi tranquilli con versetti per accompagnare la giornata.',
+      salutLabel: 'Dare la tua vita a Gesù',
+      salutTitle: 'Prega questa preghiera con tutto il tuo cuore.',
+      salutDesc: 'Se desideri ricevere Gesù Cristo come Signore e Salvatore, prenditi un momento di silenzio. Dio guarda al cuore: parlagli con sincerità, fede e umiltà.',
+      nlTitle: 'Ricevi la parola ogni mattina nella tua casella di posta.',
+      nlSub: 'Un versetto, una riflessione, una preghiera — gratuito, senza pubblicità, centrato su Gesù Cristo.',
+      nlPrenom: 'Il tuo nome',
+      nlEmail: 'tua@email.it',
+      nlBtn: 'Iscriviti 🙏',
+      nlOk: '✅ Grazie! Sei ora iscritto a Luce Quotidiana. Che Dio benedica ogni tua mattina! 🙏',
+      nlConfidential: '🔒 I tuoi dati sono riservati. Puoi annullare l'iscrizione in qualsiasi momento.',
+      copier: '📋 Copia',
+      copie: '✅ Copiato!',
+    },
+  };
+
+  let langActuelle = 'fr';
+
+  function toggleLangMenu() {
+    document.getElementById('langMenu').classList.toggle('open');
+  }
+
+  // Fermer le menu si on clique ailleurs
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langMenu').classList.remove('open');
+    }
+  });
+
+  function setLang(lang) {
+    langActuelle = lang;
+    const t = TRADUCTIONS[lang];
+    document.getElementById('langLabel').textContent = lang.toUpperCase();
+    document.getElementById('langMenu').classList.remove('open');
+
+    // Marquer l'option active
+    document.querySelectorAll('.lang-option').forEach((el, i) => {
+      el.classList.toggle('active', ['fr','en','es','pt','de','it'][i] === lang);
+    });
+
+    // Nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    t.nav.forEach((txt, i) => { if (navLinks[i]) navLinks[i].textContent = txt; });
+    const navCta = document.querySelector('.nav-cta');
+    if (navCta) navCta.textContent = t.navCta;
+
+    // Hero
+    const heroEyebrow = document.querySelector('.hero-eyebrow');
+    if (heroEyebrow) heroEyebrow.textContent = t.heroEyebrow;
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) heroTitle.textContent = t.heroTitle;
+    const heroDesc = document.querySelector('.hero-desc');
+    if (heroDesc) heroDesc.textContent = t.heroDesc;
+    const heroBtns = document.querySelectorAll('.hero-btns a');
+    if (heroBtns[0]) heroBtns[0].textContent = t.heroBtnMain;
+    if (heroBtns[1]) heroBtns[1].textContent = t.heroBtnSec;
+    const hvcLabel = document.querySelector('.hvc-label');
+    if (hvcLabel) hvcLabel.textContent = t.hvcLabel;
+
+    // Section rythme
+    const secLabels = document.querySelectorAll('.section-label');
+    if (secLabels[0]) secLabels[0].textContent = t.rythmLabel;
+    const secTitles = document.querySelectorAll('.section-title');
+    if (secTitles[0]) secTitles[0].textContent = t.rythmTitle;
+    const secSubs = document.querySelectorAll('.section-subtitle');
+    if (secSubs[0]) secSubs[0].textContent = t.rythmSub;
+
+    // Day nav
+    const dayBtns = document.querySelectorAll('.day-btn');
+    if (dayBtns[0]) dayBtns[0].textContent = t.hier;
+    if (dayBtns[1]) dayBtns[1].textContent = t.demain;
+    const daySub = document.querySelector('.day-sub');
+    if (daySub) daySub.textContent = t.paroleJour;
+
+    // Col cards labels
+    const colTitles = document.querySelectorAll('.col-card-title');
+    if (colTitles[0]) colTitles[0].textContent = t.versetLabel;
+    if (colTitles[1]) colTitles[1].textContent = t.exhortLabel;
+    if (colTitles[2]) colTitles[2].textContent = t.priereLabel;
+
+    // Lire la suite
+    const lireSuiteEl = document.querySelector('[onclick*="reflexionSuite"]');
+    if (lireSuiteEl) lireSuiteEl.textContent = t.lireSuite;
+
+    // Copier prière
+    const copierPriereBtn = document.querySelector('[onclick="copierPriere()"]');
+    if (copierPriereBtn) copierPriereBtn.textContent = t.copierPriere;
+
+    // Verset bonus
+    const bonusRef = document.getElementById('bonusRef');
+    if (bonusRef) {
+      const refBase = bonusRef.textContent.split('·')[0].trim();
+      bonusRef.textContent = refBase + ' · ' + t.versetBonus;
+    }
+
+    // Témoignages
+    const temoInput = document.getElementById('temoInput');
+    if (temoInput) temoInput.placeholder = t.temoPlaceholder;
+    const temoNom = document.getElementById('temoNom');
+    if (temoNom) temoNom.placeholder = t.temoPrenom;
+    const temoVille = document.getElementById('temoVille');
+    if (temoVille) temoVille.placeholder = t.temoVille;
+    const temoEmailEl = document.getElementById('temoEmail');
+    if (temoEmailEl) temoEmailEl.placeholder = t.temoEmail;
+    const temoBtn = document.getElementById('temoBtn');
+    if (temoBtn) temoBtn.textContent = t.temoBtn;
+    const temoOk = document.getElementById('temoSucces');
+    if (temoOk) temoOk.textContent = t.temoOk;
+    const temoErr = document.getElementById('temoErreur');
+    if (temoErr) temoErr.textContent = t.temoErr;
+
+    // Bibliothèque labels
+    if (secLabels[1]) secLabels[1].textContent = t.biblioLabel;
+    if (secTitles[1]) secTitles[1].textContent = t.biblioTitle;
+    if (secSubs[1]) secSubs[1].textContent = t.biblioSub;
+
+    // Newsletter
+    const nlTitle = document.querySelector('.nl-title');
+    if (nlTitle) nlTitle.textContent = t.nlTitle;
+    const nlSub = document.querySelector('.nl-sub');
+    if (nlSub) nlSub.textContent = t.nlSub;
+    const nlPrenomEl = document.querySelector('#nlForm input[name="prenom"]');
+    if (nlPrenomEl) nlPrenomEl.placeholder = t.nlPrenom;
+    const nlEmailEl = document.getElementById('nlEmail');
+    if (nlEmailEl) nlEmailEl.placeholder = t.nlEmail;
+    const nlBtn = document.getElementById('nlBtn');
+    if (nlBtn) nlBtn.textContent = t.nlBtn;
+    const nlOk = document.getElementById('nlSucces');
+    if (nlOk) nlOk.textContent = t.nlOk;
+    const nlConf = document.querySelector('.newsletter-box > p:last-child');
+    if (nlConf) nlConf.textContent = t.nlConfidential;
+
+    // Attribut lang HTML
+    document.documentElement.lang = lang;
+  }
+
 </script>
 </body>
 </html>
