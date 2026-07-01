@@ -8,9 +8,12 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+
+  <!-- Polices chargées sans bloquer la page -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -251,7 +254,7 @@
       </div>
     </div>
     <div class="hero-right">
-      <img class="hero-img" src="images/héros.jpg" alt="Paysage paisible" onerror="this.style.background='linear-gradient(135deg,#C49A3C22,#5C7A4E22)';this.src=''" />
+      <img class="hero-img" src="images/hero.jpg" alt="Paysage paisible" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#C49A3C22,#5C7A4E22)';this.src=''" />
       <div class="hero-verset-card">
         <p class="hvc-label">Verset du jour</p>
         <p class="hvc-text" id="heroVersetText">Chargement…</p>
@@ -375,9 +378,9 @@
     <p class="section-label">Images à partager</p>
     <h2 class="section-title">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
     <div class="paysage-grid reveal" style="margin-top:2.5rem;">
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage foi.jpg" alt="Prairie" /><div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div></div>
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage paix.jpg" alt="Lac" /><div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div></div>
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage espérance.jpg" alt="Ciel" /><div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div></div>
+      <div class="paysage-card"><img class="paysage-img" src="images/paysage foi.jpg" alt="Prairie" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div></div>
+      <div class="paysage-card"><img class="paysage-img" src="images/paysage paix.jpg" alt="Lac" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div></div>
+      <div class="paysage-card"><img class="paysage-img" src="images/paysage espérance.jpg" alt="Ciel" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div></div>
     </div>
   </div>
 </section>
