@@ -192,7 +192,7 @@
     .temo-left h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.1rem); color: #F5F0E8; line-height: 1.3; margin-bottom: 1rem; }
     .temo-left p { color: rgba(245,240,232,0.6); font-size: 14px; line-height: 1.7; margin-bottom: 1.5rem; }
     .temo-right { display: flex; flex-direction: column; gap: 1rem; }
-    .temo-bubble { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.25rem; }
+    .temo-bubble { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 0; }
     .temo-quote { font-family: var(--font-d); font-style: italic; font-size: 1rem; color: #F5F0E8; line-height: 1.6; margin-bottom: 0.6rem; }
     .temo-author { font-size: 12px; color: rgba(245,240,232,0.45); }
     .temo-form { margin-top: 1rem; }
@@ -220,8 +220,8 @@
 
     /* PAYSAGES */
     .paysage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .paysage-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; height: 260px; cursor: pointer; }
-    .paysage-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .paysage-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; height: 260px; cursor: pointer; background: var(--bg-alt); }
+    .paysage-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; display: block; min-height: 100%; }
     .paysage-card:hover .paysage-img { transform: scale(1.04); }
     .paysage-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(44,42,37,0.85) 0%, transparent 100%); padding: 1.25rem; }
     .paysage-theme { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #D4AC5A; display: block; margin-bottom: 5px; }
@@ -265,8 +265,9 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.animate { opacity: 0; transform: translateY(24px); }
+    .reveal.animate.visible { opacity: 1; transform: translateY(0); }
 
     /* BADGE ADMIN */
     .admin-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-pale); border: 1px solid var(--gold); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 1rem; text-decoration: none; }
@@ -402,7 +403,7 @@
       <button class="day-btn" disabled>Demain →</button>
     </div>
 
-    <div class="cols-3 reveal">
+    <div class="cols-3">
       <!-- VERSET -->
       <div class="col-card">
         <div class="col-card-icon ic-gold">📖</div>
@@ -444,7 +445,7 @@
 <section class="section section-bg-dark" id="temoignages">
   <div class="section-inner">
     <div class="temo-grid">
-      <div class="temo-left reveal">
+      <div class="temo-left">
         <p class="section-label" style="text-align:left; margin-bottom:0.5rem;">Témoignages</p>
         <h2>Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.</h2>
         <p>Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile. Partage ce que Dieu a fait dans ta vie — ton témoignage sera publié après modération.</p>
@@ -479,7 +480,7 @@
         </form>
       </div>
 
-      <div class="temo-right reveal">
+      <div class="temo-right">
         <div class="temo-bubble">
           <p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. »</p>
           <p class="temo-author">— Adjoavi M. · Cotonou</p>
@@ -508,14 +509,14 @@
     <p class="section-label">Bibliothèque</p>
     <h2 class="section-title">Retrouver les encouragements par thème, saison et besoin.</h2>
     <p class="section-subtitle">Messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.</p>
-    <div class="biblio-grid reveal">
+    <div class="biblio-grid">
       <a href="#messages" class="biblio-card"><span class="biblio-icon">💌</span><div class="biblio-title">Messages d'encouragement</div><div class="biblio-desc">Courtes méditations pour les matins difficiles.</div></a>
       <a href="#etudes" class="biblio-card"><span class="biblio-icon">📚</span><div class="biblio-title">Études bibliques</div><div class="biblio-desc">Parcours pour mieux comprendre la Parole.</div></a>
       <a href="#prieres-thematiques" class="biblio-card"><span class="biblio-icon">🕊️</span><div class="biblio-title">Prières thématiques</div><div class="biblio-desc">Prières pour la paix, la guérison, la famille.</div></a>
       <a href="#versets-themes" class="biblio-card"><span class="biblio-icon">✨</span><div class="biblio-title">Versets par thème</div><div class="biblio-desc">Foi, paix, guérison, espérance et plus.</div></a>
     </div>
     <p class="section-label" style="margin-bottom:1rem;">Parcourir par thème</p>
-    <div class="themes-grid reveal">
+    <div class="themes-grid">
       <a class="theme-chip" href="#theme-paix"><span>🕊️</span><span class="theme-chip-label">Paix</span></a>
       <a class="theme-chip" href="#theme-foi"><span>⚓</span><span class="theme-chip-label">Foi</span></a>
       <a class="theme-chip" href="#theme-esperance"><span>🌅</span><span class="theme-chip-label">Espérance</span></a>
@@ -803,7 +804,7 @@
   <div class="section-inner">
     <p class="section-label">Images à partager</p>
     <h2 class="section-title">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
-    <div class="paysage-grid reveal" style="margin-top:2.5rem;">
+    <div class="paysage-grid" style="margin-top:2.5rem;">
       <div class="paysage-card"><img class="paysage-img" src="images/paysage foi.jpg" alt="Prairie" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div></div>
       <div class="paysage-card"><img class="paysage-img" src="images/paysage paix.jpg" alt="Lac" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div></div>
       <div class="paysage-card"><img class="paysage-img" src="images/paysage espérance.jpg" alt="Ciel" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div></div>
@@ -907,7 +908,24 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- Chargement du contenu -->
+<!-- Contenu par défaut intégré (modifié via contenu.js) -->
+<script>
+  // CONTENU PAR DÉFAUT — sera écrasé par contenu.js si disponible
+  window.CONTENU = {
+    date: "",
+    verset: "« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »",
+    reference: "Jérémie 29 : 11",
+    versetBonus: "« L'Éternel est mon berger, je ne manquerai de rien. »",
+    referenceBonus: "Psaume 23 : 1",
+    reflexion: [
+      "Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — pas un projecteur qui éclaire tout le chemin, mais suffisamment de lumière pour le prochain pas.",
+      "Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.",
+      "Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon."
+    ],
+    priere: "Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.",
+  };
+</script>
+<!-- contenu.js écrase CONTENU avec le contenu du jour -->
 <script src="contenu.js"></script>
 <script>
   // ── Injection du contenu dynamique ──
@@ -1041,9 +1059,10 @@
   });
 
   // ── Reveal ──
+  // Reveal simplifié - éléments visibles par défaut
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
   // ══════════════════════════════════════════════

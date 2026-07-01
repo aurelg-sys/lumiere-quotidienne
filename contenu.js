@@ -3,16 +3,27 @@
 //  Modifie uniquement ce fichier chaque matin 🙏
 // ============================================================
 
-const CONTENU = {
-  date: "Mercredi",
-  verset: "« C'est pourquoi je puis tout par celui qui me fortifie. »",
-  reference: "Philippiens 4 : 13",
-  versetBonus: "« Fortifie-toi et prends courage ! Ne t'effraie point et ne t'épouvante point, car l'Éternel, ton Dieu, est avec toi dans tout ce que tu entreprendras. »",
-  referenceBonus: "Josué 1 : 9",
+var CONTENU = {
+
+  // 📅 Date affichée (laisse vide pour la date automatique)
+  date: "",
+
+  // 📖 VERSET DU JOUR
+  verset: "« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »",
+  reference: "Jérémie 29 : 11",
+
+  // 🌿 VERSET BONUS (petit encadré sombre au milieu)
+  versetBonus: "« L'Éternel est mon berger, je ne manquerai de rien. »",
+  referenceBonus: "Psaume 23 : 1",
+
+  // 🔥 RÉFLEXION DU JOUR
   reflexion: [
-    "Au milieu de la semaine, la fatigue peut commencer à se faire sentir. Les forces semblent diminuer, la motivation baisse, et certains défis paraissent plus grands qu'au lundi matin. C'est précisément là que Dieu veut te rappeler cette vérité : ce n'est pas ta force qui fait la différence — c'est la Sienne.",
-    "Paul n'a pas dit 'je peux tout par moi-même'. Il a dit 'je puis tout par Celui qui me fortifie'. La source de la puissance n'est pas en toi — elle est en Christ qui habite en toi. Quand tu es faible, Il est fort.",
-    "Ne regarde pas ce qui te manque aujourd'hui. Regarde Celui qui comble tout manque. Puise en Lui la force dont tu as besoin pour terminer cette semaine en victoire."
+    "Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — pas un projecteur qui éclaire tout le chemin, mais suffisamment de lumière pour le prochain pas.",
+    "Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.",
+    "Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon."
   ],
-  priere: "Seigneur Jésus, mes forces humaines ont des limites, mais les Tiennes n'en ont pas. Aujourd'hui je ne m'appuie plus sur ce que je suis capable de faire seul. Je m'appuie sur Toi. Fortifie-moi par Ton Esprit, donne-moi l'énergie, la sagesse et la grâce pour accomplir tout ce que Tu as placé devant moi. Au nom de Jésus, Amen.",
+
+  // 🙏 PRIÈRE DU JOUR
+  priere: "Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.",
+
 };
