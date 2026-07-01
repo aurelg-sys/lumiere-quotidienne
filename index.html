@@ -344,25 +344,60 @@
       <div class="temo-left reveal">
         <p class="section-label" style="text-align:left; margin-bottom:0.5rem;">Témoignages</p>
         <h2>Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.</h2>
-        <p>Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile.</p>
-        <div class="temo-form">
-          <textarea id="temoInput" placeholder="Partage ton témoignage ici…"></textarea>
+        <p>Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile. Partage ce que Dieu a fait dans ta vie — ton témoignage sera publié après modération.</p>
+
+        <!-- FORMULAIRE FORMSPREE RÉEL -->
+        <form id="temoForm" action="https://formspree.io/f/mjgqawrr" method="POST" class="temo-form" onsubmit="return soumettreForm(event)">
+          <!-- Champ caché pour identifier la source -->
+          <input type="hidden" name="_subject" value="✝️ Nouveau témoignage — Lumière Quotidienne" />
+          <input type="hidden" name="_language" value="fr" />
+
+          <textarea name="temoignage" id="temoInput" placeholder="Partage ton témoignage ici… Ta parole peut allumer une flamme aujourd'hui." required></textarea>
+
           <div class="temo-form-row">
-            <input type="text" id="temoNom" placeholder="Ton prénom" />
-            <input type="text" id="temoVille" placeholder="Ta ville" />
-            <button class="btn-gold-sm" onclick="envoyerTemo()">🙏 Envoyer</button>
+            <input type="text" name="prenom" id="temoNom" placeholder="Ton prénom" required />
+            <input type="text" name="ville" id="temoVille" placeholder="Ta ville" />
+            <input type="email" name="email" id="temoEmail" placeholder="Ton email (optionnel)" style="flex:1.5; min-width:150px;" />
           </div>
-        </div>
+
+          <div style="margin-top:10px;">
+            <button type="submit" class="btn-gold-sm" id="temoBtn">🙏 Envoyer mon témoignage</button>
+          </div>
+
+          <!-- Message de succès -->
+          <div id="temoSucces" style="display:none; margin-top:1rem; background:rgba(92,122,78,0.2); border:1px solid rgba(92,122,78,0.4); border-radius:10px; padding:12px 16px; color:#b8d4a8; font-size:14px;">
+            ✅ Merci ! Ton témoignage a été reçu. Il sera publié après modération. Que Dieu te bénisse ! 🙏
+          </div>
+
+          <!-- Message d'erreur -->
+          <div id="temoErreur" style="display:none; margin-top:1rem; background:rgba(180,60,60,0.2); border:1px solid rgba(180,60,60,0.4); border-radius:10px; padding:12px 16px; color:#f4a4a4; font-size:14px;">
+            ❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.
+          </div>
+        </form>
       </div>
+
       <div class="temo-right reveal">
-        <div class="temo-bubble"><p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. »</p><p class="temo-author">— Cotonou</p></div>
-        <div class="temo-bubble"><p class="temo-quote">« Une simple prière quotidienne m'a aidé à reprendre courage. »</p><p class="temo-author">— Parakou</p></div>
-        <div class="temo-bubble"><p class="temo-quote">« Chaque matin je commence ici. Ce site est devenu mon pain quotidien spirituel. »</p><p class="temo-author">— Grace F. · Abidjan</p></div>
-        <div class="temo-bubble"><p class="temo-quote">« Après des mois de découragement, cette parole m'a rappelé que Dieu n'a pas abandonné mon avenir. »</p><p class="temo-author">— Samuel R. · Lomé</p></div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. »</p>
+          <p class="temo-author">— Adjoavi M. · Cotonou</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Une simple prière quotidienne m'a aidé à reprendre courage après des mois difficiles. »</p>
+          <p class="temo-author">— Emmanuel K. · Parakou</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Chaque matin je commence ici. Ce site est devenu mon pain quotidien spirituel. »</p>
+          <p class="temo-author">— Grace F. · Abidjan</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Après des mois de découragement, cette parole m'a rappelé que Dieu n'a pas abandonné mon avenir. »</p>
+          <p class="temo-author">— Samuel R. · Lomé</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- BIBLIOTHÈQUE -->
 <section class="section" id="ressources">
