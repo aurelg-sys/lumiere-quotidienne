@@ -217,6 +217,42 @@
     /* BADGE ADMIN */
     .admin-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-pale); border: 1px solid var(--gold); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 1rem; text-decoration: none; }
 
+    /* MESSAGES */
+    .msgs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+    .msg-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: all .15s; }
+    .msg-card:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(196,154,60,0.1); }
+    .msg-tag { display: inline-block; background: var(--gold-pale); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-bottom: 0.75rem; }
+    .msg-titre { font-family: var(--font-d); font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; }
+    .msg-texte { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; margin-bottom: 1rem; }
+    .msg-verset { font-family: var(--font-d); font-style: italic; font-size: 12.5px; color: var(--gold); border-left: 3px solid var(--gold-pale); padding-left: 10px; }
+
+    /* ÉTUDES */
+    .etude-liste { display: flex; flex-direction: column; gap: 1.25rem; }
+    .etude-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; display: flex; gap: 1.5rem; }
+    .etude-num { font-family: var(--font-d); font-size: 2rem; color: var(--gold-pale); font-weight: 700; flex-shrink: 0; line-height: 1; }
+    .etude-titre { font-family: var(--font-d); font-size: 1.15rem; color: var(--text); margin-bottom: 0.5rem; }
+    .etude-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.75rem; }
+    .etude-versets { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .ev-chip { background: var(--gold-pale); color: var(--gold); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+    .etude-body { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; border-top: 1px solid var(--border); padding-top: 1rem; }
+
+    /* PRIÈRES THÉMATIQUES */
+    .prieres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .priere-card { background: var(--bg-dark); border-radius: var(--radius); padding: 1.5rem; }
+    .priere-card-icon { font-size: 24px; margin-bottom: 0.75rem; }
+    .priere-card-titre { font-family: var(--font-d); font-size: 1rem; color: #F5F0E8; margin-bottom: 0.75rem; }
+    .priere-card-texte { font-family: var(--font-d); font-style: italic; font-size: 13px; color: rgba(245,240,232,0.75); line-height: 1.75; margin-bottom: 1rem; }
+    .copier-btn { background: rgba(196,154,60,0.15); border: 1px solid rgba(196,154,60,0.35); color: var(--gold-light, #E8C97A); font-size: 12px; padding: 5px 14px; border-radius: 20px; cursor: pointer; font-family: var(--font-b); transition: all .15s; }
+    .copier-btn:hover { background: rgba(196,154,60,0.3); }
+
+    /* VERSETS PAR THÈME */
+    .theme-section { margin-bottom: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .theme-header { display: flex; align-items: center; gap: 8px; padding: 0.85rem 1.25rem; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
+    .versets-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
+    .verset-item { padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
+    .vi-texte { font-family: var(--font-d); font-style: italic; font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 0.4rem; }
+    .vi-ref { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-links, .nav-cta { display: none; }
@@ -406,22 +442,291 @@
     <h2 class="section-title">Retrouver les encouragements par thème, saison et besoin.</h2>
     <p class="section-subtitle">Messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.</p>
     <div class="biblio-grid reveal">
-      <a href="#" class="biblio-card" onclick="showToast('Bientôt disponible'); return false;"><span class="biblio-icon">💌</span><div class="biblio-title">Messages d'encouragement</div><div class="biblio-desc">Courtes méditations pour les matins difficiles.</div></a>
-      <a href="#" class="biblio-card" onclick="showToast('Bientôt disponible'); return false;"><span class="biblio-icon">📚</span><div class="biblio-title">Études bibliques</div><div class="biblio-desc">Parcours pour mieux comprendre la Parole.</div></a>
-      <a href="#" class="biblio-card" onclick="showToast('Bientôt disponible'); return false;"><span class="biblio-icon">🕊️</span><div class="biblio-title">Prières thématiques</div><div class="biblio-desc">Prières pour la paix, la guérison, la famille.</div></a>
-      <a href="#" class="biblio-card" onclick="showToast('Bientôt disponible'); return false;"><span class="biblio-icon">✨</span><div class="biblio-title">Versets par thème</div><div class="biblio-desc">Foi, paix, guérison, espérance et plus.</div></a>
+      <a href="#messages" class="biblio-card"><span class="biblio-icon">💌</span><div class="biblio-title">Messages d'encouragement</div><div class="biblio-desc">Courtes méditations pour les matins difficiles.</div></a>
+      <a href="#etudes" class="biblio-card"><span class="biblio-icon">📚</span><div class="biblio-title">Études bibliques</div><div class="biblio-desc">Parcours pour mieux comprendre la Parole.</div></a>
+      <a href="#prieres-thematiques" class="biblio-card"><span class="biblio-icon">🕊️</span><div class="biblio-title">Prières thématiques</div><div class="biblio-desc">Prières pour la paix, la guérison, la famille.</div></a>
+      <a href="#versets-themes" class="biblio-card"><span class="biblio-icon">✨</span><div class="biblio-title">Versets par thème</div><div class="biblio-desc">Foi, paix, guérison, espérance et plus.</div></a>
     </div>
     <p class="section-label" style="margin-bottom:1rem;">Parcourir par thème</p>
     <div class="themes-grid reveal">
-      <a class="theme-chip" href="#" onclick="showToast('Thème Paix'); return false;"><span>🕊️</span><span class="theme-chip-label">Paix</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Foi'); return false;"><span>⚓</span><span class="theme-chip-label">Foi</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Espérance'); return false;"><span>🌅</span><span class="theme-chip-label">Espérance</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Guérison'); return false;"><span>💚</span><span class="theme-chip-label">Guérison</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Persévérance'); return false;"><span>💪</span><span class="theme-chip-label">Persévérance</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Amour'); return false;"><span>❤️</span><span class="theme-chip-label">Amour</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Protection'); return false;"><span>🛡️</span><span class="theme-chip-label">Protection</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Louange'); return false;"><span>🎶</span><span class="theme-chip-label">Louange</span></a>
-      <a class="theme-chip" href="#" onclick="showToast('Thème Sagesse'); return false;"><span>✨</span><span class="theme-chip-label">Sagesse</span></a>
+      <a class="theme-chip" href="#theme-paix"><span>🕊️</span><span class="theme-chip-label">Paix</span></a>
+      <a class="theme-chip" href="#theme-foi"><span>⚓</span><span class="theme-chip-label">Foi</span></a>
+      <a class="theme-chip" href="#theme-esperance"><span>🌅</span><span class="theme-chip-label">Espérance</span></a>
+      <a class="theme-chip" href="#theme-guerison"><span>💚</span><span class="theme-chip-label">Guérison</span></a>
+      <a class="theme-chip" href="#theme-perseverance"><span>💪</span><span class="theme-chip-label">Persévérance</span></a>
+      <a class="theme-chip" href="#theme-amour"><span>❤️</span><span class="theme-chip-label">Amour</span></a>
+      <a class="theme-chip" href="#theme-protection"><span>🛡️</span><span class="theme-chip-label">Protection</span></a>
+      <a class="theme-chip" href="#theme-louange"><span>🎶</span><span class="theme-chip-label">Louange</span></a>
+      <a class="theme-chip" href="#theme-sagesse"><span>✨</span><span class="theme-chip-label">Sagesse</span></a>
+    </div>
+
+    <!-- ═══ MESSAGES D'ENCOURAGEMENT ═══ -->
+    <div id="messages" style="margin-top:4rem;">
+      <p class="section-label" style="text-align:left;">💌 Messages d'encouragement</p>
+      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Des paroles pour relever le cœur.</h3>
+      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Chaque message est une méditation courte pour commencer la journée dans la foi.</p>
+      <div class="msgs-grid">
+
+        <div class="msg-card">
+          <div class="msg-tag">Force</div>
+          <h4 class="msg-titre">Dieu n'a pas fini avec toi</h4>
+          <p class="msg-texte">Quand tout semble s'arrêter, Dieu continue. Ses plans ne s'interrompent pas à cause de tes erreurs, de tes doutes ou de tes échecs. Il est le Dieu qui achève ce qu'Il commence. Si tu es encore en vie aujourd'hui, c'est qu'Il a encore quelque chose à accomplir à travers toi. Ne te lève pas en regardant tes faiblesses — lève-toi en regardant Sa fidélité.</p>
+          <p class="msg-verset">« Celui qui a commencé en vous cette bonne œuvre la poursuivra jusqu'au jour de Jésus-Christ. » — Philippiens 1 : 6</p>
+        </div>
+
+        <div class="msg-card">
+          <div class="msg-tag">Paix</div>
+          <h4 class="msg-titre">Tu n'as pas à tout porter seul</h4>
+          <p class="msg-texte">Le fardeau que tu portes ce matin n'a pas été conçu pour être porté seul. Jésus t'invite à venir à Lui — pas quand tu seras plus fort, pas quand tu auras tout réglé — maintenant, tel que tu es. Il ne te demande pas de tout comprendre. Il te demande juste de te reposer sur Lui. C'est dans cette confiance que la vraie paix commence.</p>
+          <p class="msg-verset">« Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos. » — Matthieu 11 : 28</p>
+        </div>
+
+        <div class="msg-card">
+          <div class="msg-tag">Espérance</div>
+          <h4 class="msg-titre">Le silence de Dieu n'est pas Son absence</h4>
+          <p class="msg-texte">Il y a des saisons où le ciel semble silencieux. Les prières montent mais les réponses tardent. Le doute frappe à la porte du cœur. Mais souviens-toi : Dieu était silencieux pendant 400 ans entre les deux Testaments — et puis Jésus est venu. Son silence n'est jamais un abandon. C'est souvent le calme avant quelque chose de grand.</p>
+          <p class="msg-verset">« J'espère en l'Éternel, mon âme espère, et j'attends sa parole. » — Psaume 130 : 5</p>
+        </div>
+
+        <div class="msg-card">
+          <div class="msg-tag">Confiance</div>
+          <h4 class="msg-titre">Ses voies sont plus hautes que les tiennes</h4>
+          <p class="msg-texte">Parfois la vie prend des tournures que tu n'as pas choisies. Un projet qui échoue, une porte qui se ferme, un chemin qui disparaît. Mais Dieu voit depuis le sommet ce que tu ne peux voir depuis la vallée. Ce qui te semble un détour est souvent Son raccourci vers quelque chose de meilleur. Fais-Lui confiance, même quand tu ne comprends pas.</p>
+          <p class="msg-verset">« Car mes pensées ne sont pas vos pensées, et vos voies ne sont pas mes voies. » — Ésaïe 55 : 8</p>
+        </div>
+
+        <div class="msg-card">
+          <div class="msg-tag">Identité</div>
+          <h4 class="msg-titre">Tu es aimé d'un amour éternel</h4>
+          <p class="msg-texte">Avant que tu fasses quoi que ce soit aujourd'hui — avant ta prière du matin, avant tes bonnes actions, avant tes efforts — tu es déjà aimé. L'amour de Dieu pour toi ne dépend pas de ta performance. Il t'a aimé quand tu étais encore pécheur. Il t'aime dans tes imperfections. Et rien, absolument rien, ne peut te séparer de cet amour.</p>
+          <p class="msg-verset">« Je t'ai aimé d'un amour éternel ; c'est pourquoi je t'ai conservé ma grâce. » — Jérémie 31 : 3</p>
+        </div>
+
+        <div class="msg-card">
+          <div class="msg-tag">Persévérance</div>
+          <h4 class="msg-titre">Ne lâche pas — la récolte vient</h4>
+          <p class="msg-texte">Tu as semé en larmes. Tu as prié sans voir de résultat. Tu as continué à croire quand tout parlait contre toi. La Bible dit que ceux qui sèment avec larmes moissonnent avec joie. Ta persévérance n'est pas vaine. Dieu note chaque effort, chaque larme, chaque pas de foi. La récolte est plus proche que tu ne le penses.</p>
+          <p class="msg-verset">« Ne nous lassons pas de faire le bien ; car nous moissonnerons au temps convenable, si nous ne nous relâchons pas. » — Galates 6 : 9</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ ÉTUDES BIBLIQUES ═══ -->
+    <div id="etudes" style="margin-top:4rem;">
+      <p class="section-label" style="text-align:left;">📚 Études bibliques</p>
+      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Approfondir la Parole de Dieu.</h3>
+      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Des parcours simples pour mieux comprendre la Bible et l'appliquer au quotidien.</p>
+      <div class="etude-liste">
+
+        <div class="etude-card">
+          <div class="etude-num">01</div>
+          <div class="etude-content">
+            <h4 class="etude-titre">La foi qui déplace les montagnes</h4>
+            <p class="etude-desc">Qu'est-ce que la foi selon la Bible ? Comment grandir dans la foi au quotidien ? Cette étude explore Hébreux 11, Matthieu 17 et Jacques 2 pour comprendre ce que Dieu attend de nous.</p>
+            <div class="etude-versets">
+              <span class="ev-chip">Hébreux 11 : 1</span>
+              <span class="ev-chip">Matthieu 17 : 20</span>
+              <span class="ev-chip">Jacques 2 : 17</span>
+            </div>
+            <div class="etude-body">
+              <p><strong>Introduction :</strong> La foi n'est pas un sentiment — c'est une certitude ancrée dans la Parole de Dieu. Hébreux 11:1 définit la foi comme « une ferme assurance des choses qu'on espère, une démonstration de celles qu'on ne voit pas ».</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> La foi s'appuie sur la Parole, pas sur les circonstances. Quand Jésus dit à ses disciples qu'avec une foi comme un grain de moutarde ils pourraient déplacer des montagnes, Il ne parle pas de la taille de la foi, mais de sa qualité — une foi pure, centrée sur Dieu.</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> La foi sans œuvres est morte (Jacques 2:17). La vraie foi se manifeste par des actions concrètes. Abraham a cru Dieu, et cette foi s'est exprimée dans l'obéissance.</p>
+              <p style="margin-top:0.75rem;"><strong>Application :</strong> Identifie aujourd'hui une situation dans ta vie qui semble impossible. Prends une promesse biblique qui s'y rapporte. Prie avec cette promesse — c'est là que la foi prend racine.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="etude-card">
+          <div class="etude-num">02</div>
+          <div class="etude-content">
+            <h4 class="etude-titre">L'identité du croyant en Christ</h4>
+            <p class="etude-desc">Qui es-tu vraiment en Jésus-Christ ? Cette étude explore ce que la Bible dit sur ton identité spirituelle — enfant de Dieu, héritier, temple du Saint-Esprit.</p>
+            <div class="etude-versets">
+              <span class="ev-chip">Jean 1 : 12</span>
+              <span class="ev-chip">Romains 8 : 17</span>
+              <span class="ev-chip">1 Corinthiens 6 : 19</span>
+            </div>
+            <div class="etude-body">
+              <p><strong>Introduction :</strong> Beaucoup de croyants vivent en dessous de ce qu'ils sont en Christ parce qu'ils ne connaissent pas leur identité biblique. La connaissance de qui tu es transforme la façon dont tu vis.</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> Tu es enfant de Dieu (Jean 1:12). Ce n'est pas une métaphore — c'est une réalité spirituelle. Dieu est ton Père, tu fais partie de Sa famille.</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> Tu es héritier de Dieu et cohéritier de Christ (Romains 8:17). Tout ce qui appartient à Christ t'appartient spirituellement — Sa paix, Sa joie, Sa victoire.</p>
+              <p style="margin-top:0.75rem;"><strong>Application :</strong> Chaque matin cette semaine, dis à voix haute : « Je suis enfant de Dieu. Je suis aimé, pardonné, et rempli de l'Esprit Saint. » Observe comment cette confession change ton regard sur ta journée.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="etude-card">
+          <div class="etude-num">03</div>
+          <div class="etude-content">
+            <h4 class="etude-titre">Comment prier efficacement</h4>
+            <p class="etude-desc">Jésus a enseigné à ses disciples comment prier. Cette étude explore le Notre Père, la prière de Daniel et les principes d'une vie de prière fructueuse.</p>
+            <div class="etude-versets">
+              <span class="ev-chip">Matthieu 6 : 9-13</span>
+              <span class="ev-chip">Daniel 6 : 10</span>
+              <span class="ev-chip">Philippiens 4 : 6-7</span>
+            </div>
+            <div class="etude-body">
+              <p><strong>Introduction :</strong> La prière n'est pas une formule magique — c'est une conversation avec Dieu. Elle transforme non seulement les situations, mais d'abord celui qui prie.</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> Le Notre Père (Matthieu 6:9-13) est un modèle, pas une récitation. Il nous enseigne à adorer d'abord, puis à demander — les priorités de la prière commencent par Dieu, pas par nos besoins.</p>
+              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> Daniel priait trois fois par jour, même sous la menace de mort (Daniel 6:10). La régularité est plus puissante que l'intensité occasionnelle. Une prière courte chaque matin vaut mieux qu'une longue prière une fois par semaine.</p>
+              <p style="margin-top:0.75rem;"><strong>Application :</strong> Cette semaine, établis un horaire de prière fixe — même 10 minutes par jour. Utilise le modèle : Adoration → Confession → Action de grâces → Supplication (ACAS).</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ PRIÈRES THÉMATIQUES ═══ -->
+    <div id="prieres-thematiques" style="margin-top:4rem;">
+      <p class="section-label" style="text-align:left;">🕊️ Prières thématiques</p>
+      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Une prière pour chaque situation.</h3>
+      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Des prières que tu peux reprendre telles quelles ou adapter selon ton cœur.</p>
+      <div class="prieres-grid">
+
+        <div class="priere-card">
+          <div class="priere-card-icon">🕊️</div>
+          <h4 class="priere-card-titre">Prière pour la paix intérieure</h4>
+          <p class="priere-card-texte">Seigneur Jésus, aujourd'hui mon cœur est agité. Les pensées se bousculent, les inquiétudes s'accumulent. Je viens à Toi avec tout ce que je porte. Tu as dit que Tu nous donnerais une paix qui dépasse tout entendement — je la réclame par la foi. Que Ton Esprit Saint calme les tempêtes de mon âme et établisse Ta paix dans chaque recoin de mon cœur. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur Jésus, aujourd'hui mon cœur est agité. Les pensées se bousculent, les inquiétudes s'accumulent. Je viens à Toi avec tout ce que je porte. Tu as dit que Tu nous donnerais une paix qui dépasse tout entendement — je la réclame par la foi. Que Ton Esprit Saint calme les tempêtes de mon âme et établisse Ta paix dans chaque recoin de mon cœur. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+        <div class="priere-card">
+          <div class="priere-card-icon">💚</div>
+          <h4 class="priere-card-titre">Prière pour la guérison</h4>
+          <p class="priere-card-texte">Père céleste, Tu es le Dieu qui guérit. Ta Parole dit que par les plaies de Jésus nous avons été guéris. Je me présente devant Toi avec ma maladie, ma douleur, ma faiblesse. Je crois en Ton pouvoir de guérison. Que Ta main guérissante touche mon corps, restaure ma santé et glorifie Ton nom à travers ma guérison. Je Te remercie d'avance pour ce que Tu accomplis. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Père céleste, Tu es le Dieu qui guérit. Ta Parole dit que par les plaies de Jésus nous avons été guéris. Je me présente devant Toi avec ma maladie, ma douleur, ma faiblesse. Je crois en Ton pouvoir de guérison. Que Ta main guérissante touche mon corps, restaure ma santé et glorifie Ton nom à travers ma guérison. Je Te remercie d'avance pour ce que Tu accomplis. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+        <div class="priere-card">
+          <div class="priere-card-icon">👨‍👩‍👧</div>
+          <h4 class="priere-card-titre">Prière pour la famille</h4>
+          <p class="priere-card-texte">Seigneur, je place ma famille entre Tes mains aujourd'hui. Protège chaque membre, guide leurs pas, garde leurs cœurs. Là où il y a des conflits, apporte la réconciliation. Là où il y a de la blessure, apporte la guérison. Que notre foyer soit un lieu où Ta présence est tangible, où l'amour règne et où Ton nom est honoré. Unis nos cœurs dans Ton amour. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur, je place ma famille entre Tes mains aujourd'hui. Protège chaque membre, guide leurs pas, garde leurs cœurs. Là où il y a des conflits, apporte la réconciliation. Là où il y a de la blessure, apporte la guérison. Que notre foyer soit un lieu où Ta présence est tangible, où l'amour règne et où Ton nom est honoré. Unis nos cœurs dans Ton amour. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+        <div class="priere-card">
+          <div class="priere-card-icon">💼</div>
+          <h4 class="priere-card-titre">Prière pour le travail et les finances</h4>
+          <p class="priere-card-texte">Père, Tu es Jéhovah-Jiré, le Dieu qui pourvoit. Je Te confie ma situation financière, mon travail, mes projets. Ouvre les portes que personne ne peut fermer. Donne-moi la sagesse pour bien gérer ce que Tu me confies. Bénis le travail de mes mains et multiplie ce que je sème. Que ma prospérité soit un témoignage de Ta fidélité. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Père, Tu es Jéhovah-Jiré, le Dieu qui pourvoit. Je Te confie ma situation financière, mon travail, mes projets. Ouvre les portes que personne ne peut fermer. Donne-moi la sagesse pour bien gérer ce que Tu me confies. Bénis le travail de mes mains et multiplie ce que je sème. Que ma prospérité soit un témoignage de Ta fidélité. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+        <div class="priere-card">
+          <div class="priere-card-icon">🛡️</div>
+          <h4 class="priere-card-titre">Prière pour la protection</h4>
+          <p class="priere-card-texte">Seigneur, Tu es mon bouclier et ma forteresse. Aujourd'hui je me couvre du sang de Jésus-Christ. Protège-moi de tout mal visible et invisible, de tout accident et de toute maladie. Envoie Tes anges pour m'entourer et protéger ma famille. Que Ta paix garde mon foyer et que Ta lumière dissipe toute ténèbre. Je suis en sécurité entre Tes mains. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur, Tu es mon bouclier et ma forteresse. Aujourd'hui je me couvre du sang de Jésus-Christ. Protège-moi de tout mal visible et invisible, de tout accident et de toute maladie. Envoie Tes anges pour m'entourer et protéger ma famille. Que Ta paix garde mon foyer et que Ta lumière dissipe toute ténèbre. Je suis en sécurité entre Tes mains. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+        <div class="priere-card">
+          <div class="priere-card-icon">🎓</div>
+          <h4 class="priere-card-titre">Prière pour les études et examens</h4>
+          <p class="priere-card-texte">Père de lumière, Tu es la source de toute sagesse et connaissance. Alors que je me prépare pour mes études et examens, illumine mon esprit, affermis ma mémoire et donne-moi la compréhension. Chasse le stress et l'anxiété, et remplace-les par Ta paix. Que tout ce que j'ai appris remonte clairement au moment voulu. Je fais confiance à Ta grâce pour me faire réussir. Au nom de Jésus, Amen.</p>
+          <button class="copier-btn" onclick="copierTexte(this, 'Père de lumière, Tu es la source de toute sagesse et connaissance. Alors que je me prépare pour mes études et examens, illumine mon esprit, affermis ma mémoire et donne-moi la compréhension. Chasse le stress et l'anxiété, et remplace-les par Ta paix. Que tout ce que j'ai appris remonte clairement au moment voulu. Je fais confiance à Ta grâce pour me faire réussir. Au nom de Jésus, Amen.')">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ VERSETS PAR THÈME ═══ -->
+    <div id="versets-themes" style="margin-top:4rem;">
+      <p class="section-label" style="text-align:left;">✨ Versets par thème</p>
+      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">La Parole de Dieu pour chaque besoin.</h3>
+      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Retrouve rapidement un verset selon ce que tu traverses aujourd'hui.</p>
+
+      <div class="theme-section" id="theme-foi">
+        <div class="theme-header ic-gold"><span>⚓</span> Foi</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Or la foi, c'est la certitude des choses qu'on espère, la démonstration de celles qu'on ne voit pas. »</p><p class="vi-ref">— Hébreux 11 : 1</p></div>
+          <div class="verset-item"><p class="vi-texte">« Je puis tout par celui qui me fortifie. »</p><p class="vi-ref">— Philippiens 4 : 13</p></div>
+          <div class="verset-item"><p class="vi-texte">« Car nous marchons par la foi et non par la vue. »</p><p class="vi-ref">— 2 Corinthiens 5 : 7</p></div>
+          <div class="verset-item"><p class="vi-texte">« Jésus lui dit : Si tu peux croire, tout est possible à celui qui croit. »</p><p class="vi-ref">— Marc 9 : 23</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-paix">
+        <div class="theme-header ic-blue"><span>🕊️</span> Paix</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Je vous laisse la paix, je vous donne ma paix. Je ne vous la donne pas comme le monde la donne. »</p><p class="vi-ref">— Jean 14 : 27</p></div>
+          <div class="verset-item"><p class="vi-texte">« Tu lui donneras la paix parfaite, à celui dont l'esprit est soutenu par toi, parce qu'il se confie en toi. »</p><p class="vi-ref">— Ésaïe 26 : 3</p></div>
+          <div class="verset-item"><p class="vi-texte">« Et la paix de Dieu, qui surpasse toute intelligence, gardera vos cœurs et vos pensées en Jésus-Christ. »</p><p class="vi-ref">— Philippiens 4 : 7</p></div>
+          <div class="verset-item"><p class="vi-texte">« L'Éternel est mon berger, je ne manquerai de rien. »</p><p class="vi-ref">— Psaume 23 : 1</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-esperance">
+        <div class="theme-header ic-sage"><span>🌅</span> Espérance</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p><p class="vi-ref">— Jérémie 29 : 11</p></div>
+          <div class="verset-item"><p class="vi-texte">« Ceux qui espèrent en l'Éternel renouvellent leur force. »</p><p class="vi-ref">— Ésaïe 40 : 31</p></div>
+          <div class="verset-item"><p class="vi-texte">« Que le Dieu de l'espérance vous remplisse de toute joie et de toute paix dans la foi. »</p><p class="vi-ref">— Romains 15 : 13</p></div>
+          <div class="verset-item"><p class="vi-texte">« L'espérance ne trompe point, parce que l'amour de Dieu est répandu dans nos cœurs par le Saint-Esprit. »</p><p class="vi-ref">— Romains 5 : 5</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-guerison">
+        <div class="theme-header" style="background:#EAF3DE; color:#3B6D11;"><span>💚</span> Guérison</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Mais lui, il était blessé pour nos péchés, brisé pour nos iniquités… c'est par ses meurtrissures que nous sommes guéris. »</p><p class="vi-ref">— Ésaïe 53 : 5</p></div>
+          <div class="verset-item"><p class="vi-texte">« Je suis l'Éternel, qui te guérit. »</p><p class="vi-ref">— Exode 15 : 26</p></div>
+          <div class="verset-item"><p class="vi-texte">« Quelqu'un parmi vous est-il malade ? Qu'il appelle les anciens de l'Église, et qu'ils prient pour lui. »</p><p class="vi-ref">— Jacques 5 : 14</p></div>
+          <div class="verset-item"><p class="vi-texte">« Il pardonne toutes tes iniquités, il guérit toutes tes maladies. »</p><p class="vi-ref">— Psaume 103 : 3</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-perseverance">
+        <div class="theme-header" style="background:#FEF3DC; color:#B07A10;"><span>💪</span> Persévérance</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Ne nous lassons pas de faire le bien ; car nous moissonnerons au temps convenable, si nous ne nous relâchons pas. »</p><p class="vi-ref">— Galates 6 : 9</p></div>
+          <div class="verset-item"><p class="vi-texte">« Fortifie-toi et prends courage ! Ne t'effraie point et ne t'épouvante point. »</p><p class="vi-ref">— Josué 1 : 9</p></div>
+          <div class="verset-item"><p class="vi-texte">« J'ai combattu le bon combat, j'ai achevé la course, j'ai gardé la foi. »</p><p class="vi-ref">— 2 Timothée 4 : 7</p></div>
+          <div class="verset-item"><p class="vi-texte">« Celui qui persévérera jusqu'à la fin sera sauvé. »</p><p class="vi-ref">— Matthieu 24 : 13</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-amour">
+        <div class="theme-header" style="background:#FBEAF0; color:#993556;"><span>❤️</span> Amour</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point. »</p><p class="vi-ref">— Jean 3 : 16</p></div>
+          <div class="verset-item"><p class="vi-texte">« Je t'ai aimé d'un amour éternel ; c'est pourquoi je t'ai conservé ma grâce. »</p><p class="vi-ref">— Jérémie 31 : 3</p></div>
+          <div class="verset-item"><p class="vi-texte">« L'amour est patient, il est plein de bonté… il supporte tout, il espère tout, il endure tout. »</p><p class="vi-ref">— 1 Corinthiens 13 : 4-7</p></div>
+          <div class="verset-item"><p class="vi-texte">« Nous l'aimons, parce qu'il nous a aimés le premier. »</p><p class="vi-ref">— 1 Jean 4 : 19</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-protection">
+        <div class="theme-header" style="background:#e8edf2; color:#2C2A25;"><span>🛡️</span> Protection</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« L'Éternel est ma lumière et mon salut : de qui aurais-je crainte ? L'Éternel est le soutien de ma vie : de qui aurais-je peur ? »</p><p class="vi-ref">— Psaume 27 : 1</p></div>
+          <div class="verset-item"><p class="vi-texte">« Il donnera des ordres à ses anges de te garder dans toutes tes voies. »</p><p class="vi-ref">— Psaume 91 : 11</p></div>
+          <div class="verset-item"><p class="vi-texte">« Le nom de l'Éternel est une tour forte ; le juste s'y réfugie et se trouve en sûreté. »</p><p class="vi-ref">— Proverbes 18 : 10</p></div>
+          <div class="verset-item"><p class="vi-texte">« Si Dieu est pour nous, qui sera contre nous ? »</p><p class="vi-ref">— Romains 8 : 31</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-louange">
+        <div class="theme-header" style="background:#F0E6C8; color:#8B6914;"><span>🎶</span> Louange</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Que tout ce qui respire loue l'Éternel ! Louez l'Éternel ! »</p><p class="vi-ref">— Psaume 150 : 6</p></div>
+          <div class="verset-item"><p class="vi-texte">« C'est le jour que l'Éternel a fait : réjouissons-nous et soyons dans l'allégresse ! »</p><p class="vi-ref">— Psaume 118 : 24</p></div>
+          <div class="verset-item"><p class="vi-texte">« Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu en Jésus-Christ. »</p><p class="vi-ref">— 1 Thessaloniciens 5 : 18</p></div>
+          <div class="verset-item"><p class="vi-texte">« Je bénirai l'Éternel en tout temps ; sa louange sera toujours dans ma bouche. »</p><p class="vi-ref">— Psaume 34 : 2</p></div>
+        </div>
+      </div>
+
+      <div class="theme-section" id="theme-sagesse">
+        <div class="theme-header" style="background:#E3EDF8; color:#185FA5;"><span>✨</span> Sagesse</div>
+        <div class="versets-liste">
+          <div class="verset-item"><p class="vi-texte">« Si quelqu'un d'entre vous manque de sagesse, qu'il la demande à Dieu, qui donne à tous libéralement. »</p><p class="vi-ref">— Jacques 1 : 5</p></div>
+          <div class="verset-item"><p class="vi-texte">« La crainte de l'Éternel est le commencement de la sagesse. »</p><p class="vi-ref">— Proverbes 9 : 10</p></div>
+          <div class="verset-item"><p class="vi-texte">« Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse. »</p><p class="vi-ref">— Proverbes 3 : 5</p></div>
+          <div class="verset-item"><p class="vi-texte">« Heureux l'homme qui a trouvé la sagesse, et l'homme qui possède l'intelligence ! »</p><p class="vi-ref">— Proverbes 3 : 13</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -585,6 +890,13 @@
     t.textContent = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── Copier texte générique ──
+  function copierTexte(btn, texte) {
+    navigator.clipboard.writeText(texte)
+      .then(() => { btn.textContent = '✅ Copié !'; setTimeout(() => btn.textContent = '📋 Copier', 2000); })
+      .catch(() => showToast('Copie non disponible.'));
   }
 
   // ── Copier prière ──
