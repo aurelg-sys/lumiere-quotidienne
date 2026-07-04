@@ -3,901 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- SEO de base -->
-  <meta name="description" content="Chaque matin, un verset biblique, une réflexion et une prière pour nourrir ta foi et ta paix en Jésus-Christ. Site chrétien francophone gratuit." />
-  <meta name="keywords" content="verset du jour, prière quotidienne, chrétien francophone, Bible, foi, espérance, Jésus-Christ, Bénin, Afrique" />
-  <meta name="author" content="Lumière Quotidienne" />
-  <link rel="canonical" href="https://aurelg-sys.github.io/lumiere-quotidienne/" />
-
-  <!-- Open Graph (Facebook, WhatsApp) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aurelg-sys.github.io/lumiere-quotidienne/" />
-  <meta property="og:title" content="Lumière Quotidienne — Un verset, une prière chaque matin" />
-  <meta property="og:description" content="Chaque matin, un verset biblique, une réflexion et une prière pour nourrir ta foi et ta paix en Jésus-Christ." />
-  <meta property="og:image" content="https://aurelg-sys.github.io/lumiere-quotidienne/images/hero.jpg" />
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:site_name" content="Lumière Quotidienne" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Lumière Quotidienne — Un verset, une prière chaque matin" />
-  <meta name="twitter:description" content="Chaque matin, un verset biblique, une réflexion et une prière pour nourrir ta foi et ta paix en Jésus-Christ." />
-  <meta name="twitter:image" content="https://aurelg-sys.github.io/lumiere-quotidienne/images/hero.jpg" />
-  <title>Lumière Quotidienne</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="favicon.png" />
-
-
-  <!-- Polices chargées sans bloquer la page -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" /></noscript>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    :root {
-      --bg:        #F5F0E8;
-      --bg-alt:    #EDE8DF;
-      --bg-card:   #FDFAF5;
-      --bg-dark:   #2C2A25;
-      --gold:      #C49A3C;
-      --gold-pale: #F0E6C8;
-      --gold-mid:  #D4AC5A;
-      --text:      #2C2A25;
-      --text-mid:  #5C5847;
-      --text-soft: #9A9285;
-      --border:    #DDD8CC;
-      --sage:      #5C7A4E;
-      --radius:    12px;
-      --radius-lg: 20px;
-      --shadow:    0 2px 20px rgba(44,42,37,0.08);
-      --font-d:    'Playfair Display', Georgia, serif;
-      --font-b:    'Lato', system-ui, sans-serif;
-    }
-    body { background: var(--bg); font-family: var(--font-b); color: var(--text); min-height: 100vh; }
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="style.css" />
 
-
-    /* LANGUE SELECTOR */
-    .lang-selector {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .lang-btn {
-      background: var(--gold-pale);
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold);
-      cursor: pointer;
-      font-family: var(--font-b);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: all .15s;
-    }
-    .lang-btn:hover { background: var(--gold); color: #fff; }
-    .lang-dropdown {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-width: 160px;
-      z-index: 200;
-      overflow: hidden;
-    }
-    .lang-dropdown.open { display: block; }
-    .lang-option {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      font-size: 13px;
-      color: var(--text-mid);
-      cursor: pointer;
-      transition: all .15s;
-      border-bottom: 1px solid var(--border);
-    }
-    .lang-option:last-child { border-bottom: none; }
-    .lang-option:hover { background: var(--gold-pale); color: var(--gold); }
-    .lang-option.active { background: var(--gold-pale); color: var(--gold); font-weight: 700; }
-    .lang-flag { font-size: 16px; }
-
-    /* NAV */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--bg); border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2.5rem; height: 56px;
-    }
-    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .nav-logo { width: 28px; height: 28px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--gold); }
-    .nav-name { font-family: var(--font-d); font-size: 1rem; color: var(--text); }
-    .nav-links { display: flex; gap: 2px; list-style: none; }
-    .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 13px; padding: 6px 14px; border-radius: 20px; transition: all .15s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); background: var(--gold-pale); }
-    .nav-cta { background: var(--gold); color: #fff; border: none; border-radius: 20px; padding: 7px 18px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-b); transition: background .15s; }
-    .nav-cta:hover { background: var(--gold-mid); }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-    .mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; z-index: 99; flex-direction: column; gap: 4px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--text-mid); text-decoration: none; font-size: 15px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .mobile-menu a:hover { color: var(--gold); }
-
-    /* HERO */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem 4rem; align-items: center; }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-    .hero-title { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--text); margin-bottom: 1.25rem; }
-    .hero-desc { font-size: 15px; color: var(--text-mid); line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
-    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-gold { background: var(--gold); color: #fff; border: none; border-radius: 24px; padding: 10px 22px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: var(--font-b); transition: background .15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-gold:hover { background: var(--gold-mid); }
-    .btn-outline { background: transparent; color: var(--text-mid); border: 1.5px solid var(--border); border-radius: 24px; padding: 10px 22px; font-size: 14px; cursor: pointer; font-family: var(--font-b); transition: all .15s; text-decoration: none; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    .hero-right { position: relative; }
-    .hero-img { width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-lg); }
-    .hero-verset-card { position: absolute; bottom: -1.5rem; left: -1.5rem; background: var(--bg-card); border-radius: var(--radius); padding: 1.25rem 1.5rem; box-shadow: var(--shadow); max-width: 280px; border: 1px solid var(--border); }
-    .hvc-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-    .hvc-text { font-family: var(--font-d); font-style: italic; font-size: 1.05rem; line-height: 1.55; color: var(--text); }
-    .hvc-ref { font-size: 12px; color: var(--text-soft); margin-top: 0.5rem; }
-
-    /* SECTIONS */
-    .section { padding: 5rem 2.5rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-bg-alt { background: var(--bg-alt); }
-    .section-bg-dark { background: var(--bg-dark); }
-    .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; text-align: center; }
-    .section-title { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; line-height: 1.3; color: var(--text); margin-bottom: 0.75rem; }
-    .section-subtitle { text-align: center; color: var(--text-mid); font-size: 15px; line-height: 1.65; max-width: 600px; margin: 0 auto 3rem; }
-
-    /* 3 COLONNES */
-    .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .col-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem 1.5rem; }
-    .col-card-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem; }
-    .ic-gold { background: var(--gold-pale); }
-    .ic-sage { background: #E4EDE0; }
-    .ic-blue { background: #E3EDF8; }
-    .col-card-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .col-card-text { font-family: var(--font-d); font-style: italic; font-size: 1rem; line-height: 1.65; color: var(--text); }
-    .col-card-meta { font-size: 12px; color: var(--text-soft); margin-top: 0.75rem; }
-    .col-card-body-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; margin-top: 0.5rem; }
-
-    /* DAY NAV */
-    .day-nav { display: flex; align-items: center; justify-content: space-between; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1.25rem; max-width: 600px; margin: 0 auto 2rem; }
-    .day-btn { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; font-size: 13px; color: var(--text-mid); cursor: pointer; font-family: var(--font-b); transition: all .15s; }
-    .day-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .day-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-    .day-center { text-align: center; }
-    .day-date { font-size: 14px; font-weight: 700; color: var(--text); }
-    .day-sub { font-size: 11px; color: var(--text-soft); margin-top: 2px; }
-
-    /* VERSET BAND */
-    .verset-band { background: linear-gradient(135deg, var(--bg-dark) 0%, #1a3a5c 100%); border-radius: var(--radius); padding: 2rem 1.5rem; margin: 2rem 0; text-align: center; position: relative; overflow: hidden; }
-    .verset-band::before { content: '✦'; position: absolute; top: 12px; left: 20px; color: var(--gold); opacity: 0.3; font-size: 28px; }
-    .verset-band::after { content: '✦'; position: absolute; bottom: 12px; right: 20px; color: var(--gold); opacity: 0.3; font-size: 28px; }
-    .verset-band-text { font-family: var(--font-d); font-style: italic; color: #FAF7F0; font-size: 1.05rem; line-height: 1.7; }
-    .verset-band-ref { margin-top: 0.75rem; color: #E8C97A; font-size: 13px; letter-spacing: 1px; }
-
-    /* TÉMOIGNAGES */
-    .temo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-    .temo-left h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.1rem); color: #F5F0E8; line-height: 1.3; margin-bottom: 1rem; }
-    .temo-left p { color: rgba(245,240,232,0.6); font-size: 14px; line-height: 1.7; margin-bottom: 1.5rem; }
-    .temo-right { display: flex; flex-direction: column; gap: 1rem; }
-    .temo-bubble { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 0; }
-    .temo-quote { font-family: var(--font-d); font-style: italic; font-size: 1rem; color: #F5F0E8; line-height: 1.6; margin-bottom: 0.6rem; }
-    .temo-author { font-size: 12px; color: rgba(245,240,232,0.45); }
-    .temo-form { margin-top: 1rem; }
-    .temo-form textarea { width: 100%; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 10px 14px; font-size: 14px; font-family: var(--font-b); color: #F5F0E8; background: rgba(255,255,255,0.07); resize: none; height: 80px; transition: border-color .15s; }
-    .temo-form textarea:focus { outline: none; border-color: var(--gold); }
-    .temo-form textarea::placeholder { color: rgba(245,240,232,0.35); }
-    .temo-form-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-    .temo-form input { flex: 1; min-width: 120px; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius); padding: 8px 12px; font-size: 13px; font-family: var(--font-b); background: rgba(255,255,255,0.07); color: #F5F0E8; transition: border-color .15s; }
-    .temo-form input:focus { outline: none; border-color: var(--gold); }
-    .temo-form input::placeholder { color: rgba(245,240,232,0.35); }
-    .btn-gold-sm { background: var(--gold); color: #fff; border: none; border-radius: var(--radius); padding: 8px 18px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-b); white-space: nowrap; transition: background .15s; }
-    .btn-gold-sm:hover { background: var(--gold-mid); }
-
-    /* BIBLIOTHÈQUE */
-    .biblio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
-    .biblio-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center; cursor: pointer; text-decoration: none; transition: all .15s; display: block; }
-    .biblio-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(196,154,60,0.12); }
-    .biblio-icon { font-size: 26px; margin-bottom: 0.75rem; display: block; }
-    .biblio-title { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 0.4rem; }
-    .biblio-desc { font-size: 12px; color: var(--text-soft); line-height: 1.5; }
-    .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
-    .theme-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 8px 14px; text-align: center; cursor: pointer; transition: all .15s; text-decoration: none; display: flex; align-items: center; gap: 7px; }
-    .theme-chip:hover { border-color: var(--gold); background: var(--gold-pale); }
-    .theme-chip-label { font-size: 13px; color: var(--text-mid); font-weight: 700; }
-
-    /* PAYSAGES */
-    .paysage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .paysage-card { border-radius: var(--radius-lg); overflow: hidden; position: relative; height: 260px; cursor: pointer; background: var(--bg-alt); }
-    .paysage-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; display: block; min-height: 100%; }
-    .paysage-card:hover .paysage-img { transform: scale(1.04); }
-    .paysage-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(44,42,37,0.85) 0%, transparent 100%); padding: 1.25rem; }
-    .paysage-theme { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #D4AC5A; display: block; margin-bottom: 5px; }
-    .paysage-verset { font-family: var(--font-d); font-style: italic; color: #F5F0E8; font-size: 0.95rem; line-height: 1.45; }
-
-    /* SALUT */
-    .salut-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
-    .salut-left h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.3; margin-bottom: 1rem; color: var(--text); }
-    .salut-left p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 0.75rem; }
-    .salut-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1.25rem; }
-    .salut-prayer-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
-    .salut-prayer-text { font-size: 14.5px; color: var(--text); line-height: 1.85; }
-    .salut-prayer-text p { margin-bottom: 0.85rem; }
-    .salut-prayer-text p:last-child { margin-bottom: 0; }
-    .salut-amen { font-family: var(--font-d); font-style: italic; font-size: 1rem; color: var(--gold); }
-
-    /* NEWSLETTER */
-    .newsletter-box { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); }
-    .nl-icon { font-size: 28px; margin-bottom: 1rem; display: block; }
-    .nl-title { font-family: var(--font-d); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text); margin-bottom: 0.5rem; }
-    .nl-sub { font-size: 14px; color: var(--text-mid); margin-bottom: 1.5rem; }
-    .nl-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; }
-    .nl-form input { flex: 1; border: 1.5px solid var(--border); border-radius: 24px; padding: 10px 16px; font-size: 14px; font-family: var(--font-b); background: var(--bg-card); color: var(--text); transition: border-color .15s; }
-    .nl-form input:focus { outline: none; border-color: var(--gold); }
-
-    /* FOOTER */
-    footer { background: var(--bg-dark); padding: 3rem 2.5rem 2rem; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
-    .footer-brand-name { font-family: var(--font-d); font-size: 1.15rem; color: #F5F0E8; margin-bottom: 0.5rem; }
-    .footer-brand-desc { font-size: 13px; color: rgba(245,240,232,0.45); line-height: 1.6; max-width: 260px; }
-    .footer-col-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-links a { font-size: 13px; color: rgba(245,240,232,0.5); text-decoration: none; transition: color .15s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; }
-    .footer-bottom p { font-size: 12px; color: rgba(245,240,232,0.25); letter-spacing: 1px; }
-    .footer-cross { color: var(--gold); font-size: 16px; }
-
-    /* TOAST */
-    .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--bg-dark); color: #F5F0E8; font-size: 13px; padding: 10px 22px; border-radius: 24px; border: 1px solid rgba(196,154,60,.35); z-index: 999; transition: transform .3s ease; white-space: nowrap; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-
-    /* REVEAL */
-    .reveal { opacity: 1; transform: translateY(0); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.animate { opacity: 0; transform: translateY(24px); }
-    .reveal.animate.visible { opacity: 1; transform: translateY(0); }
-
-    /* BADGE ADMIN */
-    .admin-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-pale); border: 1px solid var(--gold); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 1rem; text-decoration: none; }
-
-    /* MESSAGES */
-    .msgs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
-    .msg-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: all .15s; }
-    .msg-card:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(196,154,60,0.1); }
-    .msg-tag { display: inline-block; background: var(--gold-pale); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-bottom: 0.75rem; }
-    .msg-titre { font-family: var(--font-d); font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; }
-    .msg-texte { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; margin-bottom: 1rem; }
-    .msg-verset { font-family: var(--font-d); font-style: italic; font-size: 12.5px; color: var(--gold); border-left: 3px solid var(--gold-pale); padding-left: 10px; }
-
-    /* ÉTUDES */
-    .etude-liste { display: flex; flex-direction: column; gap: 1.25rem; }
-    .etude-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; display: flex; gap: 1.5rem; }
-    .etude-num { font-family: var(--font-d); font-size: 2rem; color: var(--gold-pale); font-weight: 700; flex-shrink: 0; line-height: 1; }
-    .etude-titre { font-family: var(--font-d); font-size: 1.15rem; color: var(--text); margin-bottom: 0.5rem; }
-    .etude-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.75rem; }
-    .etude-versets { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
-    .ev-chip { background: var(--gold-pale); color: var(--gold); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
-    .etude-body { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; border-top: 1px solid var(--border); padding-top: 1rem; }
-
-    /* PRIÈRES THÉMATIQUES */
-    .prieres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-    .priere-card { background: var(--bg-dark); border-radius: var(--radius); padding: 1.5rem; }
-    .priere-card-icon { font-size: 24px; margin-bottom: 0.75rem; }
-    .priere-card-titre { font-family: var(--font-d); font-size: 1rem; color: #F5F0E8; margin-bottom: 0.75rem; }
-    .priere-card-texte { font-family: var(--font-d); font-style: italic; font-size: 13px; color: rgba(245,240,232,0.75); line-height: 1.75; margin-bottom: 1rem; }
-    .copier-btn { background: rgba(196,154,60,0.15); border: 1px solid rgba(196,154,60,0.35); color: var(--gold-light, #E8C97A); font-size: 12px; padding: 5px 14px; border-radius: 20px; cursor: pointer; font-family: var(--font-b); transition: all .15s; }
-    .copier-btn:hover { background: rgba(196,154,60,0.3); }
-
-    /* VERSETS PAR THÈME */
-    .theme-section { margin-bottom: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .theme-header { display: flex; align-items: center; gap: 8px; padding: 0.85rem 1.25rem; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
-    .versets-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
-    .verset-item { padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
-    .vi-texte { font-family: var(--font-d); font-style: italic; font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 0.4rem; }
-    .vi-ref { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .nav-hamburger { display: flex; }
-      .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem 2rem; }
-      .hero-right { display: none; }
-      .cols-3 { grid-template-columns: 1fr; }
-      .temo-grid { grid-template-columns: 1fr; }
-      .biblio-grid { grid-template-columns: repeat(2, 1fr); }
-      .paysage-grid { grid-template-columns: 1fr; }
-      .salut-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-      .nl-form { flex-direction: column; }
-      .section { padding: 3.5rem 1.25rem; }
-    }
-  </style>
+  <title>Lumière Quotidienne — Un verset, une prière chaque matin</title>
+  <meta name="description" content="Chaque matin, un verset biblique, une réflexion et une prière pour nourrir ta foi en Jésus-Christ." />
+  <meta property="og:title" content="Lumière Quotidienne" />
+  <meta property="og:description" content="Un verset, une réflexion, une prière — chaque matin." />
+  <meta property="og:image" content="images/hero.jpg" />
 </head>
 <body>
-
-<!-- NAV -->
 <nav class="nav">
-  <a href="#" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <div class="nav-logo">✝</div>
     <span class="nav-name">Lumière Quotidienne</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#aujourdhui" class="active">Aujourd'hui</a></li>
-    <li><a href="#ressources">Ressources</a></li>
-    <li><a href="#temoignages">Témoignages</a></li>
-    <li><a href="#salut">Donner sa vie</a></li>
+    <li><a href="index.html">Aujourd'hui</a></li>
+    <li><a href="bibliotheque.html">Bibliothèque</a></li>
+    <li><a href="temoignages.html">Témoignages</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="salut.html">Donner sa vie</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('salut').scrollIntoView({behavior:'smooth'})">🙏 Prière du salut</button>
-  <div class="lang-selector">
-    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-      🌍 <span id="langLabel">FR</span> ▾
-    </button>
-    <div class="lang-dropdown" id="langMenu">
-      <div class="lang-option active" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> Français</div>
-      <div class="lang-option" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</div>
-      <div class="lang-option" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span> Español</div>
-      <div class="lang-option" onclick="setLang('pt')"><span class="lang-flag">🇧🇷</span> Português</div>
-      <div class="lang-option" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</div>
-      <div class="lang-option" onclick="setLang('it')"><span class="lang-flag">🇮🇹</span> Italiano</div>
-    </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="salut.html" class="nav-cta">🙏 Prière du salut</a>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
-  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#aujourdhui">Aujourd'hui</a>
-  <a href="#ressources">Ressources</a>
-  <a href="#temoignages">Témoignages</a>
-  <a href="#salut">Donner sa vie</a>
+  <a href="index.html">Aujourd'hui</a>
+  <a href="bibliotheque.html">Bibliothèque</a>
+  <a href="temoignages.html">Témoignages</a>
+  <a href="apropos.html">À propos</a>
+  <a href="salut.html">Donner sa vie</a>
 </div>
 
 <!-- HERO -->
-<section style="background:var(--bg)">
-  <div class="hero">
+<section style="background:var(--bg);">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;align-items:center;">
     <div>
-      <p class="hero-eyebrow">Un verset · Une réflexion · Une prière</p>
-      <h1 class="hero-title">Commence chaque journée avec une parole d'espérance en Christ.</h1>
-      <p class="hero-desc">Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.</p>
-      <div class="hero-btns">
-        <a href="#aujourdhui" class="btn-gold">📖 Lire le verset du jour</a>
-        <a href="#ressources" class="btn-outline">Explorer</a>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;">Un verset · Une réflexion · Une prière</p>
+      <h1 style="font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);line-height:1.2;color:var(--text);margin-bottom:1.25rem;">Commence chaque journée avec une parole d'espérance en Christ.</h1>
+      <p style="font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:2rem;max-width:420px;">Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="#aujourdhui" class="btn btn-gold">📖 Lire le verset du jour</a>
+        <a href="bibliotheque.html" class="btn btn-outline">Explorer la bibliothèque</a>
       </div>
     </div>
-    <div class="hero-right">
-      <img class="hero-img" src="images/hero.jpg" alt="Paysage paisible" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#C49A3C22,#5C7A4E22)';this.src=''" />
-      <div class="hero-verset-card">
-        <p class="hvc-label">Verset du jour</p>
-        <p class="hvc-text" id="heroVersetText">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p>
-        <p class="hvc-ref" id="heroVersetRef">— Jérémie 29 : 11</p>
+    <div style="position:relative;">
+      <img src="images/hero.jpg" alt="Paysage paisible" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;" onerror="this.style.background='var(--bg-alt)';this.src=''" />
+      <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--bg-card);border-radius:var(--radius);padding:1.25rem 1.5rem;box-shadow:var(--shadow);max-width:280px;border:1px solid var(--border);">
+        <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Verset du jour</p>
+        <p id="heroVersetText" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.55;color:var(--text);">Chargement…</p>
+        <p id="heroVersetRef" style="font-size:12px;color:var(--text-soft);margin-top:0.5rem;"></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RYTHME -->
+<!-- CONTENU DU JOUR -->
 <section class="section section-bg-alt" id="aujourdhui">
-  <div class="section-inner">
-    <p class="section-label">Chaque matin</p>
-    <h2 class="section-title">Un rythme simple pour nourrir la foi au quotidien.</h2>
-    <p class="section-subtitle">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Chaque matin</p>
+    <h2 class="section-title section-title-center">Un rythme simple pour nourrir la foi au quotidien.</h2>
+    <p class="section-sub section-sub-center">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
 
-    <div class="day-nav">
-      <button class="day-btn" onclick="showToast('Navigation à venir…')">← Hier</button>
-      <div class="day-center">
-        <div class="day-date" id="navDate">—</div>
-        <div class="day-sub">Parole du jour</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1.25rem;max-width:580px;margin:0 auto 2.5rem;">
+      <button onclick="showToast('Navigation à venir…')" class="btn btn-outline btn-sm">← Hier</button>
+      <div style="text-align:center;">
+        <div id="navDate" style="font-size:14px;font-weight:700;color:var(--text);">—</div>
+        <div style="font-size:11px;color:var(--text-soft);margin-top:2px;">Parole du jour</div>
       </div>
-      <button class="day-btn" disabled>Demain →</button>
+      <button disabled class="btn btn-outline btn-sm" style="opacity:.35;cursor:not-allowed;">Demain →</button>
     </div>
 
-    <div class="cols-3">
-      <!-- VERSET -->
-      <div class="col-card">
-        <div class="col-card-icon ic-gold">📖</div>
-        <p class="col-card-title">Verset du jour</p>
-        <p class="col-card-text" id="versetText">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p>
-        <p class="col-card-meta" id="versetRef">— Jérémie 29 : 11</p>
+    <div class="grid-3">
+      <div class="card">
+        <p class="section-label">📖 Verset du jour</p>
+        <p id="versetText" style="font-family:var(--font-d);font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--text);">Chargement…</p>
+        <p id="versetRef" style="font-size:12px;color:var(--text-soft);margin-top:0.75rem;"></p>
       </div>
-
-      <!-- RÉFLEXION -->
-      <div class="col-card">
-        <div class="col-card-icon ic-sage">🌿</div>
-        <p class="col-card-title">Exhortation</p>
-        <p class="col-card-text" id="reflexionApercu">Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — suffisamment de lumière pour le prochain pas.</p>
-        <p style="margin-top:1rem; cursor:pointer; color:var(--gold); font-size:13px;" onclick="document.getElementById('reflexionSuite').style.display='block';this.style.display='none'">→ Lire la suite</p>
-        <div id="reflexionSuite" style="display:none; margin-top:0.75rem;">
-          <p class="col-card-body-text" id="reflexionReste">Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.
-
-Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon.</p>
+      <div class="card">
+        <p class="section-label">🌿 Exhortation</p>
+        <p id="reflexionApercu" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.65;color:var(--text);">Chargement…</p>
+        <p id="lireSuiteBtn" style="margin-top:1rem;cursor:pointer;color:var(--gold);font-size:13px;" onclick="document.getElementById('reflexionSuite').style.display='block';this.style.display='none'">→ Lire la suite</p>
+        <div id="reflexionSuite" style="display:none;margin-top:0.75rem;font-size:13.5px;color:var(--text-mid);line-height:1.75;">
+          <p id="reflexionReste"></p>
         </div>
       </div>
-
-      <!-- PRIÈRE -->
-      <div class="col-card">
-        <div class="col-card-icon ic-blue">🙏</div>
-        <p class="col-card-title">Prière quotidienne</p>
-        <p class="col-card-text" id="priereTexte">Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix — celle qui dépasse tout entendement — garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre, sachant que Tu es toujours devant moi.</p>
-        <button onclick="copierPriere()" style="margin-top:1rem; background:none; border:1px solid var(--border); border-radius:20px; padding:5px 12px; font-size:11px; color:var(--text-soft); cursor:pointer; font-family:var(--font-b); transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-soft)'">📋 Copier la prière</button>
+      <div class="card">
+        <p class="section-label">🙏 Prière quotidienne</p>
+        <p id="priereTexte" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.65;color:var(--text);">Chargement…</p>
+        <button class="btn-copy" style="margin-top:1rem;" onclick="copierTexte(this, document.getElementById('priereTexte').innerText)">📋 Copier la prière</button>
       </div>
     </div>
 
-    <!-- Verset bonus -->
-    <div class="verset-band reveal">
-      <p class="verset-band-text" id="bonusText">« L'Éternel est mon berger, je ne manquerai de rien. »</p>
-      <p class="verset-band-ref" id="bonusRef">— Psaume 23 : 1 · Verset bonus du jour</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- TÉMOIGNAGES -->
-<section class="section section-bg-dark" id="temoignages">
-  <div class="section-inner">
-    <div class="temo-grid">
-      <div class="temo-left">
-        <p class="section-label" style="text-align:left; margin-bottom:0.5rem;">Témoignages</p>
-        <h2>Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.</h2>
-        <p>Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile. Partage ce que Dieu a fait dans ta vie — ton témoignage sera publié après modération.</p>
-
-        <!-- FORMULAIRE FORMSPREE RÉEL -->
-        <form id="temoForm" action="https://formspree.io/f/mjgqawrr" method="POST" class="temo-form" onsubmit="return soumettreForm(event)">
-          <!-- Champ caché pour identifier la source -->
-          <input type="hidden" name="_subject" value="✝️ Nouveau témoignage — Lumière Quotidienne" />
-          <input type="hidden" name="_language" value="fr" />
-
-          <textarea name="temoignage" id="temoInput" placeholder="Partage ton témoignage ici… Ta parole peut allumer une flamme aujourd'hui." required></textarea>
-
-          <div class="temo-form-row">
-            <input type="text" name="prenom" id="temoNom" placeholder="Ton prénom" required />
-            <input type="text" name="ville" id="temoVille" placeholder="Ta ville" />
-            <input type="email" name="email" id="temoEmail" placeholder="Ton email (optionnel)" style="flex:1.5; min-width:150px;" />
-          </div>
-
-          <div style="margin-top:10px;">
-            <button type="submit" class="btn-gold-sm" id="temoBtn">🙏 Envoyer mon témoignage</button>
-          </div>
-
-          <!-- Message de succès -->
-          <div id="temoSucces" style="display:none; margin-top:1rem; background:rgba(92,122,78,0.2); border:1px solid rgba(92,122,78,0.4); border-radius:10px; padding:12px 16px; color:#b8d4a8; font-size:14px;">
-            ✅ Merci ! Ton témoignage a été reçu. Il sera publié après modération. Que Dieu te bénisse ! 🙏
-          </div>
-
-          <!-- Message d'erreur -->
-          <div id="temoErreur" style="display:none; margin-top:1rem; background:rgba(180,60,60,0.2); border:1px solid rgba(180,60,60,0.4); border-radius:10px; padding:12px 16px; color:#f4a4a4; font-size:14px;">
-            ❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.
-          </div>
-        </form>
-      </div>
-
-      <div class="temo-right">
-        <div class="temo-bubble">
-          <p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. »</p>
-          <p class="temo-author">— Adjoavi M. · Cotonou</p>
-        </div>
-        <div class="temo-bubble">
-          <p class="temo-quote">« Une simple prière quotidienne m'a aidé à reprendre courage après des mois difficiles. »</p>
-          <p class="temo-author">— Emmanuel K. · Parakou</p>
-        </div>
-        <div class="temo-bubble">
-          <p class="temo-quote">« Chaque matin je commence ici. Ce site est devenu mon pain quotidien spirituel. »</p>
-          <p class="temo-author">— Grace F. · Abidjan</p>
-        </div>
-        <div class="temo-bubble">
-          <p class="temo-quote">« Après des mois de découragement, cette parole m'a rappelé que Dieu n'a pas abandonné mon avenir. »</p>
-          <p class="temo-author">— Samuel R. · Lomé</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- BIBLIOTHÈQUE -->
-<section class="section" id="ressources">
-  <div class="section-inner">
-    <p class="section-label">Bibliothèque</p>
-    <h2 class="section-title">Retrouver les encouragements par thème, saison et besoin.</h2>
-    <p class="section-subtitle">Messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.</p>
-    <div class="biblio-grid">
-      <a href="#messages" class="biblio-card"><span class="biblio-icon">💌</span><div class="biblio-title">Messages d'encouragement</div><div class="biblio-desc">Courtes méditations pour les matins difficiles.</div></a>
-      <a href="#etudes" class="biblio-card"><span class="biblio-icon">📚</span><div class="biblio-title">Études bibliques</div><div class="biblio-desc">Parcours pour mieux comprendre la Parole.</div></a>
-      <a href="#prieres-thematiques" class="biblio-card"><span class="biblio-icon">🕊️</span><div class="biblio-title">Prières thématiques</div><div class="biblio-desc">Prières pour la paix, la guérison, la famille.</div></a>
-      <a href="#versets-themes" class="biblio-card"><span class="biblio-icon">✨</span><div class="biblio-title">Versets par thème</div><div class="biblio-desc">Foi, paix, guérison, espérance et plus.</div></a>
-    </div>
-    <p class="section-label" style="margin-bottom:1rem;">Parcourir par thème</p>
-    <div class="themes-grid">
-      <a class="theme-chip" href="#theme-paix"><span>🕊️</span><span class="theme-chip-label">Paix</span></a>
-      <a class="theme-chip" href="#theme-foi"><span>⚓</span><span class="theme-chip-label">Foi</span></a>
-      <a class="theme-chip" href="#theme-esperance"><span>🌅</span><span class="theme-chip-label">Espérance</span></a>
-      <a class="theme-chip" href="#theme-guerison"><span>💚</span><span class="theme-chip-label">Guérison</span></a>
-      <a class="theme-chip" href="#theme-perseverance"><span>💪</span><span class="theme-chip-label">Persévérance</span></a>
-      <a class="theme-chip" href="#theme-amour"><span>❤️</span><span class="theme-chip-label">Amour</span></a>
-      <a class="theme-chip" href="#theme-protection"><span>🛡️</span><span class="theme-chip-label">Protection</span></a>
-      <a class="theme-chip" href="#theme-louange"><span>🎶</span><span class="theme-chip-label">Louange</span></a>
-      <a class="theme-chip" href="#theme-sagesse"><span>✨</span><span class="theme-chip-label">Sagesse</span></a>
-    </div>
-
-    <!-- ═══ MESSAGES D'ENCOURAGEMENT ═══ -->
-    <div id="messages" style="margin-top:4rem;">
-      <p class="section-label" style="text-align:left;">💌 Messages d'encouragement</p>
-      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Des paroles pour relever le cœur.</h3>
-      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Chaque message est une méditation courte pour commencer la journée dans la foi.</p>
-      <div class="msgs-grid">
-
-        <div class="msg-card">
-          <div class="msg-tag">Force</div>
-          <h4 class="msg-titre">Dieu n'a pas fini avec toi</h4>
-          <p class="msg-texte">Quand tout semble s'arrêter, Dieu continue. Ses plans ne s'interrompent pas à cause de tes erreurs, de tes doutes ou de tes échecs. Il est le Dieu qui achève ce qu'Il commence. Si tu es encore en vie aujourd'hui, c'est qu'Il a encore quelque chose à accomplir à travers toi. Ne te lève pas en regardant tes faiblesses — lève-toi en regardant Sa fidélité.</p>
-          <p class="msg-verset">« Celui qui a commencé en vous cette bonne œuvre la poursuivra jusqu'au jour de Jésus-Christ. » — Philippiens 1 : 6</p>
-        </div>
-
-        <div class="msg-card">
-          <div class="msg-tag">Paix</div>
-          <h4 class="msg-titre">Tu n'as pas à tout porter seul</h4>
-          <p class="msg-texte">Le fardeau que tu portes ce matin n'a pas été conçu pour être porté seul. Jésus t'invite à venir à Lui — pas quand tu seras plus fort, pas quand tu auras tout réglé — maintenant, tel que tu es. Il ne te demande pas de tout comprendre. Il te demande juste de te reposer sur Lui. C'est dans cette confiance que la vraie paix commence.</p>
-          <p class="msg-verset">« Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos. » — Matthieu 11 : 28</p>
-        </div>
-
-        <div class="msg-card">
-          <div class="msg-tag">Espérance</div>
-          <h4 class="msg-titre">Le silence de Dieu n'est pas Son absence</h4>
-          <p class="msg-texte">Il y a des saisons où le ciel semble silencieux. Les prières montent mais les réponses tardent. Le doute frappe à la porte du cœur. Mais souviens-toi : Dieu était silencieux pendant 400 ans entre les deux Testaments — et puis Jésus est venu. Son silence n'est jamais un abandon. C'est souvent le calme avant quelque chose de grand.</p>
-          <p class="msg-verset">« J'espère en l'Éternel, mon âme espère, et j'attends sa parole. » — Psaume 130 : 5</p>
-        </div>
-
-        <div class="msg-card">
-          <div class="msg-tag">Confiance</div>
-          <h4 class="msg-titre">Ses voies sont plus hautes que les tiennes</h4>
-          <p class="msg-texte">Parfois la vie prend des tournures que tu n'as pas choisies. Un projet qui échoue, une porte qui se ferme, un chemin qui disparaît. Mais Dieu voit depuis le sommet ce que tu ne peux voir depuis la vallée. Ce qui te semble un détour est souvent Son raccourci vers quelque chose de meilleur. Fais-Lui confiance, même quand tu ne comprends pas.</p>
-          <p class="msg-verset">« Car mes pensées ne sont pas vos pensées, et vos voies ne sont pas mes voies. » — Ésaïe 55 : 8</p>
-        </div>
-
-        <div class="msg-card">
-          <div class="msg-tag">Identité</div>
-          <h4 class="msg-titre">Tu es aimé d'un amour éternel</h4>
-          <p class="msg-texte">Avant que tu fasses quoi que ce soit aujourd'hui — avant ta prière du matin, avant tes bonnes actions, avant tes efforts — tu es déjà aimé. L'amour de Dieu pour toi ne dépend pas de ta performance. Il t'a aimé quand tu étais encore pécheur. Il t'aime dans tes imperfections. Et rien, absolument rien, ne peut te séparer de cet amour.</p>
-          <p class="msg-verset">« Je t'ai aimé d'un amour éternel ; c'est pourquoi je t'ai conservé ma grâce. » — Jérémie 31 : 3</p>
-        </div>
-
-        <div class="msg-card">
-          <div class="msg-tag">Persévérance</div>
-          <h4 class="msg-titre">Ne lâche pas — la récolte vient</h4>
-          <p class="msg-texte">Tu as semé en larmes. Tu as prié sans voir de résultat. Tu as continué à croire quand tout parlait contre toi. La Bible dit que ceux qui sèment avec larmes moissonnent avec joie. Ta persévérance n'est pas vaine. Dieu note chaque effort, chaque larme, chaque pas de foi. La récolte est plus proche que tu ne le penses.</p>
-          <p class="msg-verset">« Ne nous lassons pas de faire le bien ; car nous moissonnerons au temps convenable, si nous ne nous relâchons pas. » — Galates 6 : 9</p>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ═══ ÉTUDES BIBLIQUES ═══ -->
-    <div id="etudes" style="margin-top:4rem;">
-      <p class="section-label" style="text-align:left;">📚 Études bibliques</p>
-      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Approfondir la Parole de Dieu.</h3>
-      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Des parcours simples pour mieux comprendre la Bible et l'appliquer au quotidien.</p>
-      <div class="etude-liste">
-
-        <div class="etude-card">
-          <div class="etude-num">01</div>
-          <div class="etude-content">
-            <h4 class="etude-titre">La foi qui déplace les montagnes</h4>
-            <p class="etude-desc">Qu'est-ce que la foi selon la Bible ? Comment grandir dans la foi au quotidien ? Cette étude explore Hébreux 11, Matthieu 17 et Jacques 2 pour comprendre ce que Dieu attend de nous.</p>
-            <div class="etude-versets">
-              <span class="ev-chip">Hébreux 11 : 1</span>
-              <span class="ev-chip">Matthieu 17 : 20</span>
-              <span class="ev-chip">Jacques 2 : 17</span>
-            </div>
-            <div class="etude-body">
-              <p><strong>Introduction :</strong> La foi n'est pas un sentiment — c'est une certitude ancrée dans la Parole de Dieu. Hébreux 11:1 définit la foi comme « une ferme assurance des choses qu'on espère, une démonstration de celles qu'on ne voit pas ».</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> La foi s'appuie sur la Parole, pas sur les circonstances. Quand Jésus dit à ses disciples qu'avec une foi comme un grain de moutarde ils pourraient déplacer des montagnes, Il ne parle pas de la taille de la foi, mais de sa qualité — une foi pure, centrée sur Dieu.</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> La foi sans œuvres est morte (Jacques 2:17). La vraie foi se manifeste par des actions concrètes. Abraham a cru Dieu, et cette foi s'est exprimée dans l'obéissance.</p>
-              <p style="margin-top:0.75rem;"><strong>Application :</strong> Identifie aujourd'hui une situation dans ta vie qui semble impossible. Prends une promesse biblique qui s'y rapporte. Prie avec cette promesse — c'est là que la foi prend racine.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="etude-card">
-          <div class="etude-num">02</div>
-          <div class="etude-content">
-            <h4 class="etude-titre">L'identité du croyant en Christ</h4>
-            <p class="etude-desc">Qui es-tu vraiment en Jésus-Christ ? Cette étude explore ce que la Bible dit sur ton identité spirituelle — enfant de Dieu, héritier, temple du Saint-Esprit.</p>
-            <div class="etude-versets">
-              <span class="ev-chip">Jean 1 : 12</span>
-              <span class="ev-chip">Romains 8 : 17</span>
-              <span class="ev-chip">1 Corinthiens 6 : 19</span>
-            </div>
-            <div class="etude-body">
-              <p><strong>Introduction :</strong> Beaucoup de croyants vivent en dessous de ce qu'ils sont en Christ parce qu'ils ne connaissent pas leur identité biblique. La connaissance de qui tu es transforme la façon dont tu vis.</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> Tu es enfant de Dieu (Jean 1:12). Ce n'est pas une métaphore — c'est une réalité spirituelle. Dieu est ton Père, tu fais partie de Sa famille.</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> Tu es héritier de Dieu et cohéritier de Christ (Romains 8:17). Tout ce qui appartient à Christ t'appartient spirituellement — Sa paix, Sa joie, Sa victoire.</p>
-              <p style="margin-top:0.75rem;"><strong>Application :</strong> Chaque matin cette semaine, dis à voix haute : « Je suis enfant de Dieu. Je suis aimé, pardonné, et rempli de l'Esprit Saint. » Observe comment cette confession change ton regard sur ta journée.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="etude-card">
-          <div class="etude-num">03</div>
-          <div class="etude-content">
-            <h4 class="etude-titre">Comment prier efficacement</h4>
-            <p class="etude-desc">Jésus a enseigné à ses disciples comment prier. Cette étude explore le Notre Père, la prière de Daniel et les principes d'une vie de prière fructueuse.</p>
-            <div class="etude-versets">
-              <span class="ev-chip">Matthieu 6 : 9-13</span>
-              <span class="ev-chip">Daniel 6 : 10</span>
-              <span class="ev-chip">Philippiens 4 : 6-7</span>
-            </div>
-            <div class="etude-body">
-              <p><strong>Introduction :</strong> La prière n'est pas une formule magique — c'est une conversation avec Dieu. Elle transforme non seulement les situations, mais d'abord celui qui prie.</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 1 :</strong> Le Notre Père (Matthieu 6:9-13) est un modèle, pas une récitation. Il nous enseigne à adorer d'abord, puis à demander — les priorités de la prière commencent par Dieu, pas par nos besoins.</p>
-              <p style="margin-top:0.75rem;"><strong>Point clé 2 :</strong> Daniel priait trois fois par jour, même sous la menace de mort (Daniel 6:10). La régularité est plus puissante que l'intensité occasionnelle. Une prière courte chaque matin vaut mieux qu'une longue prière une fois par semaine.</p>
-              <p style="margin-top:0.75rem;"><strong>Application :</strong> Cette semaine, établis un horaire de prière fixe — même 10 minutes par jour. Utilise le modèle : Adoration → Confession → Action de grâces → Supplication (ACAS).</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ═══ PRIÈRES THÉMATIQUES ═══ -->
-    <div id="prieres-thematiques" style="margin-top:4rem;">
-      <p class="section-label" style="text-align:left;">🕊️ Prières thématiques</p>
-      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">Une prière pour chaque situation.</h3>
-      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Des prières que tu peux reprendre telles quelles ou adapter selon ton cœur.</p>
-      <div class="prieres-grid">
-
-        <div class="priere-card">
-          <div class="priere-card-icon">🕊️</div>
-          <h4 class="priere-card-titre">Prière pour la paix intérieure</h4>
-          <p class="priere-card-texte">Seigneur Jésus, aujourd'hui mon cœur est agité. Les pensées se bousculent, les inquiétudes s'accumulent. Je viens à Toi avec tout ce que je porte. Tu as dit que Tu nous donnerais une paix qui dépasse tout entendement — je la réclame par la foi. Que Ton Esprit Saint calme les tempêtes de mon âme et établisse Ta paix dans chaque recoin de mon cœur. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur Jésus, aujourd'hui mon cœur est agité. Les pensées se bousculent, les inquiétudes s'accumulent. Je viens à Toi avec tout ce que je porte. Tu as dit que Tu nous donnerais une paix qui dépasse tout entendement — je la réclame par la foi. Que Ton Esprit Saint calme les tempêtes de mon âme et établisse Ta paix dans chaque recoin de mon cœur. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-        <div class="priere-card">
-          <div class="priere-card-icon">💚</div>
-          <h4 class="priere-card-titre">Prière pour la guérison</h4>
-          <p class="priere-card-texte">Père céleste, Tu es le Dieu qui guérit. Ta Parole dit que par les plaies de Jésus nous avons été guéris. Je me présente devant Toi avec ma maladie, ma douleur, ma faiblesse. Je crois en Ton pouvoir de guérison. Que Ta main guérissante touche mon corps, restaure ma santé et glorifie Ton nom à travers ma guérison. Je Te remercie d'avance pour ce que Tu accomplis. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Père céleste, Tu es le Dieu qui guérit. Ta Parole dit que par les plaies de Jésus nous avons été guéris. Je me présente devant Toi avec ma maladie, ma douleur, ma faiblesse. Je crois en Ton pouvoir de guérison. Que Ta main guérissante touche mon corps, restaure ma santé et glorifie Ton nom à travers ma guérison. Je Te remercie d'avance pour ce que Tu accomplis. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-        <div class="priere-card">
-          <div class="priere-card-icon">👨‍👩‍👧</div>
-          <h4 class="priere-card-titre">Prière pour la famille</h4>
-          <p class="priere-card-texte">Seigneur, je place ma famille entre Tes mains aujourd'hui. Protège chaque membre, guide leurs pas, garde leurs cœurs. Là où il y a des conflits, apporte la réconciliation. Là où il y a de la blessure, apporte la guérison. Que notre foyer soit un lieu où Ta présence est tangible, où l'amour règne et où Ton nom est honoré. Unis nos cœurs dans Ton amour. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur, je place ma famille entre Tes mains aujourd'hui. Protège chaque membre, guide leurs pas, garde leurs cœurs. Là où il y a des conflits, apporte la réconciliation. Là où il y a de la blessure, apporte la guérison. Que notre foyer soit un lieu où Ta présence est tangible, où l'amour règne et où Ton nom est honoré. Unis nos cœurs dans Ton amour. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-        <div class="priere-card">
-          <div class="priere-card-icon">💼</div>
-          <h4 class="priere-card-titre">Prière pour le travail et les finances</h4>
-          <p class="priere-card-texte">Père, Tu es Jéhovah-Jiré, le Dieu qui pourvoit. Je Te confie ma situation financière, mon travail, mes projets. Ouvre les portes que personne ne peut fermer. Donne-moi la sagesse pour bien gérer ce que Tu me confies. Bénis le travail de mes mains et multiplie ce que je sème. Que ma prospérité soit un témoignage de Ta fidélité. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Père, Tu es Jéhovah-Jiré, le Dieu qui pourvoit. Je Te confie ma situation financière, mon travail, mes projets. Ouvre les portes que personne ne peut fermer. Donne-moi la sagesse pour bien gérer ce que Tu me confies. Bénis le travail de mes mains et multiplie ce que je sème. Que ma prospérité soit un témoignage de Ta fidélité. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-        <div class="priere-card">
-          <div class="priere-card-icon">🛡️</div>
-          <h4 class="priere-card-titre">Prière pour la protection</h4>
-          <p class="priere-card-texte">Seigneur, Tu es mon bouclier et ma forteresse. Aujourd'hui je me couvre du sang de Jésus-Christ. Protège-moi de tout mal visible et invisible, de tout accident et de toute maladie. Envoie Tes anges pour m'entourer et protéger ma famille. Que Ta paix garde mon foyer et que Ta lumière dissipe toute ténèbre. Je suis en sécurité entre Tes mains. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Seigneur, Tu es mon bouclier et ma forteresse. Aujourd'hui je me couvre du sang de Jésus-Christ. Protège-moi de tout mal visible et invisible, de tout accident et de toute maladie. Envoie Tes anges pour m'entourer et protéger ma famille. Que Ta paix garde mon foyer et que Ta lumière dissipe toute ténèbre. Je suis en sécurité entre Tes mains. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-        <div class="priere-card">
-          <div class="priere-card-icon">🎓</div>
-          <h4 class="priere-card-titre">Prière pour les études et examens</h4>
-          <p class="priere-card-texte">Père de lumière, Tu es la source de toute sagesse et connaissance. Alors que je me prépare pour mes études et examens, illumine mon esprit, affermis ma mémoire et donne-moi la compréhension. Chasse le stress et l'anxiété, et remplace-les par Ta paix. Que tout ce que j'ai appris remonte clairement au moment voulu. Je fais confiance à Ta grâce pour me faire réussir. Au nom de Jésus, Amen.</p>
-          <button class="copier-btn" onclick="copierTexte(this, 'Père de lumière, Tu es la source de toute sagesse et connaissance. Alors que je me prépare pour mes études et examens, illumine mon esprit, affermis ma mémoire et donne-moi la compréhension. Chasse le stress et l'anxiété, et remplace-les par Ta paix. Que tout ce que j'ai appris remonte clairement au moment voulu. Je fais confiance à Ta grâce pour me faire réussir. Au nom de Jésus, Amen.')">📋 Copier</button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ═══ VERSETS PAR THÈME ═══ -->
-    <div id="versets-themes" style="margin-top:4rem;">
-      <p class="section-label" style="text-align:left;">✨ Versets par thème</p>
-      <h3 style="font-family:var(--font-d); font-size:1.5rem; margin-bottom:0.5rem; color:var(--text);">La Parole de Dieu pour chaque besoin.</h3>
-      <p style="color:var(--text-mid); font-size:14px; margin-bottom:2rem;">Retrouve rapidement un verset selon ce que tu traverses aujourd'hui.</p>
-
-      <div class="theme-section" id="theme-foi">
-        <div class="theme-header ic-gold"><span>⚓</span> Foi</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Or la foi, c'est la certitude des choses qu'on espère, la démonstration de celles qu'on ne voit pas. »</p><p class="vi-ref">— Hébreux 11 : 1</p></div>
-          <div class="verset-item"><p class="vi-texte">« Je puis tout par celui qui me fortifie. »</p><p class="vi-ref">— Philippiens 4 : 13</p></div>
-          <div class="verset-item"><p class="vi-texte">« Car nous marchons par la foi et non par la vue. »</p><p class="vi-ref">— 2 Corinthiens 5 : 7</p></div>
-          <div class="verset-item"><p class="vi-texte">« Jésus lui dit : Si tu peux croire, tout est possible à celui qui croit. »</p><p class="vi-ref">— Marc 9 : 23</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-paix">
-        <div class="theme-header ic-blue"><span>🕊️</span> Paix</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Je vous laisse la paix, je vous donne ma paix. Je ne vous la donne pas comme le monde la donne. »</p><p class="vi-ref">— Jean 14 : 27</p></div>
-          <div class="verset-item"><p class="vi-texte">« Tu lui donneras la paix parfaite, à celui dont l'esprit est soutenu par toi, parce qu'il se confie en toi. »</p><p class="vi-ref">— Ésaïe 26 : 3</p></div>
-          <div class="verset-item"><p class="vi-texte">« Et la paix de Dieu, qui surpasse toute intelligence, gardera vos cœurs et vos pensées en Jésus-Christ. »</p><p class="vi-ref">— Philippiens 4 : 7</p></div>
-          <div class="verset-item"><p class="vi-texte">« L'Éternel est mon berger, je ne manquerai de rien. »</p><p class="vi-ref">— Psaume 23 : 1</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-esperance">
-        <div class="theme-header ic-sage"><span>🌅</span> Espérance</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »</p><p class="vi-ref">— Jérémie 29 : 11</p></div>
-          <div class="verset-item"><p class="vi-texte">« Ceux qui espèrent en l'Éternel renouvellent leur force. »</p><p class="vi-ref">— Ésaïe 40 : 31</p></div>
-          <div class="verset-item"><p class="vi-texte">« Que le Dieu de l'espérance vous remplisse de toute joie et de toute paix dans la foi. »</p><p class="vi-ref">— Romains 15 : 13</p></div>
-          <div class="verset-item"><p class="vi-texte">« L'espérance ne trompe point, parce que l'amour de Dieu est répandu dans nos cœurs par le Saint-Esprit. »</p><p class="vi-ref">— Romains 5 : 5</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-guerison">
-        <div class="theme-header" style="background:#EAF3DE; color:#3B6D11;"><span>💚</span> Guérison</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Mais lui, il était blessé pour nos péchés, brisé pour nos iniquités… c'est par ses meurtrissures que nous sommes guéris. »</p><p class="vi-ref">— Ésaïe 53 : 5</p></div>
-          <div class="verset-item"><p class="vi-texte">« Je suis l'Éternel, qui te guérit. »</p><p class="vi-ref">— Exode 15 : 26</p></div>
-          <div class="verset-item"><p class="vi-texte">« Quelqu'un parmi vous est-il malade ? Qu'il appelle les anciens de l'Église, et qu'ils prient pour lui. »</p><p class="vi-ref">— Jacques 5 : 14</p></div>
-          <div class="verset-item"><p class="vi-texte">« Il pardonne toutes tes iniquités, il guérit toutes tes maladies. »</p><p class="vi-ref">— Psaume 103 : 3</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-perseverance">
-        <div class="theme-header" style="background:#FEF3DC; color:#B07A10;"><span>💪</span> Persévérance</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Ne nous lassons pas de faire le bien ; car nous moissonnerons au temps convenable, si nous ne nous relâchons pas. »</p><p class="vi-ref">— Galates 6 : 9</p></div>
-          <div class="verset-item"><p class="vi-texte">« Fortifie-toi et prends courage ! Ne t'effraie point et ne t'épouvante point. »</p><p class="vi-ref">— Josué 1 : 9</p></div>
-          <div class="verset-item"><p class="vi-texte">« J'ai combattu le bon combat, j'ai achevé la course, j'ai gardé la foi. »</p><p class="vi-ref">— 2 Timothée 4 : 7</p></div>
-          <div class="verset-item"><p class="vi-texte">« Celui qui persévérera jusqu'à la fin sera sauvé. »</p><p class="vi-ref">— Matthieu 24 : 13</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-amour">
-        <div class="theme-header" style="background:#FBEAF0; color:#993556;"><span>❤️</span> Amour</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point. »</p><p class="vi-ref">— Jean 3 : 16</p></div>
-          <div class="verset-item"><p class="vi-texte">« Je t'ai aimé d'un amour éternel ; c'est pourquoi je t'ai conservé ma grâce. »</p><p class="vi-ref">— Jérémie 31 : 3</p></div>
-          <div class="verset-item"><p class="vi-texte">« L'amour est patient, il est plein de bonté… il supporte tout, il espère tout, il endure tout. »</p><p class="vi-ref">— 1 Corinthiens 13 : 4-7</p></div>
-          <div class="verset-item"><p class="vi-texte">« Nous l'aimons, parce qu'il nous a aimés le premier. »</p><p class="vi-ref">— 1 Jean 4 : 19</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-protection">
-        <div class="theme-header" style="background:#e8edf2; color:#2C2A25;"><span>🛡️</span> Protection</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« L'Éternel est ma lumière et mon salut : de qui aurais-je crainte ? L'Éternel est le soutien de ma vie : de qui aurais-je peur ? »</p><p class="vi-ref">— Psaume 27 : 1</p></div>
-          <div class="verset-item"><p class="vi-texte">« Il donnera des ordres à ses anges de te garder dans toutes tes voies. »</p><p class="vi-ref">— Psaume 91 : 11</p></div>
-          <div class="verset-item"><p class="vi-texte">« Le nom de l'Éternel est une tour forte ; le juste s'y réfugie et se trouve en sûreté. »</p><p class="vi-ref">— Proverbes 18 : 10</p></div>
-          <div class="verset-item"><p class="vi-texte">« Si Dieu est pour nous, qui sera contre nous ? »</p><p class="vi-ref">— Romains 8 : 31</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-louange">
-        <div class="theme-header" style="background:#F0E6C8; color:#8B6914;"><span>🎶</span> Louange</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Que tout ce qui respire loue l'Éternel ! Louez l'Éternel ! »</p><p class="vi-ref">— Psaume 150 : 6</p></div>
-          <div class="verset-item"><p class="vi-texte">« C'est le jour que l'Éternel a fait : réjouissons-nous et soyons dans l'allégresse ! »</p><p class="vi-ref">— Psaume 118 : 24</p></div>
-          <div class="verset-item"><p class="vi-texte">« Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu en Jésus-Christ. »</p><p class="vi-ref">— 1 Thessaloniciens 5 : 18</p></div>
-          <div class="verset-item"><p class="vi-texte">« Je bénirai l'Éternel en tout temps ; sa louange sera toujours dans ma bouche. »</p><p class="vi-ref">— Psaume 34 : 2</p></div>
-        </div>
-      </div>
-
-      <div class="theme-section" id="theme-sagesse">
-        <div class="theme-header" style="background:#E3EDF8; color:#185FA5;"><span>✨</span> Sagesse</div>
-        <div class="versets-liste">
-          <div class="verset-item"><p class="vi-texte">« Si quelqu'un d'entre vous manque de sagesse, qu'il la demande à Dieu, qui donne à tous libéralement. »</p><p class="vi-ref">— Jacques 1 : 5</p></div>
-          <div class="verset-item"><p class="vi-texte">« La crainte de l'Éternel est le commencement de la sagesse. »</p><p class="vi-ref">— Proverbes 9 : 10</p></div>
-          <div class="verset-item"><p class="vi-texte">« Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse. »</p><p class="vi-ref">— Proverbes 3 : 5</p></div>
-          <div class="verset-item"><p class="vi-texte">« Heureux l'homme qui a trouvé la sagesse, et l'homme qui possède l'intelligence ! »</p><p class="vi-ref">— Proverbes 3 : 13</p></div>
-        </div>
-      </div>
-
+    <div class="verset-band" style="margin-top:2rem;">
+      <p id="bonusText" class="verset-band-text">Chargement…</p>
+      <p id="bonusRef" class="verset-band-ref"></p>
     </div>
   </div>
 </section>
 
 <!-- PAYSAGES -->
+<section class="section">
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Images à partager</p>
+    <h2 class="section-title section-title-center" style="margin-bottom:2rem;">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
+    <div class="paysage-grid">
+      <div class="paysage-card">
+        <img class="paysage-img" src="images/paysage foi.jpg" alt="Foi" loading="lazy" onerror="this.style.display='none'" />
+        <div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div>
+      </div>
+      <div class="paysage-card">
+        <img class="paysage-img" src="images/paysage paix.jpg" alt="Paix" loading="lazy" onerror="this.style.display='none'" />
+        <div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div>
+      </div>
+      <div class="paysage-card">
+        <img class="paysage-img" src="images/paysage espérance.jpg" alt="Espérance" loading="lazy" onerror="this.style.display='none'" />
+        <div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIENS VERS AUTRES PAGES -->
 <section class="section section-bg-alt">
-  <div class="section-inner">
-    <p class="section-label">Images à partager</p>
-    <h2 class="section-title">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
-    <div class="paysage-grid" style="margin-top:2.5rem;">
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage foi.jpg" alt="Prairie" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div></div>
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage paix.jpg" alt="Lac" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div></div>
-      <div class="paysage-card"><img class="paysage-img" src="images/paysage espérance.jpg" alt="Ciel" loading="lazy" /><div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SALUT -->
-<section class="section" id="salut">
-  <div class="section-inner">
-    <div class="salut-grid">
-      <div class="salut-left reveal">
-        <div class="salut-icon">❤️</div>
-        <p class="section-label" style="text-align:left;">Donner sa vie à Jésus</p>
-        <h2>Faites cette prière de tout votre cœur.</h2>
-        <p>Si vous désirez recevoir Jésus-Christ comme Seigneur et Sauveur, prenez un moment dans le calme. Dieu regarde au cœur : parlez-lui avec sincérité, foi et humilité.</p>
-      </div>
-      <div class="reveal">
-        <div class="salut-prayer-box">
-          <div class="salut-prayer-text" id="salutPrayer">
-            <p><strong>Seigneur Jésus,</strong></p>
-            <p>Je reconnais que je suis pécheur et que j'ai besoin de Ton pardon. Je me repens de mes péchés et je renonce à tout ce qui T'est contraire.</p>
-            <p>Je crois que Tu es mort sur la croix pour mes péchés et que Tu es ressuscité pour me donner la vie éternelle.</p>
-            <p>Aujourd'hui, j'ouvre mon cœur et je Te reçois comme mon Seigneur et mon Sauveur personnel.</p>
-            <p>Prends le contrôle de ma vie, transforme-moi par Ton Esprit Saint et aide-moi à marcher selon Ta volonté.</p>
-            <p>Merci pour Ton amour, Ton pardon et le salut que Tu m'accordes.</p>
-            <p class="salut-amen">Au nom de Jésus-Christ,<br>Amen.</p>
-          </div>
-          <button onclick="copierSalut()" style="margin-top:1.5rem; background:none; border:1px solid var(--border); border-radius:20px; padding:7px 16px; font-size:12px; color:var(--text-soft); cursor:pointer; font-family:var(--font-b); transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-soft)'">📋 Copier cette prière</button>
+  <div class="container">
+    <div class="grid-3">
+      <a href="bibliotheque.html" style="text-decoration:none;">
+        <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-size:28px;margin-bottom:0.75rem;">📚</div>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Bibliothèque</h3>
+          <p style="font-size:13px;color:var(--text-mid);">Messages, études bibliques, prières thématiques et versets par thème.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="section" style="padding-top:0;" id="newsletter">
-  <div class="section-inner">
-    <div class="newsletter-box">
-      <span class="nl-icon">✉️</span>
-      <h3 class="nl-title">Reçois la parole chaque matin dans ta boîte mail.</h3>
-      <p class="nl-sub">Un verset, une réflexion, une prière — gratuit, sans publicité, centré sur Jésus-Christ.</p>
-
-      <form id="nlForm" action="https://formspree.io/f/mqevyqdy" method="POST" onsubmit="return soumettreNewsletter(event)">
-        <input type="hidden" name="_subject" value="✉️ Nouvelle inscription — Lumière Quotidienne" />
-        <div class="nl-form">
-          <input type="text" name="prenom" placeholder="Ton prénom" style="flex:0.6;" />
-          <input type="email" name="email" id="nlEmail" placeholder="ton@email.com" required />
-          <button type="submit" class="btn-gold" id="nlBtn">S'inscrire 🙏</button>
+      </a>
+      <a href="temoignages.html" style="text-decoration:none;">
+        <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-size:28px;margin-bottom:0.75rem;">❤️</div>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Témoignages</h3>
+          <p style="font-size:13px;color:var(--text-mid);">Partage ce que Dieu a fait dans ta vie et lis les témoignages de la communauté.</p>
         </div>
-      </form>
-
-      <!-- Succès -->
-      <div id="nlSucces" style="display:none; margin-top:1rem; background:#EAF3DE; border:1px solid #4A7C59; border-radius:10px; padding:12px 20px; color:#2d5a1e; font-size:14px; max-width:480px; margin-left:auto; margin-right:auto;">
-        ✅ Merci ! Tu es maintenant inscrit(e) à Lumière Quotidienne. Que Dieu bénisse chacun de tes matins ! 🙏
-      </div>
-
-      <!-- Erreur -->
-      <div id="nlErreur" style="display:none; margin-top:1rem; background:#fbeaea; border:1px solid #c0392b; border-radius:10px; padding:12px 20px; color:#922b21; font-size:14px; max-width:480px; margin-left:auto; margin-right:auto;">
-        ❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.
-      </div>
-
-      <p style="margin-top:1.25rem; font-size:12px; color:var(--text-soft);">
-        🔒 Tes données sont confidentielles. Tu peux te désinscrire à tout moment.
-      </p>
+      </a>
+      <a href="salut.html" style="text-decoration:none;">
+        <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-size:28px;margin-bottom:0.75rem;">🙏</div>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Donner sa vie</h3>
+          <p style="font-size:13px;color:var(--text-mid);">Tu veux recevoir Jésus-Christ ? Fais cette prière du salut de tout ton cœur.</p>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+
+<div class="newsletter-strip">
+  <h3>Reçois la parole chaque matin</h3>
+  <p>Un verset, une réflexion, une prière — gratuit, centré sur Jésus-Christ.</p>
+  <form id="nlForm" action="https://formspree.io/f/mqevyqdy" method="POST" onsubmit="return soumettreNewsletter(event)">
+    <input type="hidden" name="_subject" value="✉️ Nouvelle inscription — Lumière Quotidienne" />
+    <div class="nl-form">
+      <input type="text" name="prenom" placeholder="Ton prénom" />
+      <input type="email" name="email" id="nlEmail" placeholder="ton@email.com" required />
+      <button type="submit" class="btn btn-gold" id="nlBtn">S'inscrire 🙏</button>
+    </div>
+  </form>
+  <div id="nlSucces" class="form-success">✅ Merci ! Tu es maintenant inscrit(e). Que Dieu bénisse chacun de tes matins ! 🙏</div>
+  <div id="nlErreur" class="form-error">❌ Une erreur s'est produite. Réessaie.</div>
+  <p style="margin-top:1rem;font-size:12px;color:var(--text-soft);">🔒 Données confidentielles. Désinscription possible à tout moment.</p>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div>
       <p class="footer-brand-name">✝ Lumière Quotidienne</p>
-      <p class="footer-brand-desc">Un verset, une réflexion, une prière — chaque jour. Centré sur Jésus-Christ pour les francophones d'Afrique et du monde.</p>
+      <p class="footer-brand-desc">Un verset, une réflexion, une prière chaque jour. Centré sur Jésus-Christ pour les francophones du monde entier.</p>
     </div>
     <div>
-      <p class="footer-col-title">Navigation</p>
+      <p class="footer-col-title">Pages</p>
       <ul class="footer-links">
-        <li><a href="#aujourdhui">Aujourd'hui</a></li>
-        <li><a href="#temoignages">Témoignages</a></li>
-        <li><a href="#ressources">Ressources</a></li>
-        <li><a href="#salut">Donner sa vie</a></li>
+        <li><a href="index.html">Aujourd'hui</a></li>
+        <li><a href="bibliotheque.html">Bibliothèque</a></li>
+        <li><a href="temoignages.html">Témoignages</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressources</p>
+      <ul class="footer-links">
+        <li><a href="bibliotheque.html#messages">Messages</a></li>
+        <li><a href="bibliotheque.html#etudes">Études bibliques</a></li>
+        <li><a href="bibliotheque.html#prieres">Prières thématiques</a></li>
+        <li><a href="bibliotheque.html#versets">Versets par thème</a></li>
       </ul>
     </div>
     <div>
       <p class="footer-col-title">Contact</p>
       <ul class="footer-links">
-        <li><a href="#">Nous écrire</a></li>
-        <li><a href="#">Soumettre un verset</a></li>
-        <li><a href="#">Partager un témoignage</a></li>
+        <li><a href="temoignages.html">Partager un témoignage</a></li>
+        <li><a href="apropos.html#contact">Nous écrire</a></li>
+        <li><a href="salut.html">Prière du salut</a></li>
       </ul>
     </div>
   </div>
@@ -907,561 +216,35 @@ Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce qu
     <p>Centré sur Jésus-Christ</p>
   </div>
 </footer>
-
 <div class="toast" id="toast"></div>
+<script src="commun.js"></script>
 
-<!-- Contenu chargé directement ci-dessous -->
+<script src="contenu.js"></script>
 <script>
-  // ── Mise à jour depuis contenu.js si disponible ──
-  function chargerContenu() {
-    if (typeof CONTENU === 'undefined') return;
-    var el = function(id){ return document.getElementById(id); };
-    if (el('heroVersetText')) el('heroVersetText').textContent = CONTENU.verset;
-    if (el('heroVersetRef')) el('heroVersetRef').textContent = '— ' + CONTENU.reference;
-    if (el('versetText')) el('versetText').textContent = CONTENU.verset;
-    if (el('versetRef')) el('versetRef').textContent = '— ' + CONTENU.reference;
-    if (el('bonusText')) el('bonusText').textContent = CONTENU.versetBonus;
-    if (el('bonusRef')) el('bonusRef').textContent = '— ' + CONTENU.referenceBonus + ' · Verset bonus du jour';
-    if (el('priereTexte')) el('priereTexte').textContent = CONTENU.priere;
-    var reflexion = CONTENU.reflexion;
-    if (Array.isArray(reflexion) && reflexion.length > 0) {
-      if (el('reflexionApercu')) el('reflexionApercu').textContent = reflexion[0];
-      if (el('reflexionReste')) el('reflexionReste').textContent = reflexion.slice(1).join('\n\n');
-    }
-  }
-  // Appel après chargement de la page
-  window.addEventListener('load', chargerContenu);
-
-  // ── Date ──
+  // Date
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const M=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
   const now = new Date();
-  const ds = (typeof CONTENU !== 'undefined' && CONTENU.date) ? CONTENU.date : `${J[now.getDay()]} ${now.getDate()} ${M[now.getMonth()]} ${now.getFullYear()}`;
+  const ds = `${J[now.getDay()]} ${now.getDate()} ${M[now.getMonth()]} ${now.getFullYear()}`;
   document.getElementById('navDate').textContent = ds;
 
-  // ── Toast ──
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
-  // ── Copier texte générique ──
-  function copierTexte(btn, texte) {
-    navigator.clipboard.writeText(texte)
-      .then(() => { btn.textContent = '✅ Copié !'; setTimeout(() => btn.textContent = '📋 Copier', 2000); })
-      .catch(() => showToast('Copie non disponible.'));
-  }
-
-  // ── Copier prière ──
-  function copierPriere() {
-    navigator.clipboard.writeText(document.getElementById('priereTexte').innerText)
-      .then(() => showToast('🙏 Prière copiée !'))
-      .catch(() => showToast('Copie non disponible.'));
-  }
-
-  function copierSalut() {
-    navigator.clipboard.writeText(document.getElementById('salutPrayer').innerText)
-      .then(() => showToast('🙏 Prière du salut copiée !'))
-      .catch(() => showToast('Copie non disponible.'));
-  }
-
-  // ── Témoignage ──
-  function envoyerTemo() {
-    const txt = document.getElementById('temoInput').value.trim();
-    const nom = document.getElementById('temoNom').value.trim();
-    if (!txt) { showToast('Écris ton témoignage avant d\'envoyer.'); return; }
-    showToast(`Merci ${nom||'frère/sœur'} ! Ton témoignage sera publié après modération. 🙏`);
-    document.getElementById('temoInput').value='';
-    document.getElementById('temoNom').value='';
-    document.getElementById('temoVille').value='';
-  }
-
-  // ── Newsletter Formspree ──
-  async function soumettreNewsletter(e) {
-    e.preventDefault();
-    const btn = document.getElementById('nlBtn');
-    const succes = document.getElementById('nlSucces');
-    const erreur = document.getElementById('nlErreur');
-    succes.style.display = 'none';
-    erreur.style.display = 'none';
-    btn.textContent = 'Inscription…';
-    btn.disabled = true;
-
-    const form = document.getElementById('nlForm');
-    const data = new FormData(form);
-
-    try {
-      const res = await fetch('https://formspree.io/f/mqevyqdy', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        succes.style.display = 'block';
-        form.reset();
-      } else {
-        erreur.style.display = 'block';
-      }
-    } catch(err) {
-      erreur.style.display = 'block';
-    }
-    btn.textContent = "S'inscrire 🙏";
-    btn.disabled = false;
-    return false;
-  }
-
-  // ── Hamburger ──
-  document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  });
-  document.querySelectorAll('#mobileMenu a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
-  });
-
-  // ── Navbar active ──
-  const secs = ['aujourdhui','temoignages','ressources','salut'];
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    secs.forEach(id => { const el = document.getElementById(id); if (el && window.scrollY >= el.offsetTop - 80) cur = id; });
-    document.querySelectorAll('.nav-links a').forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === `#${cur}`) a.classList.add('active'); });
-  });
-
-  // ── Reveal ──
-  // Reveal simplifié - éléments visibles par défaut
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // ══════════════════════════════════════════════
-  //  SYSTÈME DE TRADUCTION — 6 LANGUES
-  // ══════════════════════════════════════════════
-
-  const TRADUCTIONS = {
-    fr: {
-      nav: ['Aujourd'hui', 'Ressources', 'Témoignages', 'Donner sa vie'],
-      navCta: '🙏 Prière du salut',
-      heroEyebrow: 'Un verset · Une réflexion · Une prière',
-      heroTitle: 'Commence chaque journée avec une parole d'espérance en Christ.',
-      heroDesc: 'Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.',
-      heroBtnMain: '📖 Lire le verset du jour',
-      heroBtnSec: 'Explorer',
-      hvcLabel: 'Verset du jour',
-      rythmLabel: 'Chaque matin',
-      rythmTitle: 'Un rythme simple pour nourrir la foi au quotidien.',
-      rythmSub: 'Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.',
-      paroleJour: 'Parole du jour',
-      hier: '← Hier',
-      demain: 'Demain →',
-      versetLabel: 'Verset du jour',
-      exhortLabel: 'Exhortation',
-      lireSuite: '→ Lire la suite',
-      priereLabel: 'Prière quotidienne',
-      copierPriere: '📋 Copier la prière',
-      versetBonus: 'Verset bonus du jour',
-      temoLabel: 'Témoignages',
-      temoTitle: 'Raconter ce que Dieu a fait, pour encourager quelqu'un d'autre.',
-      temoDesc: 'Une parole de reconnaissance peut devenir une lumière pour une personne qui traverse une saison difficile.',
-      temoPlaceholder: 'Partage ton témoignage ici…',
-      temoPrenom: 'Ton prénom',
-      temoVille: 'Ta ville',
-      temoEmail: 'Ton email (optionnel)',
-      temoBtn: '🙏 Envoyer mon témoignage',
-      temoOk: '✅ Merci ! Ton témoignage a été reçu. Il sera publié après modération. Que Dieu te bénisse ! 🙏',
-      temoErr: '❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.',
-      biblioLabel: 'Bibliothèque',
-      biblioTitle: 'Retrouver les encouragements par thème, saison et besoin.',
-      biblioSub: 'Messages, études bibliques, prières thématiques et versets classés pour revenir facilement à une parole qui fortifie.',
-      parcourirLabel: 'Parcourir par thème',
-      paysageLabel: 'Images à partager',
-      paysageTitle: 'Des paysages paisibles avec des versets pour accompagner la journée.',
-      salutLabel: 'Donner sa vie à Jésus',
-      salutTitle: 'Faites cette prière de tout votre cœur.',
-      salutDesc: 'Si vous désirez recevoir Jésus-Christ comme Seigneur et Sauveur, prenez un moment dans le calme. Dieu regarde au cœur : parlez-lui avec sincérité, foi et humilité.',
-      nlTitle: 'Reçois la parole chaque matin dans ta boîte mail.',
-      nlSub: 'Un verset, une réflexion, une prière — gratuit, sans publicité, centré sur Jésus-Christ.',
-      nlPrenom: 'Ton prénom',
-      nlEmail: 'ton@email.com',
-      nlBtn: 'S'inscrire 🙏',
-      nlOk: '✅ Merci ! Tu es maintenant inscrit(e) à Lumière Quotidienne. Que Dieu bénisse chacun de tes matins ! 🙏',
-      nlConfidential: '🔒 Tes données sont confidentielles. Tu peux te désinscrire à tout moment.',
-      copier: '📋 Copier',
-      copie: '✅ Copié !',
-    },
-    en: {
-      nav: ['Today', 'Resources', 'Testimonies', 'Give your life'],
-      navCta: '🙏 Salvation prayer',
-      heroEyebrow: 'A verse · A reflection · A prayer',
-      heroTitle: 'Start every day with a word of hope in Christ.',
-      heroDesc: 'Daily Light gathers Bible verses, short reflections and simple prayers to nurture faith, peace and perseverance day by day.',
-      heroBtnMain: '📖 Read today's verse',
-      heroBtnSec: 'Explore',
-      hvcLabel: 'Verse of the day',
-      rythmLabel: 'Every morning',
-      rythmTitle: 'A simple rhythm to nurture faith daily.',
-      rythmSub: 'A Bible verse, a short reflection and a prayer can be enough to re-center the heart in God's peace before starting the day.',
-      paroleJour: 'Word of the day',
-      hier: '← Yesterday',
-      demain: 'Tomorrow →',
-      versetLabel: 'Verse of the day',
-      exhortLabel: 'Reflection',
-      lireSuite: '→ Read more',
-      priereLabel: 'Daily prayer',
-      copierPriere: '📋 Copy prayer',
-      versetBonus: 'Bonus verse of the day',
-      temoLabel: 'Testimonies',
-      temoTitle: 'Share what God has done, to encourage someone else.',
-      temoDesc: 'A word of praise can become a light for someone going through a difficult season.',
-      temoPlaceholder: 'Share your testimony here…',
-      temoPrenom: 'Your first name',
-      temoVille: 'Your city',
-      temoEmail: 'Your email (optional)',
-      temoBtn: '🙏 Send my testimony',
-      temoOk: '✅ Thank you! Your testimony has been received. It will be published after moderation. God bless you! 🙏',
-      temoErr: '❌ An error occurred. Check your connection and try again.',
-      biblioLabel: 'Library',
-      biblioTitle: 'Find encouragement by theme, season and need.',
-      biblioSub: 'Messages, Bible studies, thematic prayers and verses organized to easily return to a strengthening word.',
-      parcourirLabel: 'Browse by theme',
-      paysageLabel: 'Images to share',
-      paysageTitle: 'Peaceful landscapes with verses to accompany the day.',
-      salutLabel: 'Give your life to Jesus',
-      salutTitle: 'Pray this prayer with all your heart.',
-      salutDesc: 'If you desire to receive Jesus Christ as Lord and Savior, take a quiet moment. God looks at the heart: speak to Him with sincerity, faith and humility.',
-      nlTitle: 'Receive the word every morning in your inbox.',
-      nlSub: 'A verse, a reflection, a prayer — free, ad-free, centered on Jesus Christ.',
-      nlPrenom: 'Your first name',
-      nlEmail: 'your@email.com',
-      nlBtn: 'Subscribe 🙏',
-      nlOk: '✅ Thank you! You are now subscribed to Daily Light. God bless each of your mornings! 🙏',
-      nlConfidential: '🔒 Your data is confidential. You can unsubscribe at any time.',
-      copier: '📋 Copy',
-      copie: '✅ Copied!',
-    },
-    es: {
-      nav: ['Hoy', 'Recursos', 'Testimonios', 'Dar tu vida'],
-      navCta: '🙏 Oración de salvación',
-      heroEyebrow: 'Un versículo · Una reflexión · Una oración',
-      heroTitle: 'Comienza cada día con una palabra de esperanza en Cristo.',
-      heroDesc: 'Luz Diaria reúne versículos bíblicos, breves reflexiones y oraciones sencillas para nutrir la fe, la paz y la perseverancia día a día.',
-      heroBtnMain: '📖 Leer el versículo de hoy',
-      heroBtnSec: 'Explorar',
-      hvcLabel: 'Versículo del día',
-      rythmLabel: 'Cada mañana',
-      rythmTitle: 'Un ritmo simple para nutrir la fe cada día.',
-      rythmSub: 'Un versículo bíblico, una breve reflexión y una oración pueden bastar para centrar el corazón en la paz de Dios antes de comenzar el día.',
-      paroleJour: 'Palabra del día',
-      hier: '← Ayer',
-      demain: 'Mañana →',
-      versetLabel: 'Versículo del día',
-      exhortLabel: 'Reflexión',
-      lireSuite: '→ Leer más',
-      priereLabel: 'Oración diaria',
-      copierPriere: '📋 Copiar oración',
-      versetBonus: 'Versículo extra del día',
-      temoLabel: 'Testimonios',
-      temoTitle: 'Comparte lo que Dios ha hecho para animar a alguien más.',
-      temoDesc: 'Una palabra de gratitud puede convertirse en luz para alguien que atraviesa una temporada difícil.',
-      temoPlaceholder: 'Comparte tu testimonio aquí…',
-      temoPrenom: 'Tu nombre',
-      temoVille: 'Tu ciudad',
-      temoEmail: 'Tu correo (opcional)',
-      temoBtn: '🙏 Enviar mi testimonio',
-      temoOk: '✅ ¡Gracias! Tu testimonio ha sido recibido. Será publicado tras moderación. ¡Dios te bendiga! 🙏',
-      temoErr: '❌ Ocurrió un error. Verifica tu conexión e inténtalo de nuevo.',
-      biblioLabel: 'Biblioteca',
-      biblioTitle: 'Encuentra aliento por tema, estación y necesidad.',
-      biblioSub: 'Mensajes, estudios bíblicos, oraciones temáticas y versículos organizados para volver fácilmente a una palabra fortalecedora.',
-      parcourirLabel: 'Explorar por tema',
-      paysageLabel: 'Imágenes para compartir',
-      paysageTitle: 'Paisajes tranquilos con versículos para acompañar el día.',
-      salutLabel: 'Dar tu vida a Jesús',
-      salutTitle: 'Ora esta oración con todo tu corazón.',
-      salutDesc: 'Si deseas recibir a Jesucristo como Señor y Salvador, tómate un momento de quietud. Dios mira el corazón: háblale con sinceridad, fe y humildad.',
-      nlTitle: 'Recibe la palabra cada mañana en tu correo.',
-      nlSub: 'Un versículo, una reflexión, una oración — gratuito, sin publicidad, centrado en Jesucristo.',
-      nlPrenom: 'Tu nombre',
-      nlEmail: 'tu@correo.com',
-      nlBtn: 'Suscribirse 🙏',
-      nlOk: '✅ ¡Gracias! Ya estás suscrito a Luz Diaria. ¡Que Dios bendiga cada una de tus mañanas! 🙏',
-      nlConfidential: '🔒 Tus datos son confidenciales. Puedes darte de baja en cualquier momento.',
-      copier: '📋 Copiar',
-      copie: '✅ ¡Copiado!',
-    },
-    pt: {
-      nav: ['Hoje', 'Recursos', 'Testemunhos', 'Dar sua vida'],
-      navCta: '🙏 Oração de salvação',
-      heroEyebrow: 'Um versículo · Uma reflexão · Uma oração',
-      heroTitle: 'Comece cada dia com uma palavra de esperança em Cristo.',
-      heroDesc: 'Luz Diária reúne versículos bíblicos, breves reflexões e orações simples para nutrir a fé, a paz e a perseverança dia a dia.',
-      heroBtnMain: '📖 Ler o versículo de hoje',
-      heroBtnSec: 'Explorar',
-      hvcLabel: 'Versículo do dia',
-      rythmLabel: 'Cada manhã',
-      rythmTitle: 'Um ritmo simples para nutrir a fé diariamente.',
-      rythmSub: 'Um versículo bíblico, uma breve reflexão e uma oração podem bastar para recentrar o coração na paz de Deus antes de começar o dia.',
-      paroleJour: 'Palavra do dia',
-      hier: '← Ontem',
-      demain: 'Amanhã →',
-      versetLabel: 'Versículo do dia',
-      exhortLabel: 'Reflexão',
-      lireSuite: '→ Ler mais',
-      priereLabel: 'Oração diária',
-      copierPriere: '📋 Copiar oração',
-      versetBonus: 'Versículo bônus do dia',
-      temoLabel: 'Testemunhos',
-      temoTitle: 'Compartilhe o que Deus fez para encorajar alguém.',
-      temoDesc: 'Uma palavra de gratidão pode se tornar luz para alguém passando por uma temporada difícil.',
-      temoPlaceholder: 'Compartilhe seu testemunho aqui…',
-      temoPrenom: 'Seu nome',
-      temoVille: 'Sua cidade',
-      temoEmail: 'Seu email (opcional)',
-      temoBtn: '🙏 Enviar meu testemunho',
-      temoOk: '✅ Obrigado! Seu testemunho foi recebido. Será publicado após moderação. Deus te abençoe! 🙏',
-      temoErr: '❌ Ocorreu um erro. Verifique sua conexão e tente novamente.',
-      biblioLabel: 'Biblioteca',
-      biblioTitle: 'Encontre encorajamento por tema, estação e necessidade.',
-      biblioSub: 'Mensagens, estudos bíblicos, orações temáticas e versículos organizados para retornar facilmente a uma palavra fortalecedora.',
-      parcourirLabel: 'Navegar por tema',
-      paysageLabel: 'Imagens para compartilhar',
-      paysageTitle: 'Paisagens tranquilas com versículos para acompanhar o dia.',
-      salutLabel: 'Dar sua vida a Jesus',
-      salutTitle: 'Faça esta oração com todo o seu coração.',
-      salutDesc: 'Se você deseja receber Jesus Cristo como Senhor e Salvador, reserve um momento de silêncio. Deus olha para o coração: fale com Ele com sinceridade, fé e humildade.',
-      nlTitle: 'Receba a palavra toda manhã na sua caixa de entrada.',
-      nlSub: 'Um versículo, uma reflexão, uma oração — gratuito, sem publicidade, centrado em Jesus Cristo.',
-      nlPrenom: 'Seu nome',
-      nlEmail: 'seu@email.com',
-      nlBtn: 'Inscrever-se 🙏',
-      nlOk: '✅ Obrigado! Você agora está inscrito na Luz Diária. Que Deus abençoe cada uma de suas manhãs! 🙏',
-      nlConfidential: '🔒 Seus dados são confidenciais. Você pode cancelar a inscrição a qualquer momento.',
-      copier: '📋 Copiar',
-      copie: '✅ Copiado!',
-    },
-    de: {
-      nav: ['Heute', 'Ressourcen', 'Zeugnisse', 'Dein Leben geben'],
-      navCta: '🙏 Gebet der Errettung',
-      heroEyebrow: 'Ein Vers · Eine Reflexion · Ein Gebet',
-      heroTitle: 'Beginne jeden Tag mit einem Wort der Hoffnung in Christus.',
-      heroDesc: 'Tägliches Licht versammelt Bibelverse, kurze Betrachtungen und einfache Gebete, um Glauben, Frieden und Ausdauer täglich zu nähren.',
-      heroBtnMain: '📖 Vers des Tages lesen',
-      heroBtnSec: 'Entdecken',
-      hvcLabel: 'Vers des Tages',
-      rythmLabel: 'Jeden Morgen',
-      rythmTitle: 'Ein einfacher Rhythmus, um den Glauben täglich zu nähren.',
-      rythmSub: 'Ein Bibelvers, eine kurze Betrachtung und ein Gebet können genügen, um das Herz vor Tagesbeginn in Gottes Frieden zu verankern.',
-      paroleJour: 'Wort des Tages',
-      hier: '← Gestern',
-      demain: 'Morgen →',
-      versetLabel: 'Vers des Tages',
-      exhortLabel: 'Betrachtung',
-      lireSuite: '→ Mehr lesen',
-      priereLabel: 'Tägliches Gebet',
-      copierPriere: '📋 Gebet kopieren',
-      versetBonus: 'Bonus-Vers des Tages',
-      temoLabel: 'Zeugnisse',
-      temoTitle: 'Teile, was Gott getan hat, um jemand anderen zu ermutigen.',
-      temoDesc: 'Ein Wort der Dankbarkeit kann für jemanden in einer schwierigen Zeit ein Licht werden.',
-      temoPlaceholder: 'Teile dein Zeugnis hier…',
-      temoPrenom: 'Dein Vorname',
-      temoVille: 'Deine Stadt',
-      temoEmail: 'Deine E-Mail (optional)',
-      temoBtn: '🙏 Mein Zeugnis senden',
-      temoOk: '✅ Danke! Dein Zeugnis wurde empfangen. Es wird nach Moderation veröffentlicht. Gott segne dich! 🙏',
-      temoErr: '❌ Ein Fehler ist aufgetreten. Überprüfe deine Verbindung und versuche es erneut.',
-      biblioLabel: 'Bibliothek',
-      biblioTitle: 'Ermutigung nach Thema, Jahreszeit und Bedürfnis finden.',
-      biblioSub: 'Nachrichten, Bibelstudien, thematische Gebete und Verse, um leicht zu einem stärkenden Wort zurückzukehren.',
-      parcourirLabel: 'Nach Thema durchsuchen',
-      paysageLabel: 'Bilder zum Teilen',
-      paysageTitle: 'Friedliche Landschaften mit Versen für den Tag.',
-      salutLabel: 'Dein Leben Jesus geben',
-      salutTitle: 'Bete dieses Gebet von ganzem Herzen.',
-      salutDesc: 'Wenn du Jesus Christus als Herrn und Heiland empfangen möchtest, nimm dir einen ruhigen Moment. Gott sieht das Herz: Sprich mit Ihm in Aufrichtigkeit, Glauben und Demut.',
-      nlTitle: 'Empfange das Wort jeden Morgen in deinem Postfach.',
-      nlSub: 'Ein Vers, eine Betrachtung, ein Gebet — kostenlos, werbefrei, auf Jesus Christus ausgerichtet.',
-      nlPrenom: 'Dein Vorname',
-      nlEmail: 'deine@email.de',
-      nlBtn: 'Abonnieren 🙏',
-      nlOk: '✅ Danke! Du bist jetzt beim Täglichen Licht angemeldet. Gott segne jeden deiner Morgen! 🙏',
-      nlConfidential: '🔒 Deine Daten sind vertraulich. Du kannst dich jederzeit abmelden.',
-      copier: '📋 Kopieren',
-      copie: '✅ Kopiert!',
-    },
-    it: {
-      nav: ['Oggi', 'Risorse', 'Testimonianze', 'Dare la tua vita'],
-      navCta: '🙏 Preghiera di salvezza',
-      heroEyebrow: 'Un versetto · Una riflessione · Una preghiera',
-      heroTitle: 'Inizia ogni giorno con una parola di speranza in Cristo.',
-      heroDesc: 'Luce Quotidiana raccoglie versetti biblici, brevi riflessioni e preghiere semplici per nutrire la fede, la pace e la perseveranza giorno dopo giorno.',
-      heroBtnMain: '📖 Leggi il versetto di oggi',
-      heroBtnSec: 'Esplora',
-      hvcLabel: 'Versetto del giorno',
-      rythmLabel: 'Ogni mattina',
-      rythmTitle: 'Un ritmo semplice per nutrire la fede ogni giorno.',
-      rythmSub: 'Un versetto biblico, una breve riflessione e una preghiera possono bastare per ricentrare il cuore nella pace di Dio prima di iniziare la giornata.',
-      paroleJour: 'Parola del giorno',
-      hier: '← Ieri',
-      demain: 'Domani →',
-      versetLabel: 'Versetto del giorno',
-      exhortLabel: 'Riflessione',
-      lireSuite: '→ Leggi di più',
-      priereLabel: 'Preghiera quotidiana',
-      copierPriere: '📋 Copia preghiera',
-      versetBonus: 'Versetto bonus del giorno',
-      temoLabel: 'Testimonianze',
-      temoTitle: 'Condividi ciò che Dio ha fatto per incoraggiare qualcun altro.',
-      temoDesc: 'Una parola di gratitudine può diventare luce per qualcuno che attraversa una stagione difficile.',
-      temoPlaceholder: 'Condividi la tua testimonianza qui…',
-      temoPrenom: 'Il tuo nome',
-      temoVille: 'La tua città',
-      temoEmail: 'La tua email (opzionale)',
-      temoBtn: '🙏 Invia la mia testimonianza',
-      temoOk: '✅ Grazie! La tua testimonianza è stata ricevuta. Sarà pubblicata dopo moderazione. Dio ti benedica! 🙏',
-      temoErr: '❌ Si è verificato un errore. Controlla la connessione e riprova.',
-      biblioLabel: 'Biblioteca',
-      biblioTitle: 'Trova incoraggiamento per tema, stagione e necessità.',
-      biblioSub: 'Messaggi, studi biblici, preghiere tematiche e versetti organizzati per tornare facilmente a una parola che fortifica.',
-      parcourirLabel: 'Sfoglia per tema',
-      paysageLabel: 'Immagini da condividere',
-      paysageTitle: 'Paesaggi tranquilli con versetti per accompagnare la giornata.',
-      salutLabel: 'Dare la tua vita a Gesù',
-      salutTitle: 'Prega questa preghiera con tutto il tuo cuore.',
-      salutDesc: 'Se desideri ricevere Gesù Cristo come Signore e Salvatore, prenditi un momento di silenzio. Dio guarda al cuore: parlagli con sincerità, fede e umiltà.',
-      nlTitle: 'Ricevi la parola ogni mattina nella tua casella di posta.',
-      nlSub: 'Un versetto, una riflessione, una preghiera — gratuito, senza pubblicità, centrato su Gesù Cristo.',
-      nlPrenom: 'Il tuo nome',
-      nlEmail: 'tua@email.it',
-      nlBtn: 'Iscriviti 🙏',
-      nlOk: '✅ Grazie! Sei ora iscritto a Luce Quotidiana. Che Dio benedica ogni tua mattina! 🙏',
-      nlConfidential: '🔒 I tuoi dati sono riservati. Puoi annullare l'iscrizione in qualsiasi momento.',
-      copier: '📋 Copia',
-      copie: '✅ Copiato!',
-    },
-  };
-
-  let langActuelle = 'fr';
-
-  function toggleLangMenu() {
-    document.getElementById('langMenu').classList.toggle('open');
-  }
-
-  // Fermer le menu si on clique ailleurs
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.lang-selector')) {
-      document.getElementById('langMenu').classList.remove('open');
+  // Charger contenu.js
+  window.addEventListener('load', function() {
+    if (typeof CONTENU === 'undefined') return;
+    var e = function(id) { return document.getElementById(id); };
+    if (e('heroVersetText')) e('heroVersetText').textContent = CONTENU.verset;
+    if (e('heroVersetRef')) e('heroVersetRef').textContent = '— ' + CONTENU.reference;
+    if (e('versetText')) e('versetText').textContent = CONTENU.verset;
+    if (e('versetRef')) e('versetRef').textContent = '— ' + CONTENU.reference;
+    if (e('priereTexte')) e('priereTexte').textContent = CONTENU.priere;
+    if (e('bonusText')) e('bonusText').textContent = CONTENU.versetBonus;
+    if (e('bonusRef')) e('bonusRef').textContent = '— ' + CONTENU.referenceBonus + ' · Verset bonus du jour';
+    var r = CONTENU.reflexion;
+    if (Array.isArray(r) && r.length > 0) {
+      if (e('reflexionApercu')) e('reflexionApercu').textContent = r[0];
+      if (e('reflexionReste')) e('reflexionReste').textContent = r.slice(1).join('\n\n');
     }
   });
-
-  function setLang(lang) {
-    langActuelle = lang;
-    const t = TRADUCTIONS[lang];
-    document.getElementById('langLabel').textContent = lang.toUpperCase();
-    document.getElementById('langMenu').classList.remove('open');
-
-    // Marquer l'option active
-    document.querySelectorAll('.lang-option').forEach((el, i) => {
-      el.classList.toggle('active', ['fr','en','es','pt','de','it'][i] === lang);
-    });
-
-    // Nav links
-    const navLinks = document.querySelectorAll('.nav-links a');
-    t.nav.forEach((txt, i) => { if (navLinks[i]) navLinks[i].textContent = txt; });
-    const navCta = document.querySelector('.nav-cta');
-    if (navCta) navCta.textContent = t.navCta;
-
-    // Hero
-    const heroEyebrow = document.querySelector('.hero-eyebrow');
-    if (heroEyebrow) heroEyebrow.textContent = t.heroEyebrow;
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) heroTitle.textContent = t.heroTitle;
-    const heroDesc = document.querySelector('.hero-desc');
-    if (heroDesc) heroDesc.textContent = t.heroDesc;
-    const heroBtns = document.querySelectorAll('.hero-btns a');
-    if (heroBtns[0]) heroBtns[0].textContent = t.heroBtnMain;
-    if (heroBtns[1]) heroBtns[1].textContent = t.heroBtnSec;
-    const hvcLabel = document.querySelector('.hvc-label');
-    if (hvcLabel) hvcLabel.textContent = t.hvcLabel;
-
-    // Section rythme
-    const secLabels = document.querySelectorAll('.section-label');
-    if (secLabels[0]) secLabels[0].textContent = t.rythmLabel;
-    const secTitles = document.querySelectorAll('.section-title');
-    if (secTitles[0]) secTitles[0].textContent = t.rythmTitle;
-    const secSubs = document.querySelectorAll('.section-subtitle');
-    if (secSubs[0]) secSubs[0].textContent = t.rythmSub;
-
-    // Day nav
-    const dayBtns = document.querySelectorAll('.day-btn');
-    if (dayBtns[0]) dayBtns[0].textContent = t.hier;
-    if (dayBtns[1]) dayBtns[1].textContent = t.demain;
-    const daySub = document.querySelector('.day-sub');
-    if (daySub) daySub.textContent = t.paroleJour;
-
-    // Col cards labels
-    const colTitles = document.querySelectorAll('.col-card-title');
-    if (colTitles[0]) colTitles[0].textContent = t.versetLabel;
-    if (colTitles[1]) colTitles[1].textContent = t.exhortLabel;
-    if (colTitles[2]) colTitles[2].textContent = t.priereLabel;
-
-    // Lire la suite
-    const lireSuiteEl = document.querySelector('[onclick*="reflexionSuite"]');
-    if (lireSuiteEl) lireSuiteEl.textContent = t.lireSuite;
-
-    // Copier prière
-    const copierPriereBtn = document.querySelector('[onclick="copierPriere()"]');
-    if (copierPriereBtn) copierPriereBtn.textContent = t.copierPriere;
-
-    // Verset bonus
-    const bonusRef = document.getElementById('bonusRef');
-    if (bonusRef) {
-      const refBase = bonusRef.textContent.split('·')[0].trim();
-      bonusRef.textContent = refBase + ' · ' + t.versetBonus;
-    }
-
-    // Témoignages
-    const temoInput = document.getElementById('temoInput');
-    if (temoInput) temoInput.placeholder = t.temoPlaceholder;
-    const temoNom = document.getElementById('temoNom');
-    if (temoNom) temoNom.placeholder = t.temoPrenom;
-    const temoVille = document.getElementById('temoVille');
-    if (temoVille) temoVille.placeholder = t.temoVille;
-    const temoEmailEl = document.getElementById('temoEmail');
-    if (temoEmailEl) temoEmailEl.placeholder = t.temoEmail;
-    const temoBtn = document.getElementById('temoBtn');
-    if (temoBtn) temoBtn.textContent = t.temoBtn;
-    const temoOk = document.getElementById('temoSucces');
-    if (temoOk) temoOk.textContent = t.temoOk;
-    const temoErr = document.getElementById('temoErreur');
-    if (temoErr) temoErr.textContent = t.temoErr;
-
-    // Bibliothèque labels
-    if (secLabels[1]) secLabels[1].textContent = t.biblioLabel;
-    if (secTitles[1]) secTitles[1].textContent = t.biblioTitle;
-    if (secSubs[1]) secSubs[1].textContent = t.biblioSub;
-
-    // Newsletter
-    const nlTitle = document.querySelector('.nl-title');
-    if (nlTitle) nlTitle.textContent = t.nlTitle;
-    const nlSub = document.querySelector('.nl-sub');
-    if (nlSub) nlSub.textContent = t.nlSub;
-    const nlPrenomEl = document.querySelector('#nlForm input[name="prenom"]');
-    if (nlPrenomEl) nlPrenomEl.placeholder = t.nlPrenom;
-    const nlEmailEl = document.getElementById('nlEmail');
-    if (nlEmailEl) nlEmailEl.placeholder = t.nlEmail;
-    const nlBtn = document.getElementById('nlBtn');
-    if (nlBtn) nlBtn.textContent = t.nlBtn;
-    const nlOk = document.getElementById('nlSucces');
-    if (nlOk) nlOk.textContent = t.nlOk;
-    const nlConf = document.querySelector('.newsletter-box > p:last-child');
-    if (nlConf) nlConf.textContent = t.nlConfidential;
-
-    // Attribut lang HTML
-    document.documentElement.lang = lang;
-  }
-
 </script>
 </body>
 </html>

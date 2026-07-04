@@ -5,15 +5,26 @@
 // ============================================================
 
 var CONTENU = {
-  date: "Vendredi",
-  verset: "« Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu en Jésus-Christ. »",
-  reference: "1 Thessaloniciens 5 : 18",
-  versetBonus: "« C'est le jour que l'Éternel a fait : réjouissons-nous et soyons dans l'allégresse ! »",
-  referenceBonus: "Psaume 118 : 24",
+
+  // 📅 Date (laisser vide = date automatique)
+  date: "",
+
+  // 📖 VERSET DU JOUR
+  verset: "« Je connais les projets que j'ai formés sur vous… projets de paix et non de malheur, pour vous donner un avenir et de l'espérance. »",
+  reference: "Jérémie 29 : 11",
+
+  // 🌿 VERSET BONUS
+  versetBonus: "« L'Éternel est mon berger, je ne manquerai de rien. »",
+  referenceBonus: "Psaume 23 : 1",
+
+  // 🔥 RÉFLEXION (tableau de paragraphes)
   reflexion: [
-    "La fin de la semaine approche. Avant de te laisser emporter par la joie du weekend ou par la fatigue accumulée, prends un moment pour regarder en arrière : qu'est-ce que Dieu a fait pour toi cette semaine ? Quelles grâces as-tu reçues, peut-être sans les remarquer ?",
-    "La reconnaissance est une discipline spirituelle puissante. Elle change notre regard sur la vie. Quand tu commences à voir les cadeaux de Dieu dans le quotidien — une santé préservée, un repas sur la table, un ami qui t'a soutenu — ton cœur se remplit d'une joie que les circonstances ne peuvent pas voler.",
-    "Termine cette semaine avec un cœur reconnaissant. Remercie Dieu non seulement pour ce qu'Il a fait, mais pour ce qu'Il est. C'est ça, entrer dans Sa présence avec des actions de grâce."
+    "Même lorsque les circonstances semblent difficiles, Dieu n'a pas abandonné ton histoire. Ce que tu traverses aujourd'hui ne définit pas ce que Dieu prépare demain. Sa Parole est une lampe à tes pieds — suffisamment de lumière pour le prochain pas.",
+    "Peut-être que tu es las. Peut-être que tu ne comprends pas pourquoi cette situation dure. Mais souviens-toi : Dieu a dit qu'Il connaît Ses projets sur toi. Des projets de paix. Il ne t'a pas oublié. Il travaille encore — même dans le silence.",
+    "Prends un moment aujourd'hui pour te reposer sur Sa fidélité. Non pas parce que tout va bien, mais parce que Lui est bon."
   ],
-  priere: "Seigneur, merci pour cette semaine. Merci pour Tes protections visibles et invisibles, pour Tes provisions, pour Ta fidélité qui ne s'est pas démentie. Je Te loue non seulement pour ce que Tu as fait, mais pour qui Tu es. Que ma vie entière soit une action de grâce. Au nom de Jésus, Amen.",
+
+  // 🙏 PRIÈRE DU JOUR
+  priere: "Seigneur Jésus, aujourd'hui je choisis de Te faire confiance. Là où je ne comprends pas, aide-moi à m'appuyer sur Ta Parole et non sur ma propre compréhension. Que Ta paix garde mon cœur et mes pensées. Donne-moi la force de marcher, même quand le chemin est sombre. Au nom de Jésus, Amen.",
+
 };

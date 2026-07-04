@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Témoignages — Lumière Quotidienne</title>
+  <meta name="description" content="Partage ce que Dieu a fait dans ta vie et lis les témoignages de la communauté." />
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">✝</div>
+    <span class="nav-name">Lumière Quotidienne</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Aujourd'hui</a></li>
+    <li><a href="bibliotheque.html">Bibliothèque</a></li>
+    <li><a href="temoignages.html">Témoignages</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="salut.html">Donner sa vie</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="salut.html" class="nav-cta">🙏 Prière du salut</a>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Aujourd'hui</a>
+  <a href="bibliotheque.html">Bibliothèque</a>
+  <a href="temoignages.html">Témoignages</a>
+  <a href="apropos.html">À propos</a>
+  <a href="salut.html">Donner sa vie</a>
+</div>
+
+<div class="page-header">
+  <p class="page-header-label">Communauté</p>
+  <h1 class="page-header-title">Témoignages</h1>
+  <p class="page-header-sub">Une parole de reconnaissance peut devenir une lumière pour quelqu'un qui traverse une saison difficile. Partage ce que Dieu a fait dans ta vie.</p>
+</div>
+
+<section class="section section-bg-dark">
+  <div class="container">
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- Formulaire -->
+      <div>
+        <p class="section-label" style="color:#E8C97A;">Partage ton témoignage</p>
+        <h2 style="font-family:var(--font-d);font-size:1.75rem;color:#FAF7F0;margin-bottom:1rem;line-height:1.3;">Ta parole peut encourager quelqu'un aujourd'hui.</h2>
+        <p style="color:rgba(245,240,232,0.6);font-size:14px;line-height:1.7;margin-bottom:1.5rem;">Chaque témoignage est lu et publié après modération. Qu'il soit court ou long, Dieu peut l'utiliser pour toucher un cœur.</p>
+
+        <form id="temoForm" action="https://formspree.io/f/mjgqawrr" method="POST" onsubmit="return soumettreForm(event)">
+          <input type="hidden" name="_subject" value="✝️ Nouveau témoignage — Lumière Quotidienne" />
+
+          <div class="form-group">
+            <label class="form-label" style="color:rgba(245,240,232,0.6);">Ton témoignage *</label>
+            <textarea name="temoignage" class="form-input form-textarea" placeholder="Raconte ce que Dieu a fait dans ta vie…" required style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:#F5F0E8;height:120px;"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" style="color:rgba(245,240,232,0.6);">Prénom *</label>
+              <input type="text" name="prenom" class="form-input" placeholder="Ton prénom" required style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:#F5F0E8;" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:rgba(245,240,232,0.6);">Ville</label>
+              <input type="text" name="ville" class="form-input" placeholder="Ta ville" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:#F5F0E8;" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="color:rgba(245,240,232,0.6);">Email (optionnel)</label>
+            <input type="email" name="email" class="form-input" placeholder="ton@email.com" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:#F5F0E8;" />
+          </div>
+          <button type="submit" class="btn btn-gold" id="temoBtn">🙏 Envoyer mon témoignage</button>
+          <div id="temoSucces" class="form-success">✅ Merci ! Ton témoignage a été reçu. Il sera publié après modération. Que Dieu te bénisse ! 🙏</div>
+          <div id="temoErreur" class="form-error">❌ Une erreur s'est produite. Vérifie ta connexion et réessaie.</div>
+        </form>
+      </div>
+
+      <!-- Témoignages publiés -->
+      <div>
+        <p class="section-label" style="color:#E8C97A;">Témoignages reçus</p>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Dieu m'a redonné la paix alors que je ne voyais aucune issue. J'avais perdu espoir mais Sa parole m'a relevé. »</p>
+          <p class="temo-author">— Adjoavi M. · Cotonou · il y a 2 jours</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Une simple prière quotidienne m'a aidé à reprendre courage après des mois de découragement. Merci pour ce ministère. »</p>
+          <p class="temo-author">— Emmanuel K. · Parakou · il y a 3 jours</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Chaque matin je commence ici avant ma journée. Ce site est devenu mon pain quotidien spirituel. »</p>
+          <p class="temo-author">— Grace F. · Abidjan · il y a 5 jours</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« Après des mois de découragement, cette parole m'a rappelé que Dieu n'a pas abandonné mon avenir. Gloire à Lui ! »</p>
+          <p class="temo-author">— Samuel R. · Lomé · il y a 1 semaine</p>
+        </div>
+        <div class="temo-bubble">
+          <p class="temo-quote">« J'ai prié la prière du salut sur ce site et ma vie a changé. Je recommence à zéro avec Jésus. »</p>
+          <p class="temo-author">— Marie T. · Dakar · il y a 2 semaines</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <p class="section-label">Partage</p>
+    <h2 class="section-title section-title-center">Ta parole peut changer une vie.</h2>
+    <p class="section-sub section-sub-center">Partage le lien du site avec quelqu'un qui a besoin d'encouragement aujourd'hui.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-gold" onclick="copyLink()">🔗 Copier le lien du site</button>
+      <a href="index.html" class="btn btn-outline">← Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter-strip">
+  <h3>Reçois la parole chaque matin</h3>
+  <p>Un verset, une réflexion, une prière — gratuit, centré sur Jésus-Christ.</p>
+  <form id="nlForm" action="https://formspree.io/f/mqevyqdy" method="POST" onsubmit="return soumettreNewsletter(event)">
+    <input type="hidden" name="_subject" value="✉️ Nouvelle inscription — Lumière Quotidienne" />
+    <div class="nl-form">
+      <input type="text" name="prenom" placeholder="Ton prénom" />
+      <input type="email" name="email" id="nlEmail" placeholder="ton@email.com" required />
+      <button type="submit" class="btn btn-gold" id="nlBtn">S'inscrire 🙏</button>
+    </div>
+  </form>
+  <div id="nlSucces" class="form-success">✅ Merci ! Tu es maintenant inscrit(e). Que Dieu bénisse chacun de tes matins ! 🙏</div>
+  <div id="nlErreur" class="form-error">❌ Une erreur s'est produite. Réessaie.</div>
+  <p style="margin-top:1rem;font-size:12px;color:var(--text-soft);">🔒 Données confidentielles.</p>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand-name">✝ Lumière Quotidienne</p>
+      <p class="footer-brand-desc">Un verset, une réflexion, une prière chaque jour. Centré sur Jésus-Christ.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Pages</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Aujourd'hui</a></li>
+        <li><a href="bibliotheque.html">Bibliothèque</a></li>
+        <li><a href="temoignages.html">Témoignages</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Ressources</p>
+      <ul class="footer-links">
+        <li><a href="bibliotheque.html#messages">Messages</a></li>
+        <li><a href="bibliotheque.html#etudes">Études bibliques</a></li>
+        <li><a href="bibliotheque.html#prieres">Prières thématiques</a></li>
+        <li><a href="bibliotheque.html#versets">Versets par thème</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <ul class="footer-links">
+        <li><a href="temoignages.html">Partager un témoignage</a></li>
+        <li><a href="apropos.html#contact">Nous écrire</a></li>
+        <li><a href="salut.html">Prière du salut</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Lumière Quotidienne · Fait avec foi</p>
+    <span class="footer-cross">✝</span>
+    <p>Centré sur Jésus-Christ</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+<script src="commun.js"></script>
+
+<script>
+async function soumettreForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('temoBtn');
+  const ok = document.getElementById('temoSucces');
+  const err = document.getElementById('temoErreur');
+  ok.style.display = 'none'; err.style.display = 'none';
+  btn.textContent = 'Envoi…'; btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mjgqawrr', {
+      method: 'POST', body: new FormData(document.getElementById('temoForm')),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) { ok.style.display = 'block'; document.getElementById('temoForm').reset(); }
+    else err.style.display = 'block';
+  } catch(ex) { err.style.display = 'block'; }
+  btn.textContent = '🙏 Envoyer mon témoignage'; btn.disabled = false;
+  return false;
+}
+function copyLink() {
+  navigator.clipboard.writeText('https://aurelg-sys.github.io/lumiere-quotidienne')
+    .then(() => showToast('🔗 Lien copié ! Partage-le avec tes proches.'))
+    .catch(() => showToast('Copie non disponible.'));
+}
+</script>
+</body>
+</html>
