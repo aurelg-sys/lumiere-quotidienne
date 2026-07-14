@@ -76,12 +76,12 @@
     <p class="section-sub section-sub-center">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
 
     <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1.25rem;max-width:580px;margin:0 auto 2.5rem;">
-      <button onclick="showToast('Navigation à venir…')" class="btn btn-outline btn-sm">← Hier</button>
+      <button id="btnHier" onclick="naviguerJour(-1)" class="btn btn-outline btn-sm">← Hier</button>
       <div style="text-align:center;">
         <div id="navDate" style="font-size:14px;font-weight:700;color:var(--text);">—</div>
         <div style="font-size:11px;color:var(--text-soft);margin-top:2px;">Parole du jour</div>
       </div>
-      <button disabled class="btn btn-outline btn-sm" style="opacity:.35;cursor:not-allowed;">Demain →</button>
+      <button id="btnDemain" onclick="naviguerJour(1)" class="btn btn-outline btn-sm">Demain →</button>
     </div>
 
     <div class="grid-3">
@@ -236,26 +236,82 @@
   // Date
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   const M=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  const now = new Date();
-  const ds = `${J[now.getDay()]} ${now.getDate()} ${M[now.getMonth()]} ${now.getFullYear()}`;
-  document.getElementById('navDate').textContent = ds;
 
-  // Charger contenu.js
-  window.addEventListener('load', function() {
-    if (typeof CONTENU === 'undefined') return;
+  var joursDecalage = 0; // 0 = aujourd'hui, négatif = jours passés
+  var LIMITE_PASSE = -6; // on ne remonte pas plus d'une semaine en arrière
+
+  function formaterDate(d) {
+    return `${J[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function afficherContenuJour(dayIndex, estAujourdhui) {
+    if (typeof CONTENU_SEMAINE === 'undefined') return;
     var e = function(id) { return document.getElementById(id); };
-    if (e('heroVersetText')) e('heroVersetText').textContent = CONTENU.verset;
-    if (e('heroVersetRef')) e('heroVersetRef').textContent = '— ' + CONTENU.reference;
-    if (e('versetText')) e('versetText').textContent = CONTENU.verset;
-    if (e('versetRef')) e('versetRef').textContent = '— ' + CONTENU.reference;
-    if (e('priereTexte')) e('priereTexte').textContent = CONTENU.priere;
-    if (e('bonusText')) e('bonusText').textContent = CONTENU.versetBonus;
-    if (e('bonusRef')) e('bonusRef').textContent = '— ' + CONTENU.referenceBonus + ' · Verset bonus du jour';
-    var r = CONTENU.reflexion;
+    var c = CONTENU_SEMAINE[dayIndex];
+    // Le contenu manuel (AUJOURD_HUI) ne s'applique qu'au jour présent
+    var data = {
+      verset: c.verset, reference: c.reference,
+      versetBonus: c.versetBonus, referenceBonus: c.referenceBonus,
+      reflexion: c.reflexion, priere: c.priere
+    };
+    if (estAujourdhui && typeof AUJOURD_HUI !== 'undefined') {
+      if (AUJOURD_HUI.verset) data.verset = AUJOURD_HUI.verset;
+      if (AUJOURD_HUI.reference) data.reference = AUJOURD_HUI.reference;
+      if (AUJOURD_HUI.versetBonus) data.versetBonus = AUJOURD_HUI.versetBonus;
+      if (AUJOURD_HUI.referenceBonus) data.referenceBonus = AUJOURD_HUI.referenceBonus;
+      if (AUJOURD_HUI.reflexion && AUJOURD_HUI.reflexion.length > 0) data.reflexion = AUJOURD_HUI.reflexion;
+      if (AUJOURD_HUI.priere) data.priere = AUJOURD_HUI.priere;
+    }
+    if (e('heroVersetText')) e('heroVersetText').textContent = data.verset;
+    if (e('heroVersetRef')) e('heroVersetRef').textContent = '— ' + data.reference;
+    if (e('versetText')) e('versetText').textContent = data.verset;
+    if (e('versetRef')) e('versetRef').textContent = '— ' + data.reference;
+    if (e('priereTexte')) e('priereTexte').textContent = data.priere;
+    if (e('bonusText')) e('bonusText').textContent = data.versetBonus;
+    if (e('bonusRef')) e('bonusRef').textContent = '— ' + data.referenceBonus + (estAujourdhui ? ' · Verset bonus du jour' : '');
+    if (e('reflexionSuite')) e('reflexionSuite').style.display = 'none';
+    if (e('lireSuiteBtn')) e('lireSuiteBtn').style.display = 'block';
+    var r = data.reflexion;
     if (Array.isArray(r) && r.length > 0) {
       if (e('reflexionApercu')) e('reflexionApercu').textContent = r[0];
       if (e('reflexionReste')) e('reflexionReste').textContent = r.slice(1).join('\n\n');
     }
+  }
+
+  function majBoutonsNav() {
+    var btnDemain = document.getElementById('btnDemain');
+    var btnHier = document.getElementById('btnHier');
+    if (btnDemain) {
+      btnDemain.disabled = (joursDecalage >= 0);
+      btnDemain.style.opacity = (joursDecalage >= 0) ? '.35' : '1';
+      btnDemain.style.cursor = (joursDecalage >= 0) ? 'not-allowed' : 'pointer';
+    }
+    if (btnHier) {
+      btnHier.disabled = (joursDecalage <= LIMITE_PASSE);
+      btnHier.style.opacity = (joursDecalage <= LIMITE_PASSE) ? '.35' : '1';
+      btnHier.style.cursor = (joursDecalage <= LIMITE_PASSE) ? 'not-allowed' : 'pointer';
+    }
+  }
+
+  function naviguerJour(sens) {
+    var nouveauDecalage = joursDecalage + sens;
+    if (nouveauDecalage > 0 || nouveauDecalage < LIMITE_PASSE) return;
+    joursDecalage = nouveauDecalage;
+    var d = new Date();
+    d.setDate(d.getDate() + joursDecalage);
+    document.getElementById('navDate').textContent = formaterDate(d) + (joursDecalage === 0 ? "" : " (archive)");
+    afficherContenuJour(d.getDay(), joursDecalage === 0);
+    majBoutonsNav();
+  }
+
+  const now = new Date();
+  document.getElementById('navDate').textContent = formaterDate(now);
+
+  // Charger contenu.js
+  window.addEventListener('load', function() {
+    if (typeof CONTENU === 'undefined') return;
+    afficherContenuJour(now.getDay(), true);
+    majBoutonsNav();
   });
 </script>
 </body>

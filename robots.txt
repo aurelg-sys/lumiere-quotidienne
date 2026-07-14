@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aurelg-sys.github.io/lumiere-quotidienne/sitemap.xml
