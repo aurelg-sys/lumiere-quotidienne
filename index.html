@@ -44,7 +44,7 @@
 
 <!-- HERO -->
 <section style="background:var(--bg);">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;align-items:center;">
+  <div class="hero-grid" style="max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;">
     <div>
       <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;">Un verset · Une réflexion · Une prière</p>
       <h1 style="font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);line-height:1.2;color:var(--text);margin-bottom:1.25rem;">Commence chaque journée avec une parole d'espérance en Christ.</h1>
@@ -55,7 +55,10 @@
       </div>
     </div>
     <div style="position:relative;">
-      <img src="images/hero.jpg" alt="Paysage paisible" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;" onerror="this.style.background='var(--bg-alt)';this.src=''" />
+      <picture>
+        <source srcset="images/hero.webp" type="image/webp">
+        <img src="images/hero.jpg" alt="Paysage paisible" width="700" height="340" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;" onerror="this.style.background='var(--bg-alt)';this.src=''" />
+      </picture>
       <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--bg-card);border-radius:var(--radius);padding:1.25rem 1.5rem;box-shadow:var(--shadow);max-width:280px;border:1px solid var(--border);">
         <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Verset du jour</p>
         <p id="heroVersetText" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.55;color:var(--text);">Chargement…</p>
@@ -116,15 +119,24 @@
     <h2 class="section-title section-title-center" style="margin-bottom:2rem;">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
     <div class="paysage-grid">
       <div class="paysage-card">
-        <img class="paysage-img" src="images/paysage foi.jpg" alt="Foi" loading="lazy" onerror="this.style.display='none'" />
+        <picture>
+          <source srcset="images/paysage foi.webp" type="image/webp">
+          <img class="paysage-img" src="images/paysage foi.jpg" alt="Foi" loading="lazy" width="360" height="240" onerror="this.style.display='none'" />
+        </picture>
         <div class="paysage-overlay"><span class="paysage-theme">Foi</span><p class="paysage-verset">« Le juste vivra par la foi. » — Habacuc 2 : 4</p></div>
       </div>
       <div class="paysage-card">
-        <img class="paysage-img" src="images/paysage paix.jpg" alt="Paix" loading="lazy" onerror="this.style.display='none'" />
+        <picture>
+          <source srcset="images/paysage paix.webp" type="image/webp">
+          <img class="paysage-img" src="images/paysage paix.jpg" alt="Paix" loading="lazy" width="360" height="240" onerror="this.style.display='none'" />
+        </picture>
         <div class="paysage-overlay"><span class="paysage-theme">Paix</span><p class="paysage-verset">« Je vous laisse la paix, je vous donne ma paix. » — Jean 14 : 27</p></div>
       </div>
       <div class="paysage-card">
-        <img class="paysage-img" src="images/paysage espérance.jpg" alt="Espérance" loading="lazy" onerror="this.style.display='none'" />
+        <picture>
+          <source srcset="images/paysage espérance.webp" type="image/webp">
+          <img class="paysage-img" src="images/paysage espérance.jpg" alt="Espérance" loading="lazy" width="360" height="240" onerror="this.style.display='none'" />
+        </picture>
         <div class="paysage-overlay"><span class="paysage-theme">Espérance</span><p class="paysage-verset">« Ceux qui espèrent en l'Éternel renouvellent leur force. » — Ésaïe 40 : 31</p></div>
       </div>
     </div>
