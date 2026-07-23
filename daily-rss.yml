@@ -1,0 +1,33 @@
+name: Générer le flux RSS quotidien
+
+on:
+  schedule:
+    # 05:30 UTC = 06:30 à Cotonou (WAT, UTC+1, pas de changement d'heure saisonnier)
+    # Marge d'une demi-heure avant l'envoi Brevo programmé à 7h locale
+    - cron: '30 5 * * *'
+  workflow_dispatch:   # permet de le lancer manuellement depuis l'onglet Actions, pour tester
+
+permissions:
+  contents: write
+
+jobs:
+  generate-rss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Générer rss.xml à partir de contenu.js
+        run: node generer-rss.js
+
+      - name: Committer et pousser si le flux a changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rss.xml
+          if git diff --staged --quiet; then
+            echo "Aucun changement à committer."
+          else
+            git commit -m "Mise à jour automatique du flux RSS ($(date -u +%Y-%m-%d))"
+            git push
+          fi

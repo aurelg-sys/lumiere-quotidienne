@@ -1,0 +1,81 @@
+<!--
+  LUMIÈRE QUOTIDIENNE — Modèle d'email quotidien pour Brevo (RSS Campaign)
+  ------------------------------------------------------------------------
+  À FAIRE DANS BREVO :
+  1. Automations/Campagnes → RSS Campaign → coller l'URL du flux :
+     https://aurelg-sys.github.io/lumiere-quotidienne/rss.xml
+  2. Dans l'éditeur d'email qui s'ouvre, importez ce fichier en HTML
+     (bouton "Importer un template" / "Import HTML"), OU copiez-collez
+     le contenu ci-dessous dans le bloc HTML personnalisé.
+  3. Remplacez les 4 marqueurs suivants par les blocs dynamiques RSS
+     que l'éditeur Brevo propose (glisser-déposer "Contenu RSS" /
+     "RSS feed content" depuis la barre latérale) :
+       [[TITRE_RSS]]        → titre de l'item RSS
+       [[DESCRIPTION_RSS]]  → description de l'item RSS (déjà en HTML)
+       [[LIEN_RSS]]         → lien vers le site
+       [[DATE_RSS]]         → date de publication de l'item
+     Les noms exacts des balises (ex. {{ params.RSS_ITEM_TITLE }}) sont
+     insérés automatiquement par l'éditeur Brevo quand vous glissez le
+     bloc — pas besoin de les taper à la main.
+  4. Nom d'expéditeur : Lumière Quotidienne (déjà configuré).
+  5. Programmez l'envoi quotidien à 7h (heure de Cotonou).
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lumière Quotidienne</title>
+</head>
+<body style="margin:0;padding:0;background-color:#EFE8DA;font-family:Georgia,'Times New Roman',serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#EFE8DA;padding:24px 0;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background-color:#FFFDFA;border-radius:14px;overflow:hidden;max-width:560px;width:100%;">
+
+        <!-- En-tête -->
+        <tr>
+          <td style="background-color:#1F1D18;padding:28px 32px;text-align:center;">
+            <div style="font-size:28px;color:#D4AC5A;margin-bottom:6px;">✝</div>
+            <div style="font-family:Georgia,serif;font-size:20px;color:#FAF7F0;">Lumière Quotidienne</div>
+            <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E8C97A;margin-top:6px;">[[DATE_RSS]]</div>
+          </td>
+        </tr>
+
+        <!-- Verset + contenu du jour (bloc dynamique RSS) -->
+        <tr>
+          <td style="padding:32px;">
+            <div style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8C6226;font-weight:bold;margin-bottom:14px;">
+              [[TITRE_RSS]]
+            </div>
+            <div style="font-family:Georgia,serif;font-size:16px;line-height:1.7;color:#211F1A;">
+              [[DESCRIPTION_RSS]]
+            </div>
+          </td>
+        </tr>
+
+        <!-- Bouton vers le site -->
+        <tr>
+          <td style="padding:0 32px 32px;text-align:center;">
+            <a href="[[LIEN_RSS]]" style="display:inline-block;background-color:#8C6226;color:#FFFFFF;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 28px;border-radius:24px;">
+              📖 Lire sur le site
+            </a>
+          </td>
+        </tr>
+
+        <!-- Pied de page -->
+        <tr>
+          <td style="background-color:#EFE8DA;padding:20px 32px;text-align:center;">
+            <div style="font-family:Arial,sans-serif;font-size:11px;color:#8C8577;line-height:1.6;">
+              Vous recevez cet email car vous êtes inscrit(e) à Lumière Quotidienne.<br/>
+              <a href="{{ unsubscribe }}" style="color:#8C6226;">Se désinscrire</a>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
