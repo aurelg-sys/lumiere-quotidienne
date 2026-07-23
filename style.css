@@ -77,6 +77,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-cta { background: var(--gold); color: #fff; border: none; border-radius: var(--radius-full); padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-b); transition: background .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease); text-decoration: none; box-shadow: var(--shadow-gold); }
 .nav-cta:hover { background: var(--gold-mid); transform: translateY(-1px); }
 .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; background: none; border: none; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+.lang-switch { appearance: none; background: var(--bg-card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238C8577'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%238C8577' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 9px center / 11px; border: 1px solid var(--border); border-radius: var(--radius-full); padding: 8px 26px 8px 13px; font-size: 12.5px; font-weight: 700; color: var(--text-mid); font-family: var(--font-b); cursor: pointer; min-height: 38px; transition: border-color .18s var(--ease); }
+.lang-switch:hover { border-color: var(--gold); }
+.mobile-lang { padding: 12px 4px 4px; }
+.mobile-lang .lang-switch { width: 100%; }
+
+/* ── Formulaire newsletter Brevo — restylé aux couleurs du site ── */
+.sib-form-message-panel { display: none; }
+.input--hidden { display: none !important; }
+.sib-hide-loader-icon { display: none; }
+#sib-form .sib-form-block__button svg { vertical-align: -3px; margin-right: 6px; }
+#sib-form .sib-form-block__button { border: none; }
 .nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .2s var(--ease), opacity .2s var(--ease); }
 .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 0.5rem 1.5rem 1rem; z-index: 99; flex-direction: column; gap: 2px; box-shadow: var(--shadow-lg); }
 .mobile-menu.open { display: flex; }

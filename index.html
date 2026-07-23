@@ -23,35 +23,53 @@
     <span class="nav-name">Lumière Quotidienne</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Aujourd'hui</a></li>
-    <li><a href="bibliotheque.html">Bibliothèque</a></li>
-    <li><a href="temoignages.html">Témoignages</a></li>
-    <li><a href="apropos.html">À propos</a></li>
-    <li><a href="salut.html">Donner sa vie</a></li>
+    <li><a href="index.html" data-i18n="nav_aujourdhui">Aujourd'hui</a></li>
+    <li><a href="bibliotheque.html" data-i18n="nav_bibliotheque">Bibliothèque</a></li>
+    <li><a href="temoignages.html" data-i18n="nav_temoignages">Témoignages</a></li>
+    <li><a href="apropos.html" data-i18n="nav_apropos">À propos</a></li>
+    <li><a href="salut.html" data-i18n="nav_salut">Donner sa vie</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:10px;">
-    <a href="salut.html" class="nav-cta">🙏 Prière du salut</a>
+    <select class="lang-switch" onchange="changerLangue(this.value)" aria-label="Choisir la langue / Choose language">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="pt">PT</option>
+      <option value="de">DE</option>
+      <option value="it">IT</option>
+    </select>
+    <a href="salut.html" class="nav-cta" data-i18n="nav_cta">🙏 Prière du salut</a>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Aujourd'hui</a>
-  <a href="bibliotheque.html">Bibliothèque</a>
-  <a href="temoignages.html">Témoignages</a>
-  <a href="apropos.html">À propos</a>
-  <a href="salut.html">Donner sa vie</a>
+  <a href="index.html" data-i18n="nav_aujourdhui">Aujourd'hui</a>
+  <a href="bibliotheque.html" data-i18n="nav_bibliotheque">Bibliothèque</a>
+  <a href="temoignages.html" data-i18n="nav_temoignages">Témoignages</a>
+  <a href="apropos.html" data-i18n="nav_apropos">À propos</a>
+  <a href="salut.html" data-i18n="nav_salut">Donner sa vie</a>
+  <div class="mobile-lang">
+    <select class="lang-switch" onchange="changerLangue(this.value)" aria-label="Choisir la langue / Choose language">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+    </select>
+  </div>
 </div>
 
 <!-- HERO -->
 <section style="background:var(--bg);">
   <div class="hero-grid" style="max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;">
     <div>
-      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;">Un verset · Une réflexion · Une prière</p>
-      <h1 style="font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);line-height:1.2;color:var(--text);margin-bottom:1.25rem;">Commence chaque journée avec une parole d'espérance en Christ.</h1>
-      <p style="font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:2rem;max-width:420px;">Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.</p>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;" data-i18n="hero_label">Un verset · Une réflexion · Une prière</p>
+      <h1 style="font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);line-height:1.2;color:var(--text);margin-bottom:1.25rem;" data-i18n="hero_title">Commence chaque journée avec une parole d'espérance en Christ.</h1>
+      <p style="font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:2rem;max-width:420px;" data-i18n="hero_text">Lumière Quotidienne rassemble des versets bibliques, de courtes exhortations et des prières simples pour nourrir la foi, la paix et la persévérance au fil des jours.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="#aujourdhui" class="btn btn-gold">📖 Lire le verset du jour</a>
-        <a href="bibliotheque.html" class="btn btn-outline">Explorer la bibliothèque</a>
+        <a href="#aujourdhui" class="btn btn-gold" data-i18n="hero_btn_verset">📖 Lire le verset du jour</a>
+        <a href="bibliotheque.html" class="btn btn-outline" data-i18n="hero_btn_biblio">Explorer la bibliothèque</a>
       </div>
     </div>
     <div style="position:relative;">
@@ -60,7 +78,7 @@
         <img src="images/hero.jpg" alt="Paysage paisible" width="700" height="340" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);display:block;" onerror="this.style.background='var(--bg-alt)';this.src=''" />
       </picture>
       <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--bg-card);border-radius:var(--radius);padding:1.25rem 1.5rem;box-shadow:var(--shadow);max-width:280px;border:1px solid var(--border);">
-        <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Verset du jour</p>
+        <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;" data-i18n="hero_card_label">Verset du jour</p>
         <p id="heroVersetText" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.55;color:var(--text);">Chargement…</p>
         <p id="heroVersetRef" style="font-size:12px;color:var(--text-soft);margin-top:0.5rem;"></p>
       </div>
@@ -71,37 +89,37 @@
 <!-- CONTENU DU JOUR -->
 <section class="section section-bg-alt" id="aujourdhui">
   <div class="container">
-    <p class="section-label" style="text-align:center;">Chaque matin</p>
-    <h2 class="section-title section-title-center">Un rythme simple pour nourrir la foi au quotidien.</h2>
-    <p class="section-sub section-sub-center">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
+    <p class="section-label" style="text-align:center;" data-i18n="today_label">Chaque matin</p>
+    <h2 class="section-title section-title-center" data-i18n="today_title">Un rythme simple pour nourrir la foi au quotidien.</h2>
+    <p class="section-sub section-sub-center" data-i18n="today_sub">Un verset biblique, une courte exhortation et une prière peuvent suffire à replacer le cœur dans la paix de Dieu avant de commencer la journée.</p>
 
     <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1.25rem;max-width:580px;margin:0 auto 2.5rem;">
-      <button id="btnHier" onclick="naviguerJour(-1)" class="btn btn-outline btn-sm">← Hier</button>
+      <button id="btnHier" onclick="naviguerJour(-1)" class="btn btn-outline btn-sm" data-i18n="nav_hier">← Hier</button>
       <div style="text-align:center;">
         <div id="navDate" style="font-size:14px;font-weight:700;color:var(--text);">—</div>
-        <div style="font-size:11px;color:var(--text-soft);margin-top:2px;">Parole du jour</div>
+        <div style="font-size:11px;color:var(--text-soft);margin-top:2px;" data-i18n="nav_datelabel">Parole du jour</div>
       </div>
-      <button id="btnDemain" onclick="naviguerJour(1)" class="btn btn-outline btn-sm">Demain →</button>
+      <button id="btnDemain" onclick="naviguerJour(1)" class="btn btn-outline btn-sm" data-i18n="nav_demain">Demain →</button>
     </div>
 
     <div class="grid-3">
       <div class="card">
-        <p class="section-label">📖 Verset du jour</p>
+        <p class="section-label" data-i18n="card_verset_label">📖 Verset du jour</p>
         <p id="versetText" style="font-family:var(--font-d);font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--text);">Chargement…</p>
         <p id="versetRef" style="font-size:12px;color:var(--text-soft);margin-top:0.75rem;"></p>
       </div>
       <div class="card">
-        <p class="section-label">🌿 Exhortation</p>
+        <p class="section-label" data-i18n="card_exhortation_label">🌿 Exhortation</p>
         <p id="reflexionApercu" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.65;color:var(--text);">Chargement…</p>
-        <p id="lireSuiteBtn" style="margin-top:1rem;cursor:pointer;color:var(--gold);font-size:13px;" onclick="document.getElementById('reflexionSuite').style.display='block';this.style.display='none'">→ Lire la suite</p>
+        <p id="lireSuiteBtn" style="margin-top:1rem;cursor:pointer;color:var(--gold);font-size:13px;" onclick="document.getElementById('reflexionSuite').style.display='block';this.style.display='none'" data-i18n="lire_suite">→ Lire la suite</p>
         <div id="reflexionSuite" style="display:none;margin-top:0.75rem;font-size:13.5px;color:var(--text-mid);line-height:1.75;">
           <p id="reflexionReste"></p>
         </div>
       </div>
       <div class="card">
-        <p class="section-label">🙏 Prière quotidienne</p>
+        <p class="section-label" data-i18n="card_priere_label">🙏 Prière quotidienne</p>
         <p id="priereTexte" style="font-family:var(--font-d);font-style:italic;font-size:1rem;line-height:1.65;color:var(--text);">Chargement…</p>
-        <button class="btn-copy" style="margin-top:1rem;" onclick="copierTexte(this, document.getElementById('priereTexte').innerText)">📋 Copier la prière</button>
+        <button class="btn-copy" style="margin-top:1rem;" onclick="copierTexte(this, document.getElementById('priereTexte').innerText)" data-i18n="copier_priere">📋 Copier la prière</button>
       </div>
     </div>
 
@@ -115,8 +133,8 @@
 <!-- PAYSAGES -->
 <section class="section">
   <div class="container">
-    <p class="section-label" style="text-align:center;">Images à partager</p>
-    <h2 class="section-title section-title-center" style="margin-bottom:2rem;">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
+    <p class="section-label" style="text-align:center;" data-i18n="paysages_label">Images à partager</p>
+    <h2 class="section-title section-title-center" style="margin-bottom:2rem;" data-i18n="paysages_title">Des paysages paisibles avec des versets pour accompagner la journée.</h2>
     <div class="paysage-grid">
       <div class="paysage-card">
         <picture>
@@ -150,22 +168,22 @@
       <a href="bibliotheque.html" style="text-decoration:none;">
         <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-size:28px;margin-bottom:0.75rem;">📚</div>
-          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Bibliothèque</h3>
-          <p style="font-size:13px;color:var(--text-mid);">Messages, études bibliques, prières thématiques et versets par thème.</p>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;" data-i18n="link_biblio_title">Bibliothèque</h3>
+          <p style="font-size:13px;color:var(--text-mid);" data-i18n="link_biblio_text">Messages, études bibliques, prières thématiques et versets par thème.</p>
         </div>
       </a>
       <a href="temoignages.html" style="text-decoration:none;">
         <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-size:28px;margin-bottom:0.75rem;">❤️</div>
-          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Témoignages</h3>
-          <p style="font-size:13px;color:var(--text-mid);">Partage ce que Dieu a fait dans ta vie et lis les témoignages de la communauté.</p>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;" data-i18n="link_temo_title">Témoignages</h3>
+          <p style="font-size:13px;color:var(--text-mid);" data-i18n="link_temo_text">Partage ce que Dieu a fait dans ta vie et lis les témoignages de la communauté.</p>
         </div>
       </a>
       <a href="salut.html" style="text-decoration:none;">
         <div class="card" style="text-align:center;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="font-size:28px;margin-bottom:0.75rem;">🙏</div>
-          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;">Donner sa vie</h3>
-          <p style="font-size:13px;color:var(--text-mid);">Tu veux recevoir Jésus-Christ ? Fais cette prière du salut de tout ton cœur.</p>
+          <h3 style="font-family:var(--font-d);font-size:1.1rem;color:var(--text);margin-bottom:0.5rem;" data-i18n="link_salut_title">Donner sa vie</h3>
+          <p style="font-size:13px;color:var(--text-mid);" data-i18n="link_salut_text">Tu veux recevoir Jésus-Christ ? Fais cette prière du salut de tout ton cœur.</p>
         </div>
       </a>
     </div>
@@ -174,61 +192,67 @@
 
 
 <div class="newsletter-strip">
-  <h3>Reçois la parole chaque matin</h3>
-  <p>Un verset, une réflexion, une prière — gratuit, centré sur Jésus-Christ.</p>
-  <form id="nlForm" action="https://formspree.io/f/mqevyqdy" method="POST" onsubmit="return soumettreNewsletter(event)">
-    <input type="hidden" name="_subject" value="✉️ Nouvelle inscription — Lumière Quotidienne" />
+  <h3 data-i18n="newsletter_title">Reçois la parole chaque matin</h3>
+  <p data-i18n="newsletter_sub">Un verset, une réflexion, une prière — gratuit, centré sur Jésus-Christ.</p>
+  <form id="sib-form" method="POST" action="https://33a5c8a6.sibforms.com/serve/MUIFAOjZabk4cLHH2MMnpYdRzHa0WscB3_7gSk4GZZWBxFDIciG-aPAI8HVvHa-gvYCViUBDL5BhEJIWVsV4OmQfGdh6VllAfK9sZoTTvL9X2x9qQl6Vw5erCQG563ZK8dHQimd8DeXNCyxAikZ5gRC_bHHTHSN8x2OIigEuGWDj70eqt3tXJwDTAyYpuPA_hqHOJnpgU9hl9jvV1w==" data-type="subscription">
     <div class="nl-form">
-      <input type="text" name="prenom" placeholder="Ton prénom" />
-      <input type="email" name="email" id="nlEmail" placeholder="ton@email.com" required />
-      <button type="submit" class="btn btn-gold" id="nlBtn">S'inscrire 🙏</button>
+      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="ton@email.com" data-required="true" required data-i18n-placeholder="placeholder_email" />
+      <button class="sib-form-block__button sib-form-block__button-with-loader btn btn-gold" form="sib-form" type="submit">
+        <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width:15px;height:15px;">
+          <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+        </svg>
+        <span data-i18n="btn_inscrire">S'inscrire 🙏</span>
+      </button>
     </div>
+    <input type="text" name="email_address_check" value="" class="input--hidden" />
+    <input type="hidden" name="locale" value="fr" />
   </form>
-  <div id="nlSucces" class="form-success">✅ Merci ! Tu es maintenant inscrit(e). Que Dieu bénisse chacun de tes matins ! 🙏</div>
-  <div id="nlErreur" class="form-error">❌ Une erreur s'est produite. Réessaie.</div>
-  <p style="margin-top:1rem;font-size:12px;color:var(--text-soft);">🔒 Données confidentielles. Désinscription possible à tout moment.</p>
+  <div id="error-message" class="form-error sib-form-message-panel" data-i18n="nl_erreur">❌ Une erreur s'est produite. Réessaie.</div>
+  <div id="success-message" class="form-success sib-form-message-panel" data-i18n="nl_succes">✅ Merci ! Tu es maintenant inscrit(e). Que Dieu bénisse chacun de tes matins ! 🙏</div>
+  <p style="margin-top:1rem;font-size:12px;color:var(--text-soft);" data-i18n="nl_privacy">🔒 Données confidentielles. Désinscription possible à tout moment.</p>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div>
       <p class="footer-brand-name">✝ Lumière Quotidienne</p>
-      <p class="footer-brand-desc">Un verset, une réflexion, une prière chaque jour. Centré sur Jésus-Christ pour les francophones du monde entier.</p>
+      <p class="footer-brand-desc" data-i18n="footer_desc">Un verset, une réflexion, une prière chaque jour. Centré sur Jésus-Christ pour les francophones du monde entier.</p>
     </div>
     <div>
-      <p class="footer-col-title">Pages</p>
+      <p class="footer-col-title" data-i18n="footer_pages">Pages</p>
       <ul class="footer-links">
-        <li><a href="index.html">Aujourd'hui</a></li>
-        <li><a href="bibliotheque.html">Bibliothèque</a></li>
-        <li><a href="temoignages.html">Témoignages</a></li>
-        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="index.html" data-i18n="nav_aujourdhui">Aujourd'hui</a></li>
+        <li><a href="bibliotheque.html" data-i18n="nav_bibliotheque">Bibliothèque</a></li>
+        <li><a href="temoignages.html" data-i18n="nav_temoignages">Témoignages</a></li>
+        <li><a href="apropos.html" data-i18n="nav_apropos">À propos</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Ressources</p>
+      <p class="footer-col-title" data-i18n="footer_ressources">Ressources</p>
       <ul class="footer-links">
-        <li><a href="bibliotheque.html#messages">Messages</a></li>
-        <li><a href="bibliotheque.html#etudes">Études bibliques</a></li>
-        <li><a href="bibliotheque.html#prieres">Prières thématiques</a></li>
-        <li><a href="bibliotheque.html#versets">Versets par thème</a></li>
+        <li><a href="bibliotheque.html#messages" data-i18n="footer_link_messages">Messages</a></li>
+        <li><a href="bibliotheque.html#etudes" data-i18n="footer_link_etudes">Études bibliques</a></li>
+        <li><a href="bibliotheque.html#prieres" data-i18n="footer_link_prieres">Prières thématiques</a></li>
+        <li><a href="bibliotheque.html#versets" data-i18n="footer_link_versets">Versets par thème</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Contact</p>
+      <p class="footer-col-title" data-i18n="footer_contact">Contact</p>
       <ul class="footer-links">
-        <li><a href="temoignages.html">Partager un témoignage</a></li>
-        <li><a href="apropos.html#contact">Nous écrire</a></li>
-        <li><a href="salut.html">Prière du salut</a></li>
+        <li><a href="temoignages.html" data-i18n="footer_link_temoignage">Partager un témoignage</a></li>
+        <li><a href="apropos.html#contact" data-i18n="footer_link_ecrire">Nous écrire</a></li>
+        <li><a href="salut.html" data-i18n="footer_link_salut">Prière du salut</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Lumière Quotidienne · Fait avec foi</p>
+    <p data-i18n="footer_copyright">© 2025 Lumière Quotidienne · Fait avec foi</p>
     <span class="footer-cross">✝</span>
-    <p>Centré sur Jésus-Christ</p>
+    <p data-i18n="footer_centered">Centré sur Jésus-Christ</p>
   </div>
 </footer>
 <div class="toast" id="toast"></div>
+<script src="traductions.js"></script>
 <script src="commun.js"></script>
 
 <script src="contenu.js"></script>
@@ -247,14 +271,17 @@
   function afficherContenuJour(dayIndex, estAujourdhui) {
     if (typeof CONTENU_SEMAINE === 'undefined') return;
     var e = function(id) { return document.getElementById(id); };
-    var c = CONTENU_SEMAINE[dayIndex];
-    // Le contenu manuel (AUJOURD_HUI) ne s'applique qu'au jour présent
+    var lang = (typeof langueActuelle === 'function') ? langueActuelle() : 'fr';
+    var c = (lang !== 'fr' && typeof CONTENU_SEMAINE_TRAD !== 'undefined' && CONTENU_SEMAINE_TRAD[lang])
+      ? CONTENU_SEMAINE_TRAD[lang][dayIndex]
+      : CONTENU_SEMAINE[dayIndex];
+    // Le contenu manuel (AUJOURD_HUI) ne s'applique qu'au jour présent, et seulement en français
     var data = {
       verset: c.verset, reference: c.reference,
       versetBonus: c.versetBonus, referenceBonus: c.referenceBonus,
       reflexion: c.reflexion, priere: c.priere
     };
-    if (estAujourdhui && typeof AUJOURD_HUI !== 'undefined') {
+    if (estAujourdhui && lang === 'fr' && typeof AUJOURD_HUI !== 'undefined') {
       if (AUJOURD_HUI.verset) data.verset = AUJOURD_HUI.verset;
       if (AUJOURD_HUI.reference) data.reference = AUJOURD_HUI.reference;
       if (AUJOURD_HUI.versetBonus) data.versetBonus = AUJOURD_HUI.versetBonus;
@@ -262,13 +289,15 @@
       if (AUJOURD_HUI.reflexion && AUJOURD_HUI.reflexion.length > 0) data.reflexion = AUJOURD_HUI.reflexion;
       if (AUJOURD_HUI.priere) data.priere = AUJOURD_HUI.priere;
     }
+    var bonusSuffix = (lang !== 'fr' && typeof UI_STRINGS !== 'undefined' && UI_STRINGS[lang] && UI_STRINGS[lang].bonus_suffix)
+      ? UI_STRINGS[lang].bonus_suffix : ' · Verset bonus du jour';
     if (e('heroVersetText')) e('heroVersetText').textContent = data.verset;
     if (e('heroVersetRef')) e('heroVersetRef').textContent = '— ' + data.reference;
     if (e('versetText')) e('versetText').textContent = data.verset;
     if (e('versetRef')) e('versetRef').textContent = '— ' + data.reference;
     if (e('priereTexte')) e('priereTexte').textContent = data.priere;
     if (e('bonusText')) e('bonusText').textContent = data.versetBonus;
-    if (e('bonusRef')) e('bonusRef').textContent = '— ' + data.referenceBonus + (estAujourdhui ? ' · Verset bonus du jour' : '');
+    if (e('bonusRef')) e('bonusRef').textContent = '— ' + data.referenceBonus + (estAujourdhui ? bonusSuffix : '');
     if (e('reflexionSuite')) e('reflexionSuite').style.display = 'none';
     if (e('lireSuiteBtn')) e('lireSuiteBtn').style.display = 'block';
     var r = data.reflexion;
@@ -276,6 +305,13 @@
       if (e('reflexionApercu')) e('reflexionApercu').textContent = r[0];
       if (e('reflexionReste')) e('reflexionReste').textContent = r.slice(1).join('\n\n');
     }
+  }
+
+  // Appelée par commun.js quand la langue change, pour re-rendre le contenu du jour affiché
+  function rafraichirContenuJourLangue(lang) {
+    var d = new Date();
+    d.setDate(d.getDate() + joursDecalage);
+    afficherContenuJour(d.getDay(), joursDecalage === 0);
   }
 
   function majBoutonsNav() {
@@ -314,5 +350,25 @@
     majBoutonsNav();
   });
 </script>
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+  window.LOCALE = 'fr';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+  window.REQUIRED_ERROR_MESSAGE = "Vous devez renseigner ce champ. ";
+  window.GENERIC_INVALID_MESSAGE = "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+  window.INVALID_NUMBER = "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+  window.INVALID_DATE = "Veuillez saisir une date valide";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Veuillez choisir au moins une option';
+  window.translation = {
+    common: {
+      selectedList: '{quantity} liste sélectionnée',
+      selectedLists: '{quantity} listes sélectionnées',
+      selectedOption: '{quantity} sélectionné',
+      selectedOptions: '{quantity} sélectionnés',
+    }
+  };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
