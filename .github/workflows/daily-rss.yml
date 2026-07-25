@@ -2,9 +2,12 @@ name: Générer le flux RSS quotidien
 
 on:
   schedule:
-    # 05:30 UTC = 06:30 à Cotonou (WAT, UTC+1, pas de changement d'heure saisonnier)
-    # Marge d'une demi-heure avant l'envoi Brevo programmé à 7h locale
-    - cron: '30 5 * * *'
+    # 01:15 UTC = 02:15 à Cotonou (WAT, UTC+1)
+    # GitHub Actions annonce lui-même des retards possibles sur les tâches
+    # programmées (jusqu'à plusieurs heures en cas de forte affluence — on en
+    # a mesuré ~2h30 en pratique). On vise donc très tôt le matin pour garder
+    # une marge confortable avant la vérification Brevo de 7h locale.
+    - cron: '15 1 * * *'
   workflow_dispatch:   # permet de le lancer manuellement depuis l'onglet Actions, pour tester
 
 permissions:
