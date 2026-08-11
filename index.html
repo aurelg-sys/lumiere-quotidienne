@@ -279,6 +279,7 @@
 <script src="commun.js"></script>
 
 <script src="contenu.js"></script>
+<script src="contenu-aout.js"></script>
 <script>
   // Date
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
@@ -291,13 +292,27 @@
     return `${J[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
   }
 
-  function afficherContenuJour(dayIndex, estAujourdhui) {
+  function dateISO(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function afficherContenuJour(d, estAujourdhui) {
     if (typeof CONTENU_SEMAINE === 'undefined') return;
+    var dayIndex = d.getDay();
+    var dateStr = dateISO(d);
     var e = function(id) { return document.getElementById(id); };
     var lang = (typeof langueActuelle === 'function') ? langueActuelle() : 'fr';
-    var c = (lang !== 'fr' && typeof CONTENU_SEMAINE_TRAD !== 'undefined' && CONTENU_SEMAINE_TRAD[lang])
-      ? CONTENU_SEMAINE_TRAD[lang][dayIndex]
-      : CONTENU_SEMAINE[dayIndex];
+    var c;
+    if (lang === 'fr' && typeof CONTENU_AOUT !== 'undefined' && CONTENU_AOUT[dateStr]) {
+      // Contenu unique du jour (pas de répétition), quand disponible pour cette date
+      c = CONTENU_AOUT[dateStr];
+    } else if (lang !== 'fr' && typeof CONTENU_SEMAINE_TRAD !== 'undefined' && CONTENU_SEMAINE_TRAD[lang]) {
+      // Pas encore de traduction du contenu unique — on retombe sur la rotation hebdomadaire traduite
+      c = CONTENU_SEMAINE_TRAD[lang][dayIndex];
+    } else {
+      // Hors période couverte par le contenu unique — rotation hebdomadaire habituelle
+      c = CONTENU_SEMAINE[dayIndex];
+    }
     // Le contenu manuel (AUJOURD_HUI) ne s'applique qu'au jour présent, et seulement en français
     var data = {
       verset: c.verset, reference: c.reference,
@@ -334,7 +349,7 @@
   function rafraichirContenuJourLangue(lang) {
     var d = new Date();
     d.setDate(d.getDate() + joursDecalage);
-    afficherContenuJour(d.getDay(), joursDecalage === 0);
+    afficherContenuJour(d, joursDecalage === 0);
   }
 
   function majBoutonsNav() {
@@ -359,7 +374,7 @@
     var d = new Date();
     d.setDate(d.getDate() + joursDecalage);
     document.getElementById('navDate').textContent = formaterDate(d) + (joursDecalage === 0 ? "" : " (archive)");
-    afficherContenuJour(d.getDay(), joursDecalage === 0);
+    afficherContenuJour(d, joursDecalage === 0);
     majBoutonsNav();
   }
 
@@ -369,7 +384,7 @@
   // Charger contenu.js
   window.addEventListener('load', function() {
     if (typeof CONTENU === 'undefined') return;
-    afficherContenuJour(now.getDay(), true);
+    afficherContenuJour(now, true);
     majBoutonsNav();
   });
 </script>
