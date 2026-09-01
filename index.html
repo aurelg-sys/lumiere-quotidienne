@@ -280,6 +280,7 @@
 
 <script src="contenu.js"></script>
 <script src="contenu-aout.js"></script>
+<script src="contenu-septembre.js"></script>
 <script>
   // Date
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
@@ -287,6 +288,14 @@
 
   var joursDecalage = 0; // 0 = aujourd'hui, négatif = jours passés
   var LIMITE_PASSE = -6; // on ne remonte pas plus d'une semaine en arrière
+
+  // Liste des jeux de contenu mensuel uniques disponibles (le plus récent en premier).
+  // Pour ajouter un nouveau mois : créer contenu-MOIS.js (var CONTENU_MOIS = {...}),
+  // le charger avec un <script> ci-dessus, puis l'ajouter à ce tableau.
+  var CONTENUS_MENSUELS = [
+    (typeof CONTENU_SEPTEMBRE !== 'undefined') ? CONTENU_SEPTEMBRE : null,
+    (typeof CONTENU_AOUT !== 'undefined') ? CONTENU_AOUT : null,
+  ].filter(Boolean);
 
   function formaterDate(d) {
     return `${J[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
@@ -303,9 +312,13 @@
     var e = function(id) { return document.getElementById(id); };
     var lang = (typeof langueActuelle === 'function') ? langueActuelle() : 'fr';
     var c;
-    if (lang === 'fr' && typeof CONTENU_AOUT !== 'undefined' && CONTENU_AOUT[dateStr]) {
+    var contenuUniqueDuJour = null;
+    for (var i = 0; i < CONTENUS_MENSUELS.length; i++) {
+      if (CONTENUS_MENSUELS[i][dateStr]) { contenuUniqueDuJour = CONTENUS_MENSUELS[i][dateStr]; break; }
+    }
+    if (lang === 'fr' && contenuUniqueDuJour) {
       // Contenu unique du jour (pas de répétition), quand disponible pour cette date
-      c = CONTENU_AOUT[dateStr];
+      c = contenuUniqueDuJour;
     } else if (lang !== 'fr' && typeof CONTENU_SEMAINE_TRAD !== 'undefined' && CONTENU_SEMAINE_TRAD[lang]) {
       // Pas encore de traduction du contenu unique — on retombe sur la rotation hebdomadaire traduite
       c = CONTENU_SEMAINE_TRAD[lang][dayIndex];
