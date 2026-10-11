@@ -281,6 +281,7 @@
 <script src="contenu.js"></script>
 <script src="contenu-aout.js"></script>
 <script src="contenu-septembre.js"></script>
+<script src="contenu-octobre.js"></script>
 <script>
   // Date
   const J=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
@@ -293,6 +294,7 @@
   // Pour ajouter un nouveau mois : créer contenu-MOIS.js (var CONTENU_MOIS = {...}),
   // le charger avec un <script> ci-dessus, puis l'ajouter à ce tableau.
   var CONTENUS_MENSUELS = [
+  (typeof CONTENU_OCTOBRE !== 'undefined') ? CONTENU_OCTOBRE : null,
     (typeof CONTENU_SEPTEMBRE !== 'undefined') ? CONTENU_SEPTEMBRE : null,
     (typeof CONTENU_AOUT !== 'undefined') ? CONTENU_AOUT : null,
   ].filter(Boolean);
